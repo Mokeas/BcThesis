@@ -436,9 +436,6 @@ class Lexicalizer:
 
     @staticmethod
     def lexicalize(doc_plan: DP.DocumentPlan, match_data: Data.Match) -> (str, List[str]):
-
-        random.seed(10)  # setting the seed for whole program
-
         title = Lexicalizer._lexicalize_message(doc_plan.title)
         body = [Lexicalizer._lexicalize_message(msg) for msg in doc_plan.body]
         return title, body
