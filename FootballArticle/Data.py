@@ -1,3 +1,5 @@
+"""Module storing class representation of data entities - player, score, etc."""
+
 # Python's libraries
 from typing import List
 from dataclasses import dataclass
@@ -5,9 +7,15 @@ from dataclasses import dataclass
 # Other parts of the code
 import Types
 
+"""Using dataclass(frozen=True) to guarantee immutability.
+Each data class has create static method (usually needs specific set of attributes), 
+which returns immutable instance (to prevent data from changing during the running of the code).
+"""
+
 
 @dataclass(frozen=True)
 class Score:
+    """Data class to store information about score."""
     goals_home: int
     goals_away: int
     goals_sum: int
@@ -15,7 +23,7 @@ class Score:
     result: Types.Result
 
     @staticmethod
-    def create(goals_home: int, goals_away: int):
+    def create(goals_home: int, goals_away: int):   # (*) create method returns immutable instance
         goals_sum = goals_home + goals_away
         goals_difference = abs(goals_home - goals_away)
         result: Types.Result = Score._init_result(goals_home=goals_home, goals_away=goals_away)
@@ -24,6 +32,7 @@ class Score:
 
     @staticmethod
     def _init_result(goals_home: int, goals_away: int) -> Types.Result:
+        """Takes number of goals for each team and returns Type.Result (win/draw/lose)."""
         if goals_home > goals_away:
             return Types.Result.WIN
         elif goals_home == goals_away:
@@ -37,6 +46,7 @@ class Score:
 
 @dataclass(frozen=True)
 class Venue:
+    """Data class to store information about venue."""
     name: str
     town: str
     capacity: int
@@ -51,13 +61,14 @@ class Venue:
     '''
         def __str__(self):
         return f"--Venue-- Name: {self.name}, Town: {self.town}, Capacity: {self.capacity}, " \
-            f"Attendance: {self.attendance}, Percantage of at.: {self.full_percentage}, " \
+            f"Attendance: {self.attendance}, Percentage of at.: {self.full_percentage}, " \
             f"Venue is full: {self.is_full()}, Venue is empty: {self.is_empty()}"
     '''
 
 
 @dataclass(frozen=True)
 class Country:
+    """Data class to store information about country."""
     id: int
     name: str
 
@@ -68,6 +79,7 @@ class Country:
 
 @dataclass(frozen=True)
 class Player:
+    """Data class to store information about player."""
     id: int
     full_name: str
     country: Country
@@ -80,13 +92,14 @@ class Player:
                       lineup_position_id=lineup_position_id, number=number)
 
     def get_first_name(self):
+        """Returns first name of the player from his full name."""
         return self.full_name.split()[-1]
 
     def get_last_name(self):
+        """Returns last name of the player from his full name."""
         return self.full_name.split()[0]
 
-    # def get_position(self):
-    # utocnik /obrance ...
+    # ToDO: def get_position(self): striker/defender/...
 
     def __str__(self):
         return f"({self.full_name}, {self.number})"
@@ -94,6 +107,7 @@ class Player:
 
 @dataclass(frozen=True)
 class Team:
+    """Data class to store information about team."""
     id: int
     name: str
     country: Country
@@ -110,8 +124,9 @@ class Team:
 
 @dataclass(frozen=True)
 class Time:
-    base: int
-    added: int
+    """Data class to store information about time."""
+    base: int   # base is normal time, but ends on 45 or 90
+    added: int   # added time is number of minutes after 45 or 90
 
     @staticmethod
     def create(time_base: int, time_added: int):
@@ -129,8 +144,10 @@ class Time:
         else:
             return self.added < other.added
 
+
 @dataclass(frozen=True)
 class Incident:
+    """Data class to store information about incident."""
     type: Types.Incident
     participant: Player
     team: Team
@@ -145,8 +162,12 @@ class Incident:
 
 
 class Incidents:
+    """Data class to store information about each type of incident.
+    Each type of incident has it's own subclass (named same as the incident type).
+    """
     @dataclass(frozen=True)
     class Goal(Incident):
+        """Data class to store information about goal incident."""
         current_score: Score
         assistance: Player
         goal_type: Types.Goal
@@ -159,6 +180,7 @@ class Incidents:
 
     @dataclass(frozen=True)
     class Penalty(Incident):
+        """Data class to store information about penalty incident."""
         scored: bool
         current_score: Score
 
@@ -169,6 +191,7 @@ class Incidents:
 
     @dataclass(frozen=True)
     class Card(Incident):
+        """Data class to store information about card incident."""
         card_type: Types.Card
 
         @staticmethod
@@ -178,6 +201,7 @@ class Incidents:
 
     @dataclass(frozen=True)
     class Substitution(Incident):
+        """Data class to store information about substitution incident."""
         participant_in: Player
 
         @staticmethod
@@ -185,8 +209,12 @@ class Incidents:
             return Incidents.Substitution(type=Types.Incident.SUBSTITUTION, participant=participant,
                                           team=team, time=time, participant_in=participant_in)
 
+
 @dataclass(frozen=True)
 class Match:
+    """Data class to store information about the whole match.
+    This class stores everything you need to know about the match.
+    """
     team_home: Team
     team_away: Team
     score: Score
@@ -199,6 +227,6 @@ class Match:
 
     def __str__(self):
         return f"MATCH DATA SUMMARY \n\t{self.team_home}\n\t{self.team_away}\n\t{self.score}\n\t{self.venue}\n" \
-                   f"TEAM LINEUPS\n\t-> team home lineup: " + ",".join(map(str, self.team_home.lineup)) + \
+               f"TEAM LINEUPS\n\t-> team home lineup: " + ",".join(map(str, self.team_home.lineup)) + \
                f"\n\t-> team away lineup: " + ",".join(map(str, self.team_away.lineup)) + '\n' + \
                f"INCIDENTS\n\t" + "\n\t".join(map(str, self.incidents))

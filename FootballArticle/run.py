@@ -1,8 +1,13 @@
+"""Runs the generator - main.py"""
+
+# Python's libraries
 import argparse
+# Other parts of the code
 import article_generator as ag
 
 
 def run(args):
+    """Main function to run the whole article generator with correct arguments."""
     ag.generate_article(filename=args.match_data, print_output=False, text_count=args.text_count)
 
 

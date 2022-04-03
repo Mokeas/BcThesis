@@ -1,10 +1,5 @@
-# Brief description:
+"""Creating document structure from Match information."""
 
-# creating document structure from match information
-# input: Data.Match
-# output: DocumentPlan
-
-# -----------------------------------------------------
 # Python's libraries
 from typing import List
 from dataclasses import dataclass
@@ -12,18 +7,29 @@ from dataclasses import dataclass
 # Other parts of the code
 import Types
 import Data
-import data_initializer as DI
-# -----------------------------------------------------
+import data_initializer as di
+
+"""Using dataclass(frozen=True) to guarantee immutability.
+Each data class has create static method (usually needs specific set of attributes), 
+which returns immutable instance (to prevent data from changing during the running of the code).
+"""
 
 
 @dataclass(frozen=True)
-class Message:
+class Message:    # ToDo: is it needed, since i use class Messages??
+    """Parent class to represent message."""
     type: Types.Message
+    """ This class exists to have common parent for all data class.
+    Every message class has a message type. This way we can ensure to address all 
+    messages as one type and every message type can have numerous different attributes.
+    """
 
 
 class Messages:
+    """Class to store every message type."""
     @dataclass(frozen=True)
     class Result(Message):
+        """Class to represent result message."""
         team_home: Data.Team
         team_away: Data.Team
         score: Data.Score
@@ -38,6 +44,7 @@ class Messages:
 
     @dataclass(frozen=True)
     class Card(Message):
+        """Class to represent card message."""
         participant: Data.Player
         team: Data.Team
         time: Data.Time
@@ -54,6 +61,7 @@ class Messages:
 
     @dataclass(frozen=True)
     class Goal(Message):
+        """Class to represent goal message."""
         participant: Data.Player
         assistance: Data.Player
         current_score: Data.Score
@@ -74,6 +82,7 @@ class Messages:
 
     @dataclass(frozen=True)
     class Substitution(Message):
+        """Class to represent substitution message."""
         participant_out: Data.Player
         participant_in: Data.Player
         team: Data.Team
@@ -90,6 +99,7 @@ class Messages:
 
     @dataclass(frozen=True)
     class MissedPenalty(Message):
+        """Class to represent missed penalty message."""
         participant: Data.Player
         team: Data.Team
         time: Data.Time
@@ -106,6 +116,7 @@ class Messages:
 
 @dataclass(frozen=True)
 class DocumentPlan:
+    """Class to represent article as a list of messages and title - creating core structure of the article."""
     title: Messages
     body: List[Messages]
 
@@ -118,21 +129,24 @@ class DocumentPlan:
 
 
 class DocumentPlanner:
-
+    """Creating document structure from Match information."""
     @staticmethod
     def plan_document(match_data: Data.Match) -> DocumentPlan:
+        """Plans the document plan from non-linguistic Data.Match."""
         doc_planner = DocumentPlanner()
-        title: Messages = doc_planner._plan_title(match_data)
+        title: Messages = doc_planner._plan_title(match_data)   # title has its own specific message
         body: List[Messages] = doc_planner._plan_body(match_data)
 
         return DocumentPlan.create(title, body)
 
     @staticmethod
     def _plan_title(match_data: Data.Match) -> Messages:
+        """Plans title message from match data."""
         return Messages.Result.create(match_data.team_home, match_data.team_away, match_data.score)
 
     @staticmethod
     def _plan_incident_msg(inc: Data.Incidents) -> Messages:
+        """Transforms incident into a message."""
         if type(inc) is Data.Incidents.Goal:
             return Messages.Goal.create(participant=inc.participant, team=inc.team, time=inc.time,
                                         current_score=inc.current_score, assistance=inc.assistance,
@@ -155,4 +169,5 @@ class DocumentPlanner:
 
     @staticmethod
     def _plan_body(match_data: Data.Match) -> List[Messages]:
+        """Planing body of the article - transforming data into list of messages."""
         return [DocumentPlanner._plan_incident_msg(inc) for inc in match_data.incidents]

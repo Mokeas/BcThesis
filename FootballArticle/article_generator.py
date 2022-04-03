@@ -1,10 +1,7 @@
-# Brief description:
+"""Generating the article and handles each module.
+Input is the name of the json file (string) and output is the article (stdout).
+"""
 
-# core method handler: generating article
-# input: name of json file
-# output: (stdout) article
-
-# -----------------------------------------------------
 # Python's libraries
 from typing import List
 from dataclasses import dataclass
@@ -12,21 +9,25 @@ import random
 
 # Other parts of the code
 import Data
-import data_initializer as DI
-import document_planner as DP
+import data_initializer as di
+import document_planner as dp
 import lexicalizer as lex
 import realiser as real
-# -----------------------------------------------------
 
 
 def generate_article(filename: str, print_output: bool, text_count: int):
-    match_data: Data.Match = DI.DataInitializer.init_match_data(filename)
-    #print(f'{match_data} \n\n ' + '_' * 70)
+    """Core function for generating article."""
 
-    doc_plan: DP.DocumentPlan = DP.DocumentPlanner.plan_document(match_data)
-    #print(f'{doc_plan} \n\n ' + '_' * 70)
+    # transforming json file into inner representation of data as Data.Match class
+    match_data: Data.Match = di.DataInitializer.init_match_data(filename)
+    # print(f'{match_data} \n\n ' + '_' * 70)
+
+    # transforming data into document plan (list of messages)
+    doc_plan: DP.DocumentPlan = dp.DocumentPlanner.plan_document(match_data)
+    print(f'{doc_plan} \n\n ' + '_' * 70)
 
     random.seed(10)  # setting the seed for whole program
+
     for x in range(text_count):
 
         plain_str: (str, List[str]) = lex.Lexicalizer.lexicalize(doc_plan, match_data)

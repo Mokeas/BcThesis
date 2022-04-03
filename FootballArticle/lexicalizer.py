@@ -1,29 +1,26 @@
-# Brief description:
+"""Lexicalize document plan with specific language expressions and
+also transforming lexicalized text into valid input for Geneea.
+Input is document plan and match data, output is string that can be an input of Geneea API.
+"""
 
-# lexicalize document plan with specific language expressions
-# also transforming lexicalized text into valid input for Geneea
-# input: DocumentPlan, Data.Match
-# output: (str, List[str])
-
-# -----------------------------------------------------
 # Python's libraries
 import random
 from typing import List, Tuple, Union
 # Other parts of the code
 import Types
-import document_planner as DP
+import document_planner as di
 import Data
-# -----------------------------------------------------
 
 
 class MorphParams:
+    """Class to transform linguistic requirements into Geneea well-build input. """
     case: Types.Morph.Case
     tense: Types.Morph.Tense
     ref: None
     agr: None
 
     def __init__(self, string_id: str):
-        params = MorphParams.get_morph_params(string_id)
+        params: (Types.Morph.Case, Types.Morph.Tense, str, str) = MorphParams.get_morph_params(string_id)
         self.case = params[0]
         self.tense = params[1]
         self.ref = params[2]
@@ -31,11 +28,13 @@ class MorphParams:
 
     @staticmethod
     def get_morph_params(string_id: str) -> (Types.Morph.Case, Types.Morph.Tense, str, str):
+        """Transforms string into morphological attributes."""
         if string_id == '':
             return None, None, None, None
         else:
             [case_id, tense_id, ref_id, agr_id] = string_id.split('-')
 
+            # . stands for non-defined parameter
             case = None if case_id == "." else Types.Morph.Case(int(case_id))
             tense = None if tense_id == "." else Types.Morph.Tense(int(tense_id))
             ref = None if ref_id == "." else ref_id
@@ -44,6 +43,7 @@ class MorphParams:
             return case, tense, ref, agr
 
     def apply_morph_params_to_string(self, constituent: str) -> str:
+        """Takes constituent and applies given attributes. Output is well-build string for Geneea API interface."""
         header = '{{' + f'\'{constituent}\'|morph('
 
         mp: List[str] = []
@@ -76,12 +76,12 @@ class MorphParams:
 
 class Template:
     id: str
-    msg: DP.Message
+    msg: di.Message
     morph_params: MorphParams
     data: None
     string: str
 
-    def __init__(self, id: str, msg: DP.Message, morph_params: str, data, string):
+    def __init__(self, id: str, msg: di.Message, morph_params: str, data, string):
         self.id = id
         self.msg = msg
         self.morph_params = MorphParams(morph_params)
@@ -92,12 +92,12 @@ class Template:
         constituent_type = self.id.split('-')[0]
         possibilities: List[Tuple[str, str]] = []
 
-        if constituent_type == 'e':  # ENTITY
+        if constituent_type == 'e':   # ENTITY
             possibilities = Template.get_string_poss_entity(self)
-        elif constituent_type == 'w':  # WORD
+        elif constituent_type == 'w':   # WORD
             word_type = self.id.split('-')[1]
             possibilities = Template.get_string_poss_word(word_type)
-        elif constituent_type == 'v':  # VERB
+        elif constituent_type == 'v':   # VERB
             verb_type = self.id.split('-')[1]
             possibilities = Template.get_string_poss_verb(verb_type)
 
@@ -236,14 +236,14 @@ class Sentence:
     id: str
     constituents: List[Union[str, Template]]
 
-    def __init__(self, msg: DP.Message):
+    def __init__(self, msg: di.Message):
         s = Sentence.get_sentence(msg)
         self.id = s[0]
         self.constituents = s[1]
 
     @staticmethod
-    def get_sentence(m: DP.Message) -> (str, List[Union[str, Template]]):
-        def get_sentence_result(msg: DP.Messages.Result) -> (str, List[Union[str, Template]]):
+    def get_sentence(m: di.Message) -> (str, List[Union[str, Template]]):
+        def get_sentence_result(msg: di.Messages.Result) -> (str, List[Union[str, Template]]):
             # id type: result = 'r'
             # id subtypes: win = 'w' / draw = 'd' / loss = 'l'
 
@@ -275,7 +275,7 @@ class Sentence:
 
             return random.choice(sentences)
 
-        def get_sentence_goal(msg: DP.Messages.Goal) -> (str, List[Union[str, Template]]):
+        def get_sentence_goal(msg: di.Messages.Goal) -> (str, List[Union[str, Template]]):
             # id type: goal = 'r'
             # id subtypes: solo play = 's' / own goal = 'o' / penalty = 'p' / assistance = 'a'
 
@@ -327,7 +327,7 @@ class Sentence:
 
             return random.choice(sentences)
 
-        def get_sentence_substitution(msg: DP.Messages.Substitution) -> (str, List[Union[str, Template]]):
+        def get_sentence_substitution(msg: di.Messages.Substitution) -> (str, List[Union[str, Template]]):
             # id type: substitution = 's'
 
             sentences : List[(str, List[Union[str, Template]])] = []
@@ -348,7 +348,7 @@ class Sentence:
 
             return random.choice(sentences)
 
-        def get_sentence_card(msg: DP.Messages.Card) -> (str, List[Union[str, Template]]):
+        def get_sentence_card(msg: di.Messages.Card) -> (str, List[Union[str, Template]]):
             # id type: card = 'c'
             # id subtypes: red_auto = 'a' / red_instant = 'r' / yellow = 'y'
 
@@ -379,7 +379,7 @@ class Sentence:
 
             return random.choice(sentences)
 
-        def get_sentence_missed_penalty(msg: DP.Messages.MissedPenalty) -> (str, List[Union[str,Template]]):
+        def get_sentence_missed_penalty(msg: di.Messages.MissedPenalty) -> (str, List[Union[str,Template]]):
             # id type: missed penalty = 'm'
             sentences: List[(str, List[Union[str,Template]])] = []
 
@@ -392,15 +392,15 @@ class Sentence:
 
             return random.choice(sentences)
 
-        if type(m) is DP.Messages.Result:
+        if type(m) is di.Messages.Result:
             return get_sentence_result(m)
-        elif type(m) is DP.Messages.Goal:
+        elif type(m) is di.Messages.Goal:
             return get_sentence_goal(m)
-        elif type(m) is DP.Messages.Substitution:
+        elif type(m) is di.Messages.Substitution:
             return get_sentence_substitution(m)
-        elif type(m) is DP.Messages.Card:
+        elif type(m) is di.Messages.Card:
             return get_sentence_card(m)
-        elif type(m) is DP.Messages.MissedPenalty:
+        elif type(m) is di.Messages.Missedienalty:
             return get_sentence_missed_penalty(m)
         else:
             print("Wrong types")
@@ -435,13 +435,13 @@ class Sentence:
 class Lexicalizer:
 
     @staticmethod
-    def lexicalize(doc_plan: DP.DocumentPlan, match_data: Data.Match) -> (str, List[str]):
+    def lexicalize(doc_plan: di.DocumentPlan, match_data: Data.Match) -> (str, List[str]):
         title = Lexicalizer._lexicalize_message(doc_plan.title)
         body = [Lexicalizer._lexicalize_message(msg) for msg in doc_plan.body]
         return title, body
 
     @staticmethod
-    def _lexicalize_message(msg: DP.Messages) -> str:
+    def _lexicalize_message(msg: di.Messages) -> str:
         sentence = Sentence(msg)
         sentence.lexicalize()
         # sentence.alternate()
