@@ -28,7 +28,9 @@ class MorphParams:
 
     @staticmethod
     def get_morph_params(string_id: str) -> (Types.Morph.Case, Types.Morph.Tense, str, str):
-        """Transforms string into morphological attributes."""
+        """Transforms string into morphological attributes.
+        String_id is in form case-tense-ref-afr and . is used to blank attribute.
+        """
         if string_id == '':
             return None, None, None, None
         else:
@@ -76,17 +78,15 @@ class MorphParams:
 
 class Template:
     id: str
-    msg: di.Message
     morph_params: MorphParams
-    data: None
+    explicit_data: Types.ExplicitEntityData
     string: str
 
-    def __init__(self, id: str, msg: di.Message, morph_params: str, data, string):
-        self.id = id
-        self.msg = msg
+    def __init__(self, id_: str, morph_params: str, explicit_data: Types.ExplicitEntityData):
+        self.id = id_
         self.morph_params = MorphParams(morph_params)
-        self.data = data
-        self.string = string
+        self.explicit_data = explicit_data
+        self.string = ''
 
     def lexicalize(self):
         constituent_type = self.id.split('-')[0]
@@ -161,22 +161,41 @@ class Template:
             # assistance
             templates.append(('w-assistance-1', 'asistence'))
             templates.append(('w-assistance-2', 'nahrávka'))
+            templates.append(('w-assistance-3', 'přihrávka'))
 
             # penalty
             templates.append(('w-penalty-1', 'penalta'))
             templates.append(('w-penalty-2', 'pokutový kop'))
+            templates.append(('w-penalty-3', 'jedenáctka'))
 
             # own goal
             templates.append(('w-own_goal-1', 'vlastňák'))
             templates.append(('w-own_goal-2', 'vlastní gól'))
+            templates.append(('w-own_goal-3', 'vlastenec'))
 
             # yellow card
-            templates.append(('w-yellowcard-1', 'žlutá'))
-            templates.append(('w-yellowcard-2', 'žlutá karta'))
+            templates.append(('w-yellow_card-1', 'žlutá'))
+            templates.append(('w-yellow_card-2', 'žlutá karta'))
 
             # red card
-            templates.append(('w-redcard-1', 'červená'))
-            templates.append(('w-redcard-2', 'červená karta'))
+            templates.append(('w-red_card-1', 'červená'))
+            templates.append(('w-red_card-2', 'červená karta'))
+
+            # draw
+            templates.append(('w-draw-1', 'remíza'))
+            templates.append(('w-draw-2', 'plichta'))
+            templates.append(('w-draw-3', 'nerozhodný výsledek'))
+
+            # lose
+            templates.append(('w-lose-1', 'porážka'))
+            templates.append(('w-lose-2', 'prohra'))
+            templates.append(('w-lose-3', 'debakl'))
+            templates.append(('w-lose-4', 'ostuda'))
+
+            # win
+            templates.append(('w-win-1', 'vítězství'))
+            templates.append(('w-win-2', 'výhra'))
+            templates.append(('w-win-3', 'zdar'))
 
         templates: List[(str, str)] = []
         init_word_templates()
@@ -198,12 +217,11 @@ class Template:
             templates.append(('v-goal-3', 'dát'))
 
             # score change
-
             templates.append(('v-score_change-1', 'změnil'))
             templates.append(('v-score_change-2', 'upravil'))
+            templates.append(('v-score_change-3', 'zvýšil'))
 
             # penalty
-
             templates.append(('v-penalty-1', 'proměnit'))
             templates.append(('v-penalty-2', 'dát'))
 
@@ -219,6 +237,7 @@ class Template:
             # card
             templates.append(('v-card-1', 'dostat'))
             templates.append(('v-card-2', 'obdržet'))
+            templates.append(('v-card-2', 'vyfasovat'))
 
         templates: List[(str, str)] = []
         init_verb_templates()
@@ -234,176 +253,21 @@ class Template:
 
 class Sentence:
     id: str
+    simple: bool
     constituents: List[Union[str, Template]]
+    frequency: int
 
-    def __init__(self, msg: di.Message):
-        s = Sentence.get_sentence(msg)
-        self.id = s[0]
-        self.constituents = s[1]
+    def __init__(self, id: str, simple: bool, constituents: List[Union[str, Template]]):
+        self.id = id
+        self.simple = simple
+        self.constituents = constituents
+        self.frequency = 0
 
-    @staticmethod
-    def get_sentence(m: di.Message) -> (str, List[Union[str, Template]]):
-        def get_sentence_result(msg: di.Messages.Result) -> (str, List[Union[str, Template]]):
-            # id type: result = 'r'
-            # id subtypes: win = 'w' / draw = 'd' / loss = 'l'
+    def __eq__(self, other):
+        return self.id == other.id
 
-            sentences: List[Tuple[str, List[Union[str, Template]]]] = []
-
-            if msg.score.result == Types.Result.WIN:
-                sentences.append(('s_r_w_1', [
-                    Template(id='e-team', msg=msg, morph_params='1-.-1-.', data=msg.team_home, string=None),
-                    Template(id='v-win', msg=msg, morph_params='.-0-.-1', data=None, string=None),
-                    Template(id='e-team', msg=msg, morph_params='4-.-.-.', data=msg.team_away, string=None),
-                    Template(id='e-score', msg=msg, morph_params='', data=msg.score, string=None)
-                ]))
-
-            elif msg.score.result == Types.Result.DRAW:
-                sentences.append(('s_r_d_1', [
-                    Template(id='e-team', msg=msg, morph_params='1-.-1-.', data=msg.team_home, string=None),
-                    Template(id='v-draw', msg=msg, morph_params='.-0-.-1', data=None, string=None),
-                    Template(id='e-team', msg=msg, morph_params='7-.-.-.', data=msg.team_away , string=None),
-                    Template(id='e-score', msg=msg, morph_params='', data=msg.score, string=None),
-
-                ]))
-            else:  # msg.score.result == Types.Result.LOSS:
-                sentences.append(('s_r_l_1', [
-                    Template(id='e-team', msg=msg, morph_params='1-.-1-.', data=msg.team_home , string=None),
-                    Template(id='v-loss', msg=msg, morph_params='.-0-.-1', data=None, string=None),
-                    Template(id='e-team', msg=msg, morph_params='4-.-.-.', data=msg.team_away, string=None),
-                    Template(id='e-score', msg=msg, morph_params='', data=msg.score, string=None),
-                ]))
-
-            return random.choice(sentences)
-
-        def get_sentence_goal(msg: di.Messages.Goal) -> (str, List[Union[str, Template]]):
-            # id type: goal = 'r'
-            # id subtypes: solo play = 's' / own goal = 'o' / penalty = 'p' / assistance = 'a'
-
-            sentences: List[(str, List[Union[str, Template]])] = []
-            if msg.goal_type == Types.Goal.SOLO_PLAY:
-                sentences.append(('s_g_s_1', [
-
-                    Template(id='e-time'  , msg=msg, morph_params='', data=msg.time          , string=None),
-                    Template(id='v-goal'  , msg=msg, morph_params='.-0-.-.', data=None              , string=None),
-                    Template(id='e-player', msg=msg, morph_params='1-.-.-.', data=msg.participant   , string=None),
-                    Template(id='w-goal'  , msg=msg, morph_params='4-.-.-.', data=None              , string=None),
-                ]))
-
-                sentences.append(('s_g_s_2', [
-                    Template(id='e-time', msg=msg, morph_params='', data=msg.time, string=None),
-                    Template(id='v-goal', msg=msg, morph_params='.-0-.-.', data=None, string=None),
-                    Template(id='e-player', msg=msg, morph_params='1-.-.-.', data=msg.participant, string=None),
-                    Template(id='w-goal', msg=msg, morph_params='4-.-.-.', data=None, string=None),
-                    "a",
-                    Template(id='v-score_change', msg=msg, morph_params='', data=None, string=None),
-                    "na",
-                    Template(id='e-score', msg=msg, morph_params='', data=msg.current_score, string=None)
-                ]))
-
-            elif msg.goal_type == Types.Goal.ASSISTANCE:
-                sentences.append(('s_g_a_1', [
-                    Template(id='e-time', msg=msg, morph_params='', data=msg.time, string=None),
-                    Template(id='v-goal', msg=msg, morph_params='.-0-.-.', data=None, string=None),
-                    Template(id='e-player', msg=msg, morph_params='1-.-.-.', data=msg.participant, string=None),
-                    "po",
-                    Template(id='w-assistance', msg=msg, morph_params='6-.-.-.', data=None, string=None),
-                    Template(id='e-player', msg=msg, morph_params='3-.-.-.', data=msg.assistance, string=None),
-                    Template(id='w-goal', msg=msg, morph_params='4-.-.-.', data=None, string=None)
-                ]))
-            elif msg.goal_type == Types.Goal.PENALTY:
-                sentences.append(('s_g_p_1', [
-                    Template(id='e-time', msg=msg, morph_params='', data=msg.time, string=None),
-                    Template(id='v-penalty', msg=msg, morph_params='.-0-.-.', data=None, string=None),
-                    Template(id='e-player', msg=msg, morph_params='1-.-.-.', data=msg.participant, string=None),
-                    Template(id='w-penalty', msg=msg, morph_params='4-.-.-.', data=None, string=None)
-                ]))
-            elif msg.goal_type == Types.Goal.OWN_GOAL:
-                sentences.append(('s_g_p_1', [
-                    Template(id='e-time', msg=msg, morph_params='', data=msg.time, string=None),
-                    "si dal",
-                    Template(id='e-player', msg=msg, morph_params='1-.-.-.', data=msg.participant, string=None),
-                    Template(id='w-own_goal', msg=msg, morph_params='4-.-.-.', data=None, string=None)
-                ]))
-
-            return random.choice(sentences)
-
-        def get_sentence_substitution(msg: di.Messages.Substitution) -> (str, List[Union[str, Template]]):
-            # id type: substitution = 's'
-
-            sentences : List[(str, List[Union[str, Template]])] = []
-
-            sentences.append(('s_s_1', [
-                Template(id='e-time', msg=msg, morph_params='', data=msg.time, string=None),
-                Template(id='v-substitution', msg=msg, morph_params='.-0-.-.', data=None, string=None),
-                Template(id='e-player', msg=msg, morph_params='1-.-.-.', data=msg.participant_in, string=None),
-                "za",
-                Template(id='e-player', msg=msg, morph_params='4-.-.-.', data=msg.participant_out, string=None),
-            ]))
-            sentences.append(('s_s_2', [
-                Template(id='e-time', msg=msg, morph_params='', data=msg.time, string=None),
-                Template(id='v-substitution', msg=msg, morph_params='.-0-.-.', data=None, string=None),
-                Template(id='e-player', msg=msg, morph_params='1-.-.-.', data=msg.participant_in, string=None),
-                Template(id='e-player', msg=msg, morph_params='4-.-.-.', data=msg.participant_out, string=None),
-            ]))
-
-            return random.choice(sentences)
-
-        def get_sentence_card(msg: di.Messages.Card) -> (str, List[Union[str, Template]]):
-            # id type: card = 'c'
-            # id subtypes: red_auto = 'a' / red_instant = 'r' / yellow = 'y'
-
-            sentences: List[(str, List[Union[str, Template]])] = []
-            if msg.card_type == Types.Card.RED_AUTO:
-                sentences.append(('s_g_s_1', [
-                    Template(id='e-time', msg=msg, morph_params='', data=msg.time, string=None),
-                    Template(id='v-card', msg=msg, morph_params='.-0-.-.', data=None, string=None),
-                    Template(id='e-player', msg=msg, morph_params='1-.-.-.', data=msg.participant, string=None),
-                    Template(id='w-redcard', msg=msg, morph_params='4-.-.-.', data= None, string= None)
-                ]))
-            elif msg.card_type == Types.Card.RED_INSTANT:
-                sentences.append(('s_g_s_1', [
-                    Template(id='e-time', msg=msg, morph_params='', data=msg.time, string=None),
-                    Template(id='v-card', msg=msg, morph_params='.-0-.-.', data=None, string=None),
-                    Template(id='e-player', msg=msg, morph_params='1-.-.-.', data=msg.participant, string=None),
-                    "druhou",
-                    Template(id='w-yellowcard', msg=msg, morph_params='4-.-.-.', data=None, string=None),
-                    "a tím pro něj zápas skončil"
-                ]))
-            else:  # msg.card_type == Types.Card.YELLOW:
-                sentences.append(('s_g_s_1', [
-                    Template(id='e-time', msg=msg, morph_params='', data=msg.time, string=None),
-                    Template(id='v-card', msg=msg, morph_params='.-0-.-.', data=None, string=None),
-                    Template(id='e-player', msg=msg, morph_params='1-.-.-.', data=msg.participant, string=None),
-                    Template(id='w-yellowcard', msg=msg, morph_params='4-.-.-.', data=None, string=None)
-                ]))
-
-            return random.choice(sentences)
-
-        def get_sentence_missed_penalty(msg: di.Messages.MissedPenalty) -> (str, List[Union[str,Template]]):
-            # id type: missed penalty = 'm'
-            sentences: List[(str, List[Union[str,Template]])] = []
-
-            sentences.append(('s_m_1', [
-                Template(id='e-time', msg=msg, morph_params='', data=msg.time, string=None),
-                Template(id='e-player', msg=msg, morph_params='1-.-.-.', data=msg.participant_in, string=None),
-                Template(id='v-failed_penalty', msg=msg, morph_params='.-0-.-.', data=msg.time, string=None),
-                Template(id='w-penalty', msg=msg, morph_params='', data=msg.participant_out, string=None)
-            ]))
-
-            return random.choice(sentences)
-
-        if type(m) is di.Messages.Result:
-            return get_sentence_result(m)
-        elif type(m) is di.Messages.Goal:
-            return get_sentence_goal(m)
-        elif type(m) is di.Messages.Substitution:
-            return get_sentence_substitution(m)
-        elif type(m) is di.Messages.Card:
-            return get_sentence_card(m)
-        elif type(m) is di.Messages.Missedienalty:
-            return get_sentence_missed_penalty(m)
-        else:
-            print("Wrong types")
+    def __lt__(self, other):
+        return self.id < other.id
 
     def lexicalize(self):
         for tmp in self.constituents:
@@ -427,22 +291,339 @@ class Sentence:
         k = 0
         while not const[0][k].isalpha() and k != len(const[0]):
             k += 1
-        const[0] = const[0][:k] + const[0][k].upper() + const[0][k+1:]
+        const[0] = const[0][:k] + const[0][k].upper() + const[0][k + 1:]
 
-        return ' '.join(const) + '.'
+
+class SentenceHandler:
+    sentences: List[Sentence]
+    used_sentences: List[Sentence]
+
+    def __init__(self):
+        self.sentences = []
+
+    def update_sentence_frequency(self, start_index: int) -> int:
+        index = start_index
+        count = 1
+        while index + 1 < len(self.sentences) and self.sentences[index].id == self.sentences[index+1].id:
+            count += 1
+            index += 1
+
+        for i in range(start_index, index+1):
+            self.sentences[i].frequency = count
+
+        return index
+
+    def init_sentences_count(self):
+        curr_index = 0
+        while curr_index < len(self.sentences):
+            curr_index = self.update_sentence_frequency(curr_index)
+            curr_index += 1
+
+    def skip_to_next_simple(self, start_index: int) -> int:
+        index = start_index
+        while not self.sentences[index].simple:
+            index += 1
+
+        return index
+
+    def swap_two_elements(self, index1: int, index2: int):
+        tmp = self.sentences[index1]
+        self.sentences[index1] = self.sentences[index2]
+        self.sentences[index2] = tmp
+
+    def skip_to_next_sentence_type(self, start_index: int) -> int:
+        index = start_index
+        while index + 1 < len(self.sentences) and self.sentences[index] == self.sentences[index+1]:
+            index += 1
+        return index + 1
+
+    def put_simple_first(self):
+        index = 0
+        while index + 1 < len(self.sentences):
+            if not self.sentences[index].simple:
+                simple_index = self.skip_to_next_simple(index)
+                self.swap_two_elements(index, simple_index)
+            index = self.skip_to_next_sentence_type(index)
+
+    def randomize_sentences_order(self):
+        print('---------------------------------')
+        random.shuffle(self.sentences)
+        self.sentences.sort()
+        self.put_simple_first()
+        self.print_sentences_count()
+        print('---------------------------------')
+
+    def init_sentences(self):
+        def init_sentence_result():
+            type_ = 'r'
+            # id subtypes: win = 'w' / draw = 'd' / loss = 'l'
+
+            # win
+            subtype = 'w'
+            self.sentences.append(Sentence(_init_sentence_key(type_, subtype), True, [
+                Template(id_='e-team', morph_params='1-.-1-.', explicit_data=Types.ExplicitEntityData.TEAM_HOME),
+                Template(id_='v-win', morph_params='.-0-.-1', explicit_data=None),
+                Template(id_='e-team', morph_params='4-.-.-.', explicit_data=Types.ExplicitEntityData.TEAM_AWAY),
+                Template(id_='e-score', morph_params='', explicit_data=None)]))
+
+            # draw
+            subtype = 'd'
+            self.sentences.append(Sentence(_init_sentence_key(type_, subtype), True, [
+                Template(id_='e-team', morph_params='1-.-1-.', explicit_data=Types.ExplicitEntityData.TEAM_HOME),
+                Template(id_='v-draw', morph_params='.-0-.-1', explicit_data=None),
+                Template(id_='e-team', morph_params='7-.-.-.', explicit_data=Types.ExplicitEntityData.TEAM_AWAY),
+                Template(id_='e-score', morph_params='', explicit_data=None)]))
+
+            # lose
+            subtype = 'l'
+            self.sentences.append(Sentence(_init_sentence_key(type_, subtype), True, [
+                Template(id_='e-team', morph_params='1-.-1-.', explicit_data=Types.ExplicitEntityData.TEAM_HOME),
+                Template(id_='v-loss', morph_params='.-0-.-1', explicit_data=None),
+                Template(id_='e-team', morph_params='4-.-.-.', explicit_data=Types.ExplicitEntityData.TEAM_AWAY),
+                Template(id_='e-score', morph_params='', explicit_data=None)]))
+
+        def init_sentence_goal():
+            type_ = 'g'
+            # id subtypes: solo play = 's' / own goal = 'o' / penalty = 'p' / assistance = 'a'
+
+            # Types.Goal.SOLO_PLAY
+            subtype = 's'
+            self.sentences.append(Sentence(_init_sentence_key(type_, subtype), True, [
+                Template(id_='e-time', morph_params='', explicit_data=None),
+                Template(id_='v-goal', morph_params='.-0-.-.', explicit_data=None),
+                Template(id_='e-player', morph_params='1-.-.-.', explicit_data=None),
+                Template(id_='w-goal', morph_params='4-.-.-.', explicit_data=None)]))
+
+            self.sentences.append(Sentence(_init_sentence_key(type_, subtype), False, [
+                Template(id_='e-time', morph_params='', explicit_data=None),
+                Template(id_='v-goal', morph_params='.-0-.-.', explicit_data=None),
+                Template(id_='e-player', morph_params='1-.-.-.', explicit_data=None),
+                Template(id_='w-goal', morph_params='4-.-.-.', explicit_data=None),
+                "a",
+                Template(id_='v-score_change', morph_params='', explicit_data=None),
+                "na",
+                Template(id_='e-score', morph_params='', explicit_data=Types.ExplicitEntityData.CURRENT_SCORE)]))
+
+            # Types.Goal.ASSISTANCE
+            subtype = 'a'
+            self.sentences.append(Sentence(_init_sentence_key(type_, subtype), True, [
+                Template(id_='e-time', morph_params='', explicit_data=None),
+                Template(id_='v-goal', morph_params='.-0-.-.', explicit_data=None),
+                Template(id_='e-player', morph_params='1-.-.-.', explicit_data=None),
+                "po",
+                Template(id_='w-assistance', morph_params='6-.-.-.', explicit_data=None),
+                Template(id_='e-player', morph_params='3-.-.-.', explicit_data=Types.ExplicitEntityData.ASSISTANCE),
+                Template(id_='w-goal', morph_params='4-.-.-.', explicit_data=None)]))
+
+            # Types.Goal.PENALTY
+            subtype = 'p'
+            self.sentences.append(Sentence(_init_sentence_key(type_, subtype), True, [
+                Template(id_='e-time', morph_params='', explicit_data=None),
+                Template(id_='v-penalty', morph_params='.-0-.-.', explicit_data=None),
+                Template(id_='e-player', morph_params='1-.-.-.', explicit_data=None),
+                Template(id_='w-penalty', morph_params='4-.-.-.', explicit_data=None)]))
+
+            # Types.Goal.OWN_GOAL
+            subtype = 'o'
+            self.sentences.append(Sentence(_init_sentence_key(type_, subtype), True, [
+                Template(id_='e-time', morph_params='', explicit_data=None),
+                "si dal",
+                Template(id_='e-player', morph_params='1-.-.-.', explicit_data=None),
+                Template(id_='w-own_goal', morph_params='4-.-.-.', explicit_data=None)]))
+
+        def init_sentence_substitution():
+            type_ = 's'
+            subtype = ''
+
+            self.sentences.append(Sentence(_init_sentence_key(type_, subtype), True, [
+                Template(id_='e-time', morph_params='', explicit_data=None),
+                Template(id_='v-substitution',morph_params='.-0-.-.', explicit_data=None),
+                Template(id_='e-player', morph_params='1-.-.-.', explicit_data=Types.ExplicitEntityData.PARTICIPANT_IN),
+                "za",
+                Template(id_='e-player', morph_params='4-.-.-.', explicit_data=Types.ExplicitEntityData.PARTICIPANT_OUT)]))
+
+            self.sentences.append(Sentence(_init_sentence_key(type_, subtype), True, [
+                Template(id_='e-time', morph_params='', explicit_data=None),
+                Template(id_='v-substitution', morph_params='.-0-.-.', explicit_data=None),
+                Template(id_='e-player', morph_params='1-.-.-.', explicit_data=Types.ExplicitEntityData.PARTICIPANT_IN),
+                Template(id_='e-player', morph_params='4-.-.-.', explicit_data=Types.ExplicitEntityData.PARTICIPANT_OUT)]))
+
+        def init_sentence_card():
+            type_ = 'c'
+            # id subtypes: red_auto = 'a' / red_instant = 'r' / yellow = 'y'
+
+            # Types.Card.RED_AUTO
+            subtype = 'a'
+            self.sentences.append(Sentence(_init_sentence_key(type_, subtype), True, [
+                    Template(id_='e-time', morph_params='', explicit_data=None),
+                    Template(id_='v-card', morph_params='.-0-.-.', explicit_data=None),
+                    Template(id_='e-player', morph_params='1-.-.-.', explicit_data=None),
+                    Template(id_='w-redcard', morph_params='4-.-.-.', explicit_data=None)]))
+
+            # Types.Card.RED_INSTANT
+            subtype = 'r'
+            self.sentences.append(Sentence(_init_sentence_key(type_, subtype), True, [
+                Template(id_='e-time', morph_params='', explicit_data=None),
+                Template(id_='v-card', morph_params='.-0-.-.', explicit_data=None),
+                Template(id_='e-player', morph_params='1-.-.-.', explicit_data=None),
+                "po druhé žluté kartě červenou"]))
+
+            self.sentences.append(Sentence(_init_sentence_key(type_, subtype), False, [
+                    Template(id_='e-time', morph_params='', explicit_data=None),
+                    Template(id_='v-card', morph_params='.-0-.-.', explicit_data=None),
+                    Template(id_='e-player', morph_params='1-.-.-.', explicit_data=None),
+                    "druhou",
+                    Template(id_='w-yellowcard', morph_params='4-.-.-.', explicit_data=None),
+                    "a tím pro něj zápas skončil"]))
+
+
+            # Types.Card.YELLOW
+            subtype = 'y'
+            self.sentences.append(Sentence(_init_sentence_key(type_, subtype), True, [
+                    Template(id_='e-time', morph_params='', explicit_data=None),
+                    Template(id_='v-card', morph_params='.-0-.-.', explicit_data=None),
+                    Template(id_='e-player', morph_params='1-.-.-.', explicit_data=None),
+                    Template(id_='w-yellowcard', morph_params='4-.-.-.', explicit_data=None)]))
+
+        def init_sentence_missed_penalty():
+            type_ = 'm'
+            subtype = ''
+
+            self.sentences.append(Sentence(_init_sentence_key(type_, subtype), True, [
+                Template(id_='e-time', morph_params='', explicit_data=None),
+                Template(id_='e-player', morph_params='1-.-.-.', explicit_data=None),
+                Template(id_='v-failed_penalty', morph_params='.-0-.-.', explicit_data=None),
+                Template(id_='w-penalty', morph_params='', explicit_data=None)]))
+
+        def _init_sentence_key(type_: str, subtype: str) -> str:
+            d = '_'
+            if subtype != '':
+                subtype = d + subtype
+            return 's' + d + type_ + subtype
+
+        init_sentence_result()
+        init_sentence_goal()
+        init_sentence_substitution()
+        init_sentence_card()
+        init_sentence_missed_penalty()
+        self.sentences.sort()
+        self.init_sentences_count()
+        self.used_sentences = []
+        self.print_sentences_count()
+
+    def print_sentences_count(self):
+        for s in self.sentences:
+            diff = 'simple'
+            if not s.simple:
+                diff = 'difficult'
+            print("(id = "+s.id+", " + diff + ", count = " + str(s.frequency) + ")")
+
+    def try_find_sentence(self, key: str) -> (bool, int):
+
+        for i in range(0, len(self.sentences)):
+            if self.sentences[i].id == key:
+                return True, i
+
+        return False, None
+
+    def get_random_used(self, key: str) -> Sentence:
+        valid_sentences: List[Sentence] = []
+        for us in self.used_sentences:
+            if us.id == key:
+                valid_sentences.append(us)
+        return random.choice(valid_sentences)
+
+    def get_sentence(self, m: di.Message) -> Sentence:
+        print('***************************************************************************')
+        print('Message to get sentence for: ' + str(m))
+
+        key = self._get_sentence_key(m)
+        print('key: ' + key)
+        (found, sentence_index) = self.try_find_sentence(key)
+        print('Found: ' + str(found), ', sentence_index:' + str(sentence_index))
+        if found:
+            sentence = self.sentences.pop(sentence_index)
+            self.used_sentences.append(sentence)
+            #self.print_sentences_count()
+            return sentence
+        else:
+            return self.get_random_used(key)
+
+    def create_sentences_templates(self, doc_plan: di.DocumentPlan) -> (Sentence, List[Sentence]):
+        self.randomize_sentences_order()
+
+        title_sentence = self.get_sentence(doc_plan.title)
+        body_sentences = [self.get_sentence(msg) for msg in doc_plan.body]
+
+        for s in body_sentences:
+            diff = 'simple'
+            if not s.simple:
+                diff = 'difficult'
+            print("(id = "+s.id+", " + diff + ", count = " + str(s.frequency) + ")")
+
+        return title_sentence, body_sentences
+
+    def _init_sentence_key(self, m: di.Message) -> str:
+        d = '_'
+        s = 's' + d
+
+        subtype = ''
+        if type(m) is di.Messages.Result:
+            type_ = 'r'
+            if m.score.result == Types.Result.WIN:
+                subtype = 'w'
+            elif m.score.result == Types.Result.DRAW:
+                subtype = 'd'
+            else:   # Types.Result.DRAW
+                subtype = 'l'
+        elif type(m) is di.Messages.Goal:
+            type_ = 'g'
+            if m.goal_type == Types.Goal.SOLO_PLAY:
+                subtype = 's'
+            elif m.goal_type == Types.Goal.ASSISTANCE:
+                subtype = 'a'
+            elif m.goal_type == Types.Goal.OWN_GOAL:
+                subtype = 'o'
+            else:   # Types.Goal.PENALTY
+                subtype = 'p'
+        elif type(m) is di.Messages.Substitution:
+            type_ = 's'
+        elif type(m) is di.Messages.Card:
+            type_ = 'c'
+            if m.card_type == Types.Card.RED_AUTO:
+                subtype = 'a'
+            elif m.card_type == Types.Card.RED_INSTANT:
+                subtype = 'r'
+            else:   # Types.Card.YELLOW
+                subtype = 'y'
+        else:  # type(m) is di.Messages.MissedPenalty:
+            type_ = 'm'
+
+        if subtype == '':
+            s += type_
+        else:
+            s += type_ + d + subtype
+
+        return s
 
 
 class Lexicalizer:
 
     @staticmethod
-    def lexicalize(doc_plan: di.DocumentPlan, match_data: Data.Match) -> (str, List[str]):
-        title = Lexicalizer._lexicalize_message(doc_plan.title)
-        body = [Lexicalizer._lexicalize_message(msg) for msg in doc_plan.body]
-        return title, body
+    def lexicalize_articles(doc_plan: di.DocumentPlan, match_data: Data.Match,  text_count: int) -> (str, List[str]):
+        sh: SentenceHandler = SentenceHandler()
+        sh.init_sentences()
+        (title_sentence, body_sentences) = sh.create_sentences_templates(doc_plan)
+        title = Lexicalizer._lexicalize_message(title_sentence)
+        body = [Lexicalizer._lexicalize_message(sentence) for sentence in body_sentences]
+
+        #return title, body
+        return '', None
+
+    #def _get_sentences() -> dict:
 
     @staticmethod
-    def _lexicalize_message(msg: di.Messages) -> str:
-        sentence = Sentence(msg)
+    def _lexicalize_message(sentence: Sentence) -> str:
         sentence.lexicalize()
         # sentence.alternate()
         sentence.transform_strings_for_geneea()

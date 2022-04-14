@@ -14,7 +14,7 @@ class Realizer:
     """Realizer class performing the final realization of the modified text.
     Text needs to be in a form that Geneea requires - supplemented by linguistic commands."""
     @staticmethod
-    def realize_str(plain_str: (str, List[str])) -> str:   # ToDo: rename
+    def format_str(plain_str: (str, List[str])) -> str:   # ToDo: rename
         """Prints plain string into article - title and then each sentence on it's own line."""
         return f'{plain_str[0]}\n' + "\n" + ("\n".join(plain_str[1]))
 
@@ -37,7 +37,8 @@ class Realizer:
     def realize_article(plain_str: (str, List[str])) -> str:
         """Core function for realization of the article. Returns article as string."""
         file_path = r'C:\Users\danra\Skola\MFF\RP\SP_FootballArticle\geneea_input.json'
-        Realizer.create_json_file_for_geneea(plain_str, file_path)
+        formatted_plain_str = Realizer.format_str(plain_str)
+        Realizer.create_json_file_for_geneea(formatted_plain_str, file_path)
 
         with open(file_path) as json_file:
             output_geneea: dict = Realizer.call_geneea(json.load(json_file))

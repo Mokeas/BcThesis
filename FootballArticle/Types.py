@@ -86,3 +86,13 @@ class Constituent(Enum):
     ENTITY = 0
     VERB = 1
     WORD = 2
+
+
+class ExplicitEntityData(Enum):
+    """Explicit data types that need to be specified in a template."""
+    PARTICIPANT_IN = 0
+    PARTICIPANT_OUT = 1
+    ASSISTANCE = 2
+    TEAM_HOME = 3
+    TEAM_AWAY = 4
+    CURRENT_SCORE = 5

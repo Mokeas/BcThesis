@@ -17,7 +17,7 @@ class DataInitializer:
         """Transforms json_file with non-linguistic data into inner data entities form."""
         initializer = DataInitializer()
 
-        with open(json_file_str) as json_file:
+        with open(json_file_str, encoding='utf-8') as json_file:
             json_match_data: dict = json.load(json_file)
 
         teams: (Data.Team, Data.Team) = initializer._init_teams(json_match_data=json_match_data)

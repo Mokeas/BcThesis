@@ -26,21 +26,25 @@ def generate_article(filename: str, print_output: bool, text_count: int):
     doc_plan: DP.DocumentPlan = dp.DocumentPlanner.plan_document(match_data)
     print(f'{doc_plan} \n\n ' + '_' * 70)
 
-    random.seed(10)  # setting the seed for whole program
+    random.seed(10)  # setting the seed for the whole program
 
-    for x in range(text_count):
+    # creating many versions of the same article
 
-        plain_str: (str, List[str]) = lex.Lexicalizer.lexicalize(doc_plan, match_data)
-        # print(f'{plain_str} \n\n ' + '_' * 70)
+    # creating list of articles - each of them is tuple of title(str) and sentences List(str)
+    # articles are a well-build input for Geneea
+    #plain_articles: List[(str, List[str])] =
+    lex.Lexicalizer.lexicalize_articles(doc_plan, match_data, text_count)
 
-        text: str = real.Realizer.realize_str(plain_str)
+    # calling Geneea API on every article, creating list of articles
+    #articles: List[(str, List[str])] = [real.Realizer.realize_article(plain_article) for plain_article in plain_articles]
 
+    # printing every article
+    #for article in articles:
+    #    print(f'{article} \n\n ' + '_' * 70)
+    """
         if print_output:
-            print(f'{match_data} \n\n ' + '_' * 70)
-            print(f'{doc_plan} \n\n ' + '_' * 70)
-            print(f'{plain_str} \n\n ' + '_' * 70)
-            print(f'{text} \n\n ' + '_' * 70)
-
-        # calling Geneea rest API
-        article = real.Realizer.realize_article(plain_str)
-        print(f'{article} \n\n ' + '_' * 70)
+        print(f'{match_data} \n\n ' + '_' * 70)
+        print(f'{doc_plan} \n\n ' + '_' * 70)
+        print(f'{plain_str} \n\n ' + '_' * 70)
+        print(f'{text} \n\n ' + '_' * 70)
+    """
