@@ -91,13 +91,17 @@ class Player:
         return Player(id=id_, full_name=full_name, country=country,
                       lineup_position_id=lineup_position_id, number=number)
 
-    def get_first_name(self):
+    def get_first_name(self) -> str:
         """Returns first name of the player from his full name."""
         return self.full_name.split()[-1]
 
-    def get_last_name(self):
+    def get_last_name(self) -> str:
         """Returns last name of the player from his full name."""
         return self.full_name.split()[0]
+
+    def get_short_name(self) -> str:
+        """Returns last name of the player from his full name."""
+        return self.full_name.split()[1][0] + '. ' + self.full_name.split()[0]
 
     # ToDO: def get_position(self): striker/defender/...
 

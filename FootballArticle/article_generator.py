@@ -11,6 +11,7 @@ import random
 import Data
 import data_initializer as di
 import document_planner as dp
+import overview_printer as op
 import lexicalizer as lex
 import realiser as real
 
@@ -24,7 +25,10 @@ def generate_article(filename: str, print_output: bool, text_count: int):
 
     # transforming data into document plan (list of messages)
     doc_plan: DP.DocumentPlan = dp.DocumentPlanner.plan_document(match_data)
-    print(f'{doc_plan} \n\n ' + '_' * 70)
+    # print(f'{doc_plan} \n\n ' + '_' * 70)
+
+    # printing overview of the match
+    op.OverviewPrinter.print(doc_plan)
 
     random.seed(10)  # setting the seed for the whole program
 
@@ -32,15 +36,19 @@ def generate_article(filename: str, print_output: bool, text_count: int):
 
     # creating list of articles - each of them is tuple of title(str) and sentences List(str)
     # articles are a well-build input for Geneea
-    #plain_articles: List[(str, List[str])] =
-    lex.Lexicalizer.lexicalize_articles(doc_plan, match_data, text_count)
 
-    # calling Geneea API on every article, creating list of articles
-    #articles: List[(str, List[str])] = [real.Realizer.realize_article(plain_article) for plain_article in plain_articles]
+    text_count = 1
+    for i in range(text_count):
 
-    # printing every article
-    #for article in articles:
-    #    print(f'{article} \n\n ' + '_' * 70)
+        plain_article: (str, List[str]) = lex.Lexicalizer.lexicalize_article(doc_plan, match_data)
+        print(f'{plain_article} \n\n ' + '_' * 70)
+
+        # calling Geneea API on every article, creating list of articles
+        article: (str, List[str]) = real.Realizer.realize_article(plain_article)
+
+        # printing article
+        print(f'{article} \n\n ' + '_' * 70)
+
     """
         if print_output:
         print(f'{match_data} \n\n ' + '_' * 70)

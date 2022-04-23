@@ -201,4 +201,5 @@ class DataInitializer:
             else:
                 raise ValueError("Unknown incident occurred")
 
+        incidents.sort()
         return incidents

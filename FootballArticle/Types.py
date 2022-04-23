@@ -90,9 +90,12 @@ class Constituent(Enum):
 
 class ExplicitEntityData(Enum):
     """Explicit data types that need to be specified in a template."""
-    PARTICIPANT_IN = 0
-    PARTICIPANT_OUT = 1
-    ASSISTANCE = 2
-    TEAM_HOME = 3
-    TEAM_AWAY = 4
-    CURRENT_SCORE = 5
+    PARTICIPANT = 0
+    PARTICIPANT_IN = 1
+    PARTICIPANT_OUT = 2
+    ASSISTANCE = 3
+    TIME = 4
+    SCORE = 5
+    CURRENT_SCORE = 6
+    TEAM_HOME = 7
+    TEAM_AWAY = 8
