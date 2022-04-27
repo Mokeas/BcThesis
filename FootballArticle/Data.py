@@ -7,7 +7,8 @@ from dataclasses import dataclass
 # Other parts of the code
 import Types
 
-"""Using dataclass(frozen=True) to guarantee immutability.
+"""
+Using dataclass(frozen=True) to guarantee immutability.
 Each data class has create static method (usually needs specific set of attributes), 
 which returns immutable instance (to prevent data from changing during the running of the code).
 """
@@ -23,16 +24,28 @@ class Score:
     result: Types.Result
 
     @staticmethod
-    def create(goals_home: int, goals_away: int):   # (*) create method returns immutable instance
+    def create(goals_home: int, goals_away: int):
+        """
+        Creates immutable instance of Score.
+        :param goals_home: Number of goals scored by home team.
+        :param goals_away: Number of goals scored by away team.
+        :return: Score
+        """
         goals_sum = goals_home + goals_away
         goals_difference = abs(goals_home - goals_away)
-        result: Types.Result = Score._init_result(goals_home=goals_home, goals_away=goals_away)
+        result: Types.Result = Score.__init_result(goals_home=goals_home, goals_away=goals_away)
         return Score(goals_home=goals_home, goals_away=goals_away, goals_sum=goals_sum,
                      goals_difference=goals_difference, result=result)
 
     @staticmethod
-    def _init_result(goals_home: int, goals_away: int) -> Types.Result:
-        """Takes number of goals for each team and returns Type.Result (win/draw/lose)."""
+    def __init_result(goals_home: int, goals_away: int) -> Types.Result:
+        """
+        Takes number of goals for each team and calculates result.
+        :param goals_home: Number of goals scored by home team.
+        :param goals_away: Number of goals scored by away team.
+        :return: Types.Result
+        """
+
         if goals_home > goals_away:
             return Types.Result.WIN
         elif goals_home == goals_away:
@@ -55,15 +68,20 @@ class Venue:
 
     @staticmethod
     def create(name: str, town: str, capacity: int, attendance: int):
+        """
+        Creates immutable instance of Venue.
+        :param name: Name of the venue.
+        :param town: Town of the venue.
+        :param capacity: Capacity of the venue.
+        :param attendance: Number of people that attended the match.
+        :return: Venue
+        """
         full_percentage = round((attendance / capacity) * 100)
         return Venue(name=name, town=town, capacity=capacity, attendance=attendance, full_percentage=full_percentage)
 
-    '''
-        def __str__(self):
+    def __str__(self):
         return f"--Venue-- Name: {self.name}, Town: {self.town}, Capacity: {self.capacity}, " \
-            f"Attendance: {self.attendance}, Percentage of at.: {self.full_percentage}, " \
-            f"Venue is full: {self.is_full()}, Venue is empty: {self.is_empty()}"
-    '''
+            f"Attendance: {self.attendance}, Percentage of at.: {self.full_percentage}, "
 
 
 @dataclass(frozen=True)
@@ -74,6 +92,12 @@ class Country:
 
     @staticmethod
     def create(id_: int, name_: str):
+        """
+        Creates immutable instance of Country.
+        :param id_: Identification number.
+        :param name_: Name of the country
+        :return: Country
+        """
         return Country(id=id_, name=name_)
 
 
@@ -88,6 +112,15 @@ class Player:
 
     @staticmethod
     def create(id_: int, full_name: str, country: Country, lineup_position_id: int, number: int):
+        """
+        Creates immutable instance of Player.
+        :param id_: Identification number.
+        :param full_name: Full name of the player
+        :param country: Country where the player was born
+        :param lineup_position_id: Id, which signalize whether the player was in the starting lineup.
+        :param number: Jersey number of the player.
+        :return: Player
+        """
         return Player(id=id_, full_name=full_name, country=country,
                       lineup_position_id=lineup_position_id, number=number)
 
@@ -102,8 +135,6 @@ class Player:
     def get_short_name(self) -> str:
         """Returns last name of the player from his full name."""
         return self.full_name.split()[1][0] + '. ' + self.full_name.split()[0]
-
-    # ToDO: def get_position(self): striker/defender/...
 
     def __str__(self):
         return f"({self.full_name}, {self.number})"
@@ -120,6 +151,15 @@ class Team:
 
     @staticmethod
     def create(id_: int, name: str, country: Country, type_: Types.Team, lineup: List[Player]):
+        """
+        Creates immutable instance of Team.
+        :param id_: Identification number.
+        :param name: Name of the team.
+        :param country: Country of the team.
+        :param type_: Whether the team played home, or away.
+        :param lineup: List of players who attended the match.
+        :return: Team
+        """
         return Team(id=id_, name=name, country=country, type=type_, lineup=lineup)
 
     def __str__(self):
@@ -134,6 +174,12 @@ class Time:
 
     @staticmethod
     def create(time_base: int, time_added: int):
+        """
+        Creates immutable instance of Time.
+        :param time_base: Number of minutes played.
+        :param time_added: Time added to 45/90 minutes (depending on a half)
+        :return: Time
+        """
         return Time(base=time_base, added=time_added)
 
     def __str__(self):
@@ -143,6 +189,7 @@ class Time:
             return str(self.base)
 
     def __lt__(self, other):
+        """Custom comparator to sort times correctly."""
         if self.base != other.base:
             return self.base < other.base
         else:
@@ -150,7 +197,7 @@ class Time:
 
 
 @dataclass(frozen=True)
-class Incident:
+class IncidentParent:
     """Data class to store information about incident."""
     type: Types.Incident
     participant: Player
@@ -158,6 +205,7 @@ class Incident:
     time: Time
 
     def __lt__(self, other):
+        """Sorting incidents according to their Time."""
         return self.time < other.time
 
     def __str__(self):
@@ -165,53 +213,89 @@ class Incident:
           participant: {self.participant.full_name}, team: {self.team.name}"
 
 
-class Incidents:
+class Incident:
     """Data class to store information about each type of incident.
     Each type of incident has it's own subclass (named same as the incident type).
     """
     @dataclass(frozen=True)
-    class Goal(Incident):
+    class Goal(IncidentParent):
         """Data class to store information about goal incident."""
         current_score: Score
         assistance: Player
         goal_type: Types.Goal
 
         @staticmethod
-        def create(participant: Player, team: Team, time: Time, current_score: Score,
-                   assistance: Player, goal_type: Types.Goal):
-            return Incidents.Goal(type=Types.Incident.GOAL, participant=participant, team=team, time=time,
-                                  current_score=current_score, assistance=assistance, goal_type=goal_type)
+        def create(
+                participant: Player, team: Team, time: Time, current_score: Score,
+                assistance: Player, goal_type: Types.Goal):
+            """
+            Creates immutable instance of incident - Incident.Goal.
+            :param participant: Player who took part in the incident.
+            :param team: Team who took part in the incident (whose player took part in).
+            :param time: Time when the incident happened.
+            :param current_score: Current score after the goal.
+            :param assistance: Player who assisted the to the goal .
+            :param goal_type: Type of the goal.
+            :return: Incident.Goal
+            """
+            return Incident.Goal(type=Types.Incident.GOAL, participant=participant, team=team, time=time,
+                                 current_score=current_score, assistance=assistance, goal_type=goal_type)
 
     @dataclass(frozen=True)
-    class Penalty(Incident):
+    class Penalty(IncidentParent):
         """Data class to store information about penalty incident."""
         scored: bool
         current_score: Score
 
         @staticmethod
         def create(participant: Player, team: Team, time: Time, current_score: Score, scored: bool):
-            return Incidents.Penalty(type=Types.Incident.PENALTY_KICK, participant=participant, team=team, time=time,
-                                     scored=scored, current_score=current_score)
+            """
+            Creates immutable instance of incident - Incident.Penalty.
+            :param participant: Player who took part in the incident.
+            :param team: Team who took part in the incident (whose player took part in).
+            :param time: Time when the incident happened.
+            :param current_score: Current score after the goal.
+            :param scored: Boolean value if the penalty was scored or not.
+            :return: Incident.Penalty
+            """
+            return Incident.Penalty(type=Types.Incident.PENALTY_KICK, participant=participant, team=team, time=time,
+                                    scored=scored, current_score=current_score)
 
     @dataclass(frozen=True)
-    class Card(Incident):
+    class Card(IncidentParent):
         """Data class to store information about card incident."""
         card_type: Types.Card
 
         @staticmethod
         def create(participant: Player, team: Team, time: Time, card_type: Types.Card):
-            return Incidents.Card(type=Types.Incident.CARD, participant=participant, team=team, time=time,
-                                  card_type=card_type)
+            """
+            Creates immutable instance of incident - Incident.Card.
+            :param participant: Player who took part in the incident.
+            :param team: Team who took part in the incident (whose player took part in).
+            :param time: Time when the incident happened.
+            :param card_type: Type of the card.
+            :return: Incident.Card
+            """
+            return Incident.Card(type=Types.Incident.CARD, participant=participant, team=team, time=time,
+                                 card_type=card_type)
 
     @dataclass(frozen=True)
-    class Substitution(Incident):
+    class Substitution(IncidentParent):
         """Data class to store information about substitution incident."""
         participant_in: Player
 
         @staticmethod
         def create(participant: Player, team: Team, time: Time, participant_in: Player):
-            return Incidents.Substitution(type=Types.Incident.SUBSTITUTION, participant=participant,
-                                          team=team, time=time, participant_in=participant_in)
+            """
+            Create immutable instance of incident - Incident.Substitution.
+            :param participant: Player who went out of the pitch (got subbed out).
+            :param team: Team who took part in the incident (whose player took part in).
+            :param time: Time when the incident happened.
+            :param participant_in: Player who went out on the pitch (got subbed in).
+            :return: Incident.Substitution
+            """
+            return Incident.Substitution(type=Types.Incident.SUBSTITUTION, participant=participant,
+                                         team=team, time=time, participant_in=participant_in)
 
 
 @dataclass(frozen=True)
@@ -223,10 +307,19 @@ class Match:
     team_away: Team
     score: Score
     venue: Venue
-    incidents: List[Incidents]
+    incidents: List[Incident]
 
     @staticmethod
-    def create(team_home: Team, team_away: Team, score: Score, venue: Venue, incidents: List[Incidents]):
+    def create(team_home: Team, team_away: Team, score: Score, venue: Venue, incidents: List[Incident]):
+        """
+        Creates immutable instance of Match.
+        :param team_home: Home team.
+        :param team_away: Away team.
+        :param score: Final score of the match.
+        :param venue: Venue where the match was held.
+        :param incidents: List of incidents that occurred during the match.
+        :return: Match
+        """
         return Match(team_home=team_home, team_away=team_away, score=score, venue=venue, incidents=incidents)
 
     def __str__(self):

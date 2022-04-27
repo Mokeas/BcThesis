@@ -8,7 +8,7 @@ import article_generator as ag
 
 def run(args):
     """Main function to run the whole article generator with correct arguments."""
-    ag.generate_article(filename=args.match_data, print_output=False, text_count=args.text_count)
+    ag.generate_articles(file_name=args.match_data, detailed_output=True, text_count=args.text_count)
 
 
 if __name__ == "__main__":

@@ -23,14 +23,17 @@ class MorphParams:
 
     @staticmethod
     def create(string_id: str):
-        params: (Types.Morph.Case, Types.Morph.Tense, str, str) = MorphParams.get_morph_params(string_id)
+        params: (Types.Morph.Case, Types.Morph.Tense, str, str) = MorphParams.__get_morph_params(string_id)
         return MorphParams(case=params[0], tense=params[1], ref=params[2], agr=params[3])
 
     @staticmethod
-    def get_morph_params(string_id: str) -> (Types.Morph.Case, Types.Morph.Tense, str, str):
-        """Transforms string into morphological attributes.
-        String_id is in form case-tense-ref-afr and . is used to blank attribute.
+    def __get_morph_params(string_id: str) -> (Types.Morph.Case, Types.Morph.Tense, str, str):
         """
+        Transforms string id into attributes of MorphParams.
+        :param string_id: Id string.
+        :return: Tuple of (case, tense, ref, agr)
+        """
+
         if string_id == '':
             return None, None, None, None
         else:
@@ -45,18 +48,23 @@ class MorphParams:
             return case, tense, ref, agr
 
     def apply_to_string(self, constituent: str) -> str:
-        """Takes constituent and applies given attributes. Output is well-build string for Geneea API interface."""
+        """
+        Applies morphological attributes and create simple string into well-build string for Geneea API interface.
+        :param constituent: String
+        :return: Geneea string
+        """
+
         header = '{{' + f'\'{constituent}\'|morph('
 
         mp: List[str] = []
         all_none = True
 
         if self.case is not None:
-            mp.append(f'\'Case={MorphParams.to_valid_form(self.case.name)}\'')
+            mp.append(f'\'Case={self.case.name.lower().capitalize()}\'')
             all_none = False
 
         if self.tense is not None:
-            mp.append(f'\'Tense={MorphParams.to_valid_form(self.tense.name)}\'')
+            mp.append(f'\'Tense={self.tense.name.lower().capitalize()}\'')
             all_none = False
 
         if self.ref is not None:
@@ -71,10 +79,6 @@ class MorphParams:
 
         return constituent if all_none else header + body + ')}}'
 
-    @staticmethod
-    def to_valid_form(s: str) -> str:
-        return s.lower().capitalize()
-
 
 @dataclass
 class TemplateFrequency:
@@ -86,11 +90,21 @@ class TemplateFrequency:
 
     @staticmethod
     def create(id_: str, count: int):
+        """
+        Creates instance of TemplateFrequency.
+        :param id_: id of the template
+        :param count: number of templates with the same id
+        :return: TemplateFrequency
+        """
         unused_indices = [i for i in range(count)]
         return TemplateFrequency(id=id_, count=count, unused_indices=unused_indices, last_used=-1)
 
     def remove_from_unused_indices(self, chosen_index: int):
-        """Removes index from unused indices after using this particular template."""
+        """
+        Removes index from unused indices after using this particular template.
+        :param chosen_index: index, that has just been used.
+        """
+
         if self.unused_indices != 0:
             index = 0
             while index < len(self.unused_indices):
@@ -111,13 +125,27 @@ class Template:
     string: str
 
     @staticmethod
-    def create(type_: str, subtype: str, string: str):   # creating will create immutable template
-        id_ = Template.create_template_id(type_, subtype)
+    def create(type_: str, subtype: str, string: str):
+        """
+        Creates immutable instance of Template.
+        That is the reason we have to associate templates string with data immediately.
+        :param type_: type of the template
+        :param subtype: subtype of the template
+        :param string: lexical expression for the template
+        :return: Template
+        """
+        id_ = Template.__create_template_id(type_, subtype)
         return Template(id_, string)
 
     @staticmethod
-    def create_template_id(type_: str, subtype: str):
-        """Transforms type and subtype into string id of the template."""
+    def __create_template_id(type_: str, subtype: str) -> str:
+        """
+        Transforms type and subtype into string id of the template.
+        :param type_: Type of template
+        :param subtype: Subtype of template.
+        :return: Id of the template
+        """
+
         return type_ + '-' + subtype
 
     def __str__(self):
@@ -134,37 +162,45 @@ class TemplateHandler:
     def __init__(self):
         """Initializing frequency table attribute."""
         # creating every template possible
-        all_templates = TemplateHandler._init_all_templates()
+        all_templates = TemplateHandler.__init_all_templates()
         # initializing frequency table from all possible templates
-        self.frequency_table = TemplateHandler._init_frequency_table(all_templates)
+        self.frequency_table = TemplateHandler.__init_frequency_table(all_templates)
 
     @staticmethod
-    def _init_all_templates() -> List[Template]:
+    def __init_all_templates() -> List[Template]:
         """Initializes every template that could be used."""
-        templates_entities = TemplateHandler.get_templates_entity(first_init=True, subtype='', data=None)
-        templates_words = TemplateHandler.get_templates_word(first_init=True, subtype='')
-        templates_verbs = TemplateHandler.get_templates_verb(first_init=True, subtype='')
+        templates_entities = TemplateHandler.__get_templates_entity(first_init=True, subtype='', data=None)
+        templates_words = TemplateHandler.__get_templates_word(first_init=True, subtype='')
+        templates_verbs = TemplateHandler.__get_templates_verb(first_init=True, subtype='')
         return templates_entities + templates_verbs + templates_words
 
     @staticmethod
-    def _init_frequency_table(all_templates: List[Template]) -> List[TemplateFrequency]:
-        """Initializes frequency table using all templates possible."""
-        index = 0
-        frequency_table: List[TemplateFrequency] = []
+    def __init_frequency_table(all_templates: List[Template]) -> List[TemplateFrequency]:
+        """
+        Initializes frequency table using all templates possible.
+        :param all_templates: List of all possible templates.
+        :return: initialized frequency table in form of List[TemplateFrequency]
+        """
 
-        # no sorting is needed since Template initializing is systematically
+        index = 0
+        ft: List[TemplateFrequency] = []
+
+        # no sorting is needed since Template initializing is systematical
         while index + 1 < len(all_templates):
-            (end_index, count) = TemplateHandler.proceed_to_next_template_type(all_templates, index)
-            frequency_table.append(TemplateFrequency.create(all_templates[index].id, count))
+            (end_index, count) = TemplateHandler.__skip_to_next_template_type(all_templates, index)
+            ft.append(TemplateFrequency.create(all_templates[index].id, count))
             index += 1
 
-        return frequency_table
+        return ft
 
     @staticmethod
-    def proceed_to_next_template_type(all_templates: List[Template], start_index: int) -> (int, int):
-        """Looping through templates of the same id.
+    def __skip_to_next_template_type(all_templates: List[Template], start_index: int) -> (int, int):
+        """
+        Looping through templates of the same id.
         Takes list of all templates and starting index of the template to count frequency for.
-        Returns tuple of ints - index where the same id template ends, count of the template.
+        :param all_templates: List of all templates.
+        :param start_index:  Start index of the list of all_templates.
+        :return: tuple of ints - index where the same id template ends, count of the template.
         """
         index = start_index
         count = 1
@@ -175,14 +211,17 @@ class TemplateHandler:
         return index, count
 
     @staticmethod
-    def get_templates_entity(first_init: bool, subtype: str, data) -> List[Template]:
-        """Creates entity templates. Takes three arguments:
-        1) bool value if it is first initialization - if True, initialize every single entity template.
-        (and also the rest of the arguments are then irrelevant)
-        2) subtype (e.g. 'goal').
-        3) data - correct data entity (e.g. for initializing it is Data.Player, for time Data.Time, etc.).
+    def __get_templates_entity(first_init: bool, subtype: str, data) -> List[Template]:
         """
-        def init_time_templates():
+        Creates templates that can lexicalize entities.
+        :param first_init: bool value if it is first initialization - if True, initialize every single entity template.
+        (and also the rest of the arguments are then irrelevant)
+        :param subtype: subtype (e.g. 'goal').
+        :param data: correct data entity (e.g. for initializing it is Data.Player, for time Data.Time, etc.).
+        :return: List of entity templates.
+        """
+
+        def __init_time_templates():
             """Auxiliary function to create time templates."""
             entity_type = 'time'
             time: Data.Time = data
@@ -195,18 +234,30 @@ class TemplateHandler:
                     templates.append(Template.create(type_, entity_type,
                                                      f"v {time.added if data is not None else ''}"
                                                      f". minutě nastavení prvního poločasu"))
-                    templates.append(('e-time-2', f"{time.added} minuty po začátku nastaveného času prvního poločasu"))
+                    # templates.append(Template.create(type_, entity_type,
+                    #                                 f"{time.added if data is not None else ''} "
+                    #                                 f"minuty po začátku nastaveného času prvního poločasu"))
                 else:  # second half
                     templates.append(Template.create(type_, entity_type,
                                                      f"v {time.added if data is not None else ''}"
                                                      f". minutě nastavení druhého poločasu"))
-                    templates.append(('e-time-2', f"{time.added} minuty po začátku nastaveného času druhého poločasu"))
+                    # templates.append(Template.create(type_, entity_type,
+                    #                                 f"{time.added if data is not None else ''} "
+                    #                                 f"minuty po začátku nastaveného času druhého poločasu"))
             else:
                 templates.append(Template.create(type_, entity_type,
                                                  f"v {time.base if data is not None else ''}. minutě"))
-                templates.append(('e-time-2', f"{time.base} minuty po začátku"))
+                if time.base > 4:
+                    templates.append(Template.create(type_, entity_type,
+                                                     f"{time.base if data is not None else ''} minut po začátku"))
+                elif time.base == 1:
+                    templates.append(Template.create(type_, entity_type,
+                                                     f"jednu minutu po začátku"))
+                else:
+                    templates.append(Template.create(type_, entity_type,
+                                                     f"{time.base if data is not None else ''} minuty po začátku"))
 
-        def init_player_templates():
+        def __init_player_templates():
             """Auxiliary function to create player templates."""
             entity_type = 'player'
             player: Data.Player = data
@@ -218,7 +269,7 @@ class TemplateHandler:
             templates.append(Template.create(type_, entity_type,
                                              f"hráč s číslem {player.number if data is not None else ''}"))
 
-        def init_team_templates():
+        def __init_team_templates():
             """Auxiliary function to create team templates."""
             entity_type = 'team'
             team: Data.Team = data
@@ -226,7 +277,7 @@ class TemplateHandler:
             templates.append(Template.create(type_, entity_type,
                                              team.name if data is not None else ''))
 
-        def init_score_templates():
+        def __init_score_templates():
             """Auxiliary function to create score templates."""
             entity_type = 'score'
             score: Data.Score = data
@@ -239,41 +290,43 @@ class TemplateHandler:
         templates: List[Template] = []
 
         if first_init:   # initializing every template when first init
-            init_time_templates()
-            init_player_templates()
-            init_team_templates()
-            init_score_templates()
+            __init_time_templates()
+            __init_player_templates()
+            __init_team_templates()
+            __init_score_templates()
             return templates
 
         # initializing only templates needed for given subtype
         if subtype == 'time':
-            init_time_templates()
+            __init_time_templates()
         elif subtype == 'player':
-            init_player_templates()
+            __init_player_templates()
         elif subtype == 'team':
-            init_team_templates()
+            __init_team_templates()
         elif subtype == 'score':
-            init_score_templates()
+            __init_score_templates()
         else:
             print("Type Unknown")
 
         return templates
 
     @staticmethod
-    def get_templates_word(first_init: bool, subtype: str) -> List[Template]:
-        """Creates word templates. Takes two arguments:
-        1) bool value if it is first initialization - if True, initialize every single entity template.
+    def __get_templates_word(first_init: bool, subtype: str) -> List[Template]:
+        """
+        Creates templates that can lexicalize certain words.
+        :param first_init: bool value if it is first initialization - if True, initialize every single entity template.
         (and also the rest of the arguments are then irrelevant)
-        2) subtype (e.g. 'penalty').
+        :param subtype: subtype of the word as string.
+        :return: List of word templates.
         """
 
-        def init_goal_templates():
+        def __init_goal_templates():
             """Auxiliary function to create goal templates."""
             word_type = 'goal'
             templates.append(Template.create(type_, word_type, 'gól'))
             templates.append(Template.create(type_, word_type, 'branka'))
 
-        def init_assistance_templates():
+        def __init_assistance_templates():
             """Auxiliary function to create assistance templates."""
             word_type = 'assistance'
             templates.append(Template.create(type_, word_type, 'asistence'))
@@ -281,40 +334,40 @@ class TemplateHandler:
             templates.append(Template.create(type_, word_type, 'přihrávka'))
             templates.append(Template.create(type_, word_type, 'pas'))
 
-        def init_penalty_templates():
+        def __init_penalty_templates():
             """Auxiliary function to create penalty templates."""
             word_type = 'penalty'
             templates.append(Template.create(type_, word_type, 'penalta'))
             templates.append(Template.create(type_, word_type, 'pokutový kop'))
             templates.append(Template.create(type_, word_type, 'jedenáctka'))
 
-        def init_own_goal_templates():
+        def __init_own_goal_templates():
             """Auxiliary function to create own goal templates."""
             word_type = 'own_goal'
             templates.append(Template.create(type_, word_type, 'vlastňák'))
             templates.append(Template.create(type_, word_type, 'vlastní gól'))
             templates.append(Template.create(type_, word_type, 'vlastenec'))
 
-        def init_yellow_card_templates():
+        def __init_yellow_card_templates():
             """Auxiliary function to create yellow card templates."""
             word_type = 'yellow_card'
             templates.append(Template.create(type_, word_type, 'žlutá'))
             templates.append(Template.create(type_, word_type, 'žlutá karta'))
 
-        def init_red_card_templates():
+        def __init_red_card_templates():
             """Auxiliary function to create red card templates."""
             word_type = 'red_card'
             templates.append(Template.create(type_, word_type, 'červená'))
             templates.append(Template.create(type_, word_type, 'červená karta'))
 
-        def init_result_draw_templates():
+        def __init_result_draw_templates():
             """Auxiliary function to create result(draw) templates."""
             word_type = 'draw'
             templates.append(Template.create(type_, word_type, 'remíza'))
             templates.append(Template.create(type_, word_type, 'plichta'))
             templates.append(Template.create(type_, word_type, 'nerozhodný výsledek'))
 
-        def init_result_lose_templates():
+        def __init_result_lose_templates():
             """Auxiliary function to create result(lose) templates."""
             word_type = 'lose'
             templates.append(Template.create(type_, word_type, 'porážka'))
@@ -322,7 +375,7 @@ class TemplateHandler:
             templates.append(Template.create(type_, word_type, 'debakl'))
             templates.append(Template.create(type_, word_type, 'ostuda'))
 
-        def init_result_win_templates():
+        def __init_result_win_templates():
             """Auxiliary function to create result(win) templates."""
             word_type = 'win'
             templates.append(Template.create(type_, word_type, 'vítězství'))
@@ -333,99 +386,102 @@ class TemplateHandler:
         templates: List[Template] = []
 
         if first_init:   # initializing every template when first init
-            init_goal_templates()
-            init_assistance_templates()
-            init_penalty_templates()
-            init_own_goal_templates()
-            init_yellow_card_templates()
-            init_red_card_templates()
-            init_result_draw_templates()
-            init_result_lose_templates()
-            init_result_win_templates()
+            __init_goal_templates()
+            __init_assistance_templates()
+            __init_penalty_templates()
+            __init_own_goal_templates()
+            __init_yellow_card_templates()
+            __init_red_card_templates()
+            __init_result_draw_templates()
+            __init_result_lose_templates()
+            __init_result_win_templates()
             return templates
 
         # initializing only templates needed for given subtype
         if subtype == 'goal':
-            init_goal_templates()
+            __init_goal_templates()
         elif subtype == 'assistance':
-            init_assistance_templates()
+            __init_assistance_templates()
         elif subtype == 'penalty':
-            init_penalty_templates()
+            __init_penalty_templates()
         elif subtype == 'own_goal':
-            init_own_goal_templates()
+            __init_own_goal_templates()
         elif subtype == 'yellow_card':
-            init_red_card_templates()
+            __init_yellow_card_templates()
         elif subtype == 'red_card':
-            init_assistance_templates()
+            __init_red_templates()
         elif subtype == 'draw':
-            init_result_draw_templates()
+            __init_result_draw_templates()
         elif subtype == 'lose':
-            init_result_lose_templates()
+            __init_result_lose_templates()
         elif subtype == 'win':
-            init_result_win_templates()
+            __init_result_win_templates()
         else:
             pass
 
         return templates
 
     @staticmethod
-    def get_templates_verb(first_init: bool, subtype: str) -> List[Template]:
-        """Creates verb templates. Takes two arguments:
-        1) bool value if it is first initialization - if True, initialize every single entity template.
-        (and also the rest of the arguments are then irrelevant)
-        2) subtype (e.g. 'penalty').
+    def __get_templates_verb(first_init: bool, subtype: str) -> List[Template]:
         """
-        def init_result_win_templates():
+        Creates templates that can lexicalize certain verbs.
+        :param first_init: bool value if it is first initialization - if True, initialize every single entity template.
+        (and also the rest of the arguments are then irrelevant)
+        :param subtype: subtype of the verb as string.
+        :return: List of verb templates.
+        """
+
+        def __init_result_win_templates():
             """Auxiliary function to create win templates."""
             verb_type = 'win'
             templates.append(Template.create(type_, verb_type, 'porazit'))
             templates.append(Template.create(type_, verb_type, 'rozdrtit'))
             templates.append(Template.create(type_, verb_type, 'deklasovat'))
 
-        def init_result_draw_templates():
+        def __init_result_draw_templates():
             """Auxiliary function to create draw templates."""
             verb_type = 'draw'
             templates.append(Template.create(type_, verb_type, 'remizovat'))
 
-        def init_result_lose_templates():
+        def __init_result_lose_templates():
             """Auxiliary function to create lose templates."""
             verb_type = 'lose'
             templates.append(Template.create(type_, verb_type, 'prohrát'))
 
-        def init_goal_templates():
+        def __init_goal_templates():
             """Auxiliary function to create goal templates."""
             verb_type = 'goal'
             templates.append(Template.create(type_, verb_type, 'vstřelit'))
             templates.append(Template.create(type_, verb_type, 'vsítit'))
             templates.append(Template.create(type_, verb_type, 'dát'))
 
-        def init_score_change_templates():
+        def __init_score_change_templates():
             """Auxiliary function to create change of score templates."""
             verb_type = 'score_change'
             templates.append(Template.create(type_, verb_type, 'změnil'))
             templates.append(Template.create(type_, verb_type, 'upravilt'))
             templates.append(Template.create(type_, verb_type, 'zvýšil'))
 
-        def init_penalty_templates():
+        def __init_penalty_templates():
             """Auxiliary function to create penalty templates."""
             verb_type = 'penalty'
             templates.append(Template.create(type_, verb_type, 'proměnit'))
             templates.append(Template.create(type_, verb_type, 'dát'))
 
-        def init_failed_penalty_templates():
+        def __init_failed_penalty_templates():
             """Auxiliary function to create failed penalty templates."""
             verb_type = 'failed_penalty'
             templates.append(Template.create(type_, verb_type, 'zpackat'))
             templates.append(Template.create(type_, verb_type, 'neproměnit'))
             templates.append(Template.create(type_, verb_type, 'nedat'))
 
-        def init_substitution_templates():
+        def __init_substitution_templates():
             """Auxiliary function to create substitution templates."""
             verb_type = 'substitution'
             templates.append(Template.create(type_, verb_type, 'střídat'))
             templates.append(Template.create(type_, verb_type, 'vystřídat'))
 
-        def init_card_templates():
+        def __init_card_templates():
             """Auxiliary function to create card templates."""
             verb_type = 'card'
             templates.append(Template.create(type_, verb_type, 'dostat'))
@@ -436,76 +492,93 @@ class TemplateHandler:
         templates: List[Template] = []
 
         if first_init:   # initializing every template when first init
-            init_result_win_templates()
-            init_result_draw_templates()
-            init_result_lose_templates()
-            init_goal_templates()
-            init_score_change_templates()
-            init_penalty_templates()
-            init_failed_penalty_templates()
-            init_substitution_templates()
-            init_card_templates()
+            __init_result_win_templates()
+            __init_result_draw_templates()
+            __init_result_lose_templates()
+            __init_goal_templates()
+            __init_score_change_templates()
+            __init_penalty_templates()
+            __init_failed_penalty_templates()
+            __init_substitution_templates()
+            __init_card_templates()
             return templates
 
         # initializing only templates needed for given subtype
         if subtype == 'win':
-            init_result_win_templates()
+            __init_result_win_templates()
         elif subtype == 'draw':
-            init_result_draw_templates()
+            __init_result_draw_templates()
         elif subtype == 'lose':
-            init_result_lose_templates()
+            __init_result_lose_templates()
         elif subtype == 'goal':
-            init_goal_templates()
+            __init_goal_templates()
         elif subtype == 'score_change':
-            init_score_change_templates()
+            __init_score_change_templates()
         elif subtype == 'penalty':
-            init_penalty_templates()
+            __init_penalty_templates()
         elif subtype == 'failed_penalty':
-            init_failed_penalty_templates()
+            __init_failed_penalty_templates()
         elif subtype == 'substitution':
-            init_substitution_templates()
+            __init_substitution_templates()
         elif subtype == 'card':
-            init_card_templates()
+            __init_card_templates()
         else:
             pass
 
         return templates
 
     @staticmethod
-    def get_possible_templates(id_: str, explicit_data: Types.ExplicitEntityData, msg: dp.Message) -> List[Template]:
-        """Returns list to all possible templates given template id, data type and message."""
+    def __get_possible_templates(id_: str, explicit_data: Types.ExplicitEntityData, msg: dp.Message) -> List[Template]:
+        """
+        Returns list of all possible templates given information about the cosnstituent.
+        :param id_: String id of the templates.
+        :param explicit_data: Type of explicit entity date (needed only for entity).
+        :param msg: Message
+        :return: List of all possible templates.
+        """
+
         constituent_type: str = id_.split('-')[0]
         subtype: str = id_.split('-')[1]
         possibilities: List[Template] = []
 
         if constituent_type == 'e':  # ENTITY
             # data variable only used when const_type is entity
-            data = TemplateHandler.get_msg_data(explicit_data, msg)
-            possibilities = TemplateHandler.get_templates_entity(first_init=False, subtype=subtype, data=data)
+            data = TemplateHandler.__get_msg_data(explicit_data, msg)
+            possibilities = TemplateHandler.__get_templates_entity(first_init=False, subtype=subtype, data=data)
         elif constituent_type == 'w':  # WORD
-            possibilities = TemplateHandler.get_templates_word(first_init=False, subtype=subtype)
+            possibilities = TemplateHandler.__get_templates_word(first_init=False, subtype=subtype)
         elif constituent_type == 'v':  # VERB
-            possibilities = TemplateHandler.get_templates_verb(first_init=False, subtype=subtype)
+            possibilities = TemplateHandler.__get_templates_verb(first_init=False, subtype=subtype)
         else:
             pass
 
         return possibilities
 
     def get_template(self, id_: str, explicit_data: Types.ExplicitEntityData, msg: dp.Message) -> Template:
-        """Picking template for given constituent information - id, data, message."""
-        possibilities = TemplateHandler.get_possible_templates(id_, explicit_data, msg)
-        chosen_template = self.choose_template(possibilities)
+        """
+        Core function for picking template for given constituent information.
+        :param id_: String id of the templates.
+        :param explicit_data: Type of explicit entity date (needed only for entity).
+        :param msg: Message
+        :return: picked Template
+        """
+
+        possibilities = TemplateHandler.__get_possible_templates(id_, explicit_data, msg)
+        chosen_template = self.__choose_template(possibilities)
         return chosen_template
 
-    def choose_template(self, possibilities: List[Template]) -> Template:
-        """Chooses template from all possible templates using this algorithm:
+    def __choose_template(self, possibilities: List[Template]) -> Template:
+        """
+        Chooses template from all possible templates using this algorithm:
         1) if we haven't used every template - pick one randomly
         2) if we already used every template once - pick randomly from every template possible
         (except the last used so that ensure some differentiation.
+        :param possibilities: List of possible templates.
+        :return: Template
         """
+
         id_ = possibilities[0].id
-        freq: TemplateFrequency = self._get_template_frequency(id_)
-        chosen_index = -1   # variable initialization - value will change in if else
+        freq: TemplateFrequency = self.__get_template_frequency(id_)
 
         # we can add step 0) of algorithm - always choose the first template when first occurrence of template type
         '''
@@ -532,17 +605,26 @@ class TemplateHandler:
         freq.remove_from_unused_indices(chosen_index)   # update unused_indices
         return possibilities[chosen_index]
 
-    def _get_template_frequency(self, id_: str) -> TemplateFrequency:
-        """Returns TemplateFrequency from frequency table given it's id."""
+    def __get_template_frequency(self, id_: str) -> TemplateFrequency:
+        """
+        Returns wanted record from frequency table.
+        :param id_: template's string id
+        :return: TemplateFrequency
+        """
+
         for f in self.frequency_table:
             if f.id == id_:
                 return f
 
     @staticmethod
-    def get_msg_data(explicit_data: Types.ExplicitEntityData, msg: dp.Message):
-        """According to explicit_data type returns data (without specification of it's type),
-        which are necessary to initialize entity template.
+    def __get_msg_data(explicit_data: Types.ExplicitEntityData, msg: dp.Message):
         """
+        Returns data (without specification of it's type), which are necessary to initialize entity template.
+        :param explicit_data: Type of explicit data.
+        :param msg: Message
+        :return: some class from Data - Data.Player, Data.Time, etc.
+        """
+
         if explicit_data == Types.ExplicitEntityData.PARTICIPANT:
             return msg.participant
         elif explicit_data == Types.ExplicitEntityData.PARTICIPANT_IN:
@@ -566,10 +648,12 @@ class TemplateHandler:
 
 
 class Constituent:
+    """Class to represent sentence constituent.
+    After lexicalization and picking template for this constituent, it can result in more than one word."""
     id: str
     morph_params: MorphParams
-    explicit_data: Types.ExplicitEntityData
-    string: str
+    explicit_data: Types.ExplicitEntityData   # used just for entity constituents
+    string: str   # lexicalized language specific expression
 
     def __init__(self, id_: str, morph_params: str, explicit_data: Types.ExplicitEntityData):
         self.id = id_
@@ -578,26 +662,48 @@ class Constituent:
         self.string = ''
 
     def lexicalize(self, msg: dp.Message, template_handler: TemplateHandler):
+        """
+        Lexicalizes constituent.
+        :param msg: Message
+        :param template_handler: TemplateHandler that will take care of picking suitable template
+        """
         self.string = template_handler.get_template(self.id, self.explicit_data, msg).string
 
     def transform_string_for_geneea(self):
+        """Transforms lexicalized string into Geneea input using it's morphological parameters."""
         self.string = MorphParams.apply_to_string(self.morph_params, self.string)
 
 
 @dataclass
 class Sentence:
+    """Class to represent sentence."""
     id: str
     simple: bool
-    constituents: List[Union[str, Constituent]]
+    constituents: List[Union[str, Constituent]]   # constituent can be string or class Constituent (later lexicalized)
     msg: dp.Message
 
     @staticmethod
     def create(type_: str, subtype: str, simple: bool, constituents: List[Union[str, Constituent]]):
-        id_ = Sentence._init_sentence_id(type_, subtype)
+        """
+        Creates instance of the Sentence given it's attributes.
+        :param type_: type of the sentence
+        :param subtype: subtype of the sentence
+        :param simple: bool flag that signalizes if structure of the sentence is simple (simple=True). Otherwise
+        it signalizes that the structure or lexicalization is little bit more difficult.
+        :param constituents: List of constituents of the sentence.
+        :return: Sentence
+        """
+        id_ = Sentence.__init_sentence_id(type_, subtype)
         return Sentence(id=id_, simple=simple, constituents=constituents, msg=None)
 
     @staticmethod
-    def _init_sentence_id(type_: str, subtype: str) -> str:
+    def __init_sentence_id(type_: str, subtype: str) -> str:
+        """
+        Combines type and subtype into sentence id.
+        :param type_: type of the sentence
+        :param subtype: subtype of the sentence
+        :return: string id of the sentence
+        """
         d = '-'
         if subtype != '':
             subtype = d + subtype
@@ -610,17 +716,30 @@ class Sentence:
         return self.id < other.id
 
     def lexicalize(self, template_handler: TemplateHandler) -> str:
+        """
+        Lexicalizing whole sentence and also transforming strings into well-build Geneea input.
+        :param template_handler: current Template handler
+        :return: string for Geneea API
+        """
+        # lexicalizing every constituent of the sentence
+        # using template handler to assign templates for constituents not randomly
         for c in self.constituents:
             if type(c) is Constituent:
                 c.lexicalize(self.msg, template_handler)
 
+        # transforming every constituent string for string version as correct Geneea input
         for c in self.constituents:
             if type(c) is Constituent:
                 c.transform_string_for_geneea()
 
-        return self.combine_to_string()
+        return self.__combine_to_string()
 
-    def combine_to_string(self) -> str:
+    def __combine_to_string(self) -> str:
+        """
+        Combines every constituent of the sentence and creating one string.
+        First letter of the sentence is upper case, spaces between constituents, point in the end of the sentence.
+        :return: Sentence string.
+        """
         words: List[str] = []
         for c in self.constituents:
             if type(c) is Constituent:
@@ -638,67 +757,71 @@ class Sentence:
 
 
 class SentenceHandler:
+    """
+    Class for handling assigning and picking suitable sentences for messages.
+    """
     sentences: List[Sentence]
     used_sentences: List[Sentence]
 
     def __init__(self):
-        self.sentences = SentenceHandler.init_all_sentences()
+        # when initializing new SentenceHandler we initialize all possible sentences
+        self.sentences = SentenceHandler.__init_all_sentences()
         self.used_sentences = []
 
-    '''
-     def update_sentence_frequency(self, start_index: int) -> int:
-        index = start_index
-        count = 1
-        while index + 1 < len(self.sentences) and self.sentences[index].id == self.sentences[index+1].id:
-            count += 1
-            index += 1
-
-        for i in range(start_index, index+1):
-            self.sentences[i].frequency = count
-
-        return index
-
-    def init_sentences_count(self):
-        curr_index = 0
-        while curr_index < len(self.sentences):
-            curr_index = self.update_sentence_frequency(curr_index)
-            curr_index += 1
-    '''
-
-    def skip_to_next_simple(self, start_index: int) -> int:
+    def __find_next_simple(self, start_index: int) -> int:
+        """
+        In the list of all possible sentences (must be SORTED) we find next simple sentence of the same id.
+        Since at least one simple exists for each sentence id, we have to find a sentence.
+        :param start_index: index of sentences where to start the iteration for finding simple sentence
+        :return: Index of the next simple sentence.
+        """
         index = start_index
         while not self.sentences[index].simple:
             index += 1
 
         return index
 
-    def swap_two_elements(self, index1: int, index2: int):
+    def __swap(self, index1: int, index2: int):
+        """
+        Swaps two sentences in sentence list given their indices.
+        :param index1: Index of the first sentence to swap.
+        :param index2: Index of the second sentence to swap.
+        """
         tmp = self.sentences[index1]
         self.sentences[index1] = self.sentences[index2]
         self.sentences[index2] = tmp
 
-    def skip_to_next_sentence_type(self, start_index: int) -> int:
+    def __skip_to_next_sentence_type(self, start_index: int) -> int:
+        """
+        Looping through sentences of the same id until new id of the sentence is found.
+        :param start_index:  Start index of the list of sentences.
+        :return: Index where the same sentence id ends.
+        """
         index = start_index
         while index + 1 < len(self.sentences) and self.sentences[index] == self.sentences[index + 1]:
             index += 1
         return index + 1
 
-    def put_simple_first(self):
+    def __put_simple_first(self):
+        """Ensures to put simple version of the sentence first for every sentence id."""
         index = 0
         while index + 1 < len(self.sentences):
-            if not self.sentences[index].simple:
-                simple_index = self.skip_to_next_simple(index)
-                self.swap_two_elements(index, simple_index)
-            index = self.skip_to_next_sentence_type(index)
+            if not self.sentences[index].simple:    # if there is not simple version already on the first index
+                simple_index = self.__find_next_simple(index)
+                self.__swap(index, simple_index)
+            index = self.__skip_to_next_sentence_type(index)
 
-    def randomize_sentences_order(self):
-        random.shuffle(self.sentences)
-        self.sentences.sort()
-        self.put_simple_first()
+    def __randomize_sentences_order(self):
+        """Randomizes order of the sentences following certain rules."""
+        random.shuffle(self.sentences)    # shuffle sentences to make sure sentences order will vary
+        self.sentences.sort()             # sort sentences so that they are grouped by id
+        self.__put_simple_first()           # put simple version first for every sentence id group
 
     @staticmethod
-    def init_all_sentences():
-        def init_sentence_result():
+    def __init_all_sentences():
+        """Initializes all sentences."""
+        def __init_sentence_result():
+            """Initializes all sentences for expressing result message."""
             type_ = 'r'
             # id subtypes: win = 'w' / draw = 'd' / loss = 'l'
 
@@ -726,7 +849,8 @@ class SentenceHandler:
                 Constituent(id_='e-team', morph_params='4-.-.-.', explicit_data=Types.ExplicitEntityData.TEAM_AWAY),
                 Constituent(id_='e-score', morph_params='', explicit_data=Types.ExplicitEntityData.SCORE)]))
 
-        def init_sentence_goal():
+        def __init_sentence_goal():
+            """Initializes all sentences for expressing goal message."""
             type_ = 'g'
             # id subtypes: solo play = 's' / own goal = 'o' / penalty = 'p' / assistance = 'a'
 
@@ -756,11 +880,17 @@ class SentenceHandler:
                 Constituent(id_='e-player', morph_params='1-.-.-.', explicit_data=Types.ExplicitEntityData.PARTICIPANT),
                 "po",
                 Constituent(id_='w-assistance', morph_params='6-.-.-.', explicit_data=None),
-                Constituent(id_='e-player', morph_params='3-.-.-.', explicit_data=Types.ExplicitEntityData.ASSISTANCE),
+                Constituent(id_='e-player', morph_params='2-.-.-.', explicit_data=Types.ExplicitEntityData.ASSISTANCE),
                 Constituent(id_='w-goal', morph_params='4-.-.-.', explicit_data=None)]))
 
             # Types.Goal.PENALTY
             subtype = 'p'
+            sentences.append(Sentence.create(type_, subtype, True, [
+                Constituent(id_='e-time', morph_params='', explicit_data=Types.ExplicitEntityData.TIME),
+                Constituent(id_='v-penalty', morph_params='.-0-.-.', explicit_data=None),
+                Constituent(id_='e-player', morph_params='1-.-.-.', explicit_data=Types.ExplicitEntityData.PARTICIPANT),
+                Constituent(id_='w-penalty', morph_params='4-.-.-.', explicit_data=None)]))
+
             sentences.append(Sentence.create(type_, subtype, True, [
                 Constituent(id_='e-time', morph_params='', explicit_data=Types.ExplicitEntityData.TIME),
                 Constituent(id_='v-penalty', morph_params='.-0-.-.', explicit_data=None),
@@ -775,7 +905,8 @@ class SentenceHandler:
                 Constituent(id_='e-player', morph_params='1-.-.-.', explicit_data=Types.ExplicitEntityData.PARTICIPANT),
                 Constituent(id_='w-own_goal', morph_params='4-.-.-.', explicit_data=None)]))
 
-        def init_sentence_substitution():
+        def __init_sentence_substitution():
+            """Initializes all sentences for expressing substitution message."""
             type_ = 's'
             subtype = ''
 
@@ -796,7 +927,8 @@ class SentenceHandler:
                 Constituent(id_='e-player', morph_params='4-.-.-.',
                             explicit_data=Types.ExplicitEntityData.PARTICIPANT_OUT)]))
 
-        def init_sentence_card():
+        def __init_sentence_card():
+            """Initializes all sentences for expressing card message."""
             type_ = 'c'
             # id subtypes: red_auto = 'a' / red_instant = 'r' / yellow = 'y'
 
@@ -832,7 +964,8 @@ class SentenceHandler:
                 Constituent(id_='e-player', morph_params='1-.-.-.', explicit_data=Types.ExplicitEntityData.PARTICIPANT),
                 Constituent(id_='w-yellow_card', morph_params='4-.-.-.', explicit_data=None)]))
 
-        def init_sentence_missed_penalty():
+        def __init_sentence_missed_penalty():
+            """Initializes all sentences for expressing missed penalty message."""
             type_ = 'm'
             subtype = ''
 
@@ -844,32 +977,48 @@ class SentenceHandler:
 
         sentences: List[Sentence] = []
 
-        init_sentence_result()
-        init_sentence_goal()
-        init_sentence_substitution()
-        init_sentence_card()
-        init_sentence_missed_penalty()
+        __init_sentence_result()
+        __init_sentence_goal()
+        __init_sentence_substitution()
+        __init_sentence_card()
+        __init_sentence_missed_penalty()
         sentences.sort()
         return sentences
 
-    def try_find_sentence(self, key: str) -> (bool, int):
+    def __try_find_sentence(self, id_: str) -> (bool, int):
+        """
+        Trying to find sentence in all sentences with a certain id.
+        :param id_: String id of the sentence
+        :return: Tuple of boolean an int - bool says if a sentence was found, int is the index
+        (if found == False, then the index is useless)
+        """
         for i in range(0, len(self.sentences)):
-            if self.sentences[i].id == key:
+            if self.sentences[i].id == id_:
                 return True, i
 
         return False, None
 
-    def get_random_used(self, key: str) -> Sentence:
+    def __get_random_used(self, id_: str) -> Sentence:
+        """
+        Returns random sentence with given id from already used sentences.
+        :param id_: id of the sentence
+        :return: Sentence
+        """
         valid_sentences: List[Sentence] = []
         for us in self.used_sentences:
-            if us.id == key:
+            if us.id == id_:
                 valid_sentences.append(us)
 
         return random.choice(valid_sentences)
 
     def get_sentence(self, m: dp.Message) -> Sentence:
-        key = self._init_sentence_key(m)
-        (found, sentence_index) = self.try_find_sentence(key)
+        """
+        Picks suitable sentence given the message.
+        :param m: Message
+        :return: Sentence
+        """
+        id_ = self.__init_sentence_id(m)
+        (found, sentence_index) = self.__try_find_sentence(id_)
 
         if found:
             sentence = self.sentences.pop(sentence_index)
@@ -877,23 +1026,34 @@ class SentenceHandler:
             self.used_sentences.append(sentence)
             return sentence
         else:
-            sentence = self.get_random_used(key)
+            sentence = self.__get_random_used(id_)
             sentence.msg = m
             return sentence
 
     def create_sentences_templates(self, doc_plan: dp.DocumentPlan) -> (Sentence, List[Sentence]):
-        self.randomize_sentences_order()
+        """
+        Picks suitable sentence for every message.
+        Matches sentences with particular data from Message.
+        :param doc_plan: DocumentPlan
+        :return: Tuple of sentences - title(Sentence) and body (List[Sentence])
+        """
+        self.__randomize_sentences_order()   # randomizing sentence order (but sorted)
         title_sentence = self.get_sentence(doc_plan.title)
         body_sentences = [self.get_sentence(msg) for msg in doc_plan.body]
         return title_sentence, body_sentences
 
     @staticmethod
-    def _init_sentence_key(m: dp.Message) -> str:
+    def __init_sentence_id(m: dp.Message) -> str:
+        """
+        Creates string id from Message.
+        :param m: Message.
+        :return: Sentence id
+        """
         d = '-'
         s = 's' + d
 
         subtype = ''
-        if type(m) is dp.Messages.Result:
+        if type(m) is dp.Message.Result:
             type_ = 'r'
             if m.score.result == Types.Result.WIN:
                 subtype = 'w'
@@ -901,7 +1061,7 @@ class SentenceHandler:
                 subtype = 'd'
             else:  # Types.Result.DRAW
                 subtype = 'l'
-        elif type(m) is dp.Messages.Goal:
+        elif type(m) is dp.Message.Goal:
             type_ = 'g'
             if m.goal_type == Types.Goal.SOLO_PLAY:
                 subtype = 's'
@@ -911,9 +1071,9 @@ class SentenceHandler:
                 subtype = 'o'
             else:  # Types.Goal.PENALTY
                 subtype = 'p'
-        elif type(m) is dp.Messages.Substitution:
+        elif type(m) is dp.Message.Substitution:
             type_ = 's'
-        elif type(m) is dp.Messages.Card:
+        elif type(m) is dp.Message.Card:
             type_ = 'c'
             if m.card_type == Types.Card.RED_AUTO:
                 subtype = 'a'
@@ -921,7 +1081,7 @@ class SentenceHandler:
                 subtype = 'r'
             else:  # Types.Card.YELLOW
                 subtype = 'y'
-        else:  # type(m) is dp.Messages.MissedPenalty:
+        else:  # type(m) is dp.Message.MissedPenalty:
             type_ = 'm'
 
         if subtype == '':
@@ -937,8 +1097,11 @@ class Lexicalizer:
     which is then transformed into well-build input for Geneea API."""
     @staticmethod
     def lexicalize_article(doc_plan: dp.DocumentPlan, match_data: Data.Match) -> (str, List[str]):
-        """Core method for lexicalizing given document plan.
-        Takes document plan and returns (str, List[str]) so that first of the tuple is title and rest is body
+        """
+        Core method for lexicalizing given document plan and transforming lexicalized text for well-build Geneea input.
+        :param doc_plan: Document Plan
+        :param match_data: other match data (if needed for some conditional expression)
+        :return:returns (str, List[str]) so that first of the tuple is title and rest is body
         of the article. All strings are well-build inputs for Geneea API.
         """
 
