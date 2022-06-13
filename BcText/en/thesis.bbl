@@ -1,4 +1,4 @@
-\begin{thebibliography}{20}
+\begin{thebibliography}{21}
 \providecommand{\natexlab}[1]{#1}
 \providecommand{\url}[1]{\texttt{#1}}
 \expandafter\ifx\csname urlstyle\endcsname\relax
@@ -17,6 +17,13 @@ Giuseppe Carenini and Johanna~D Moore.
 \newblock Generating and evaluating evaluative arguments.
 \newblock \emph{Artificial Intelligence}, 170\penalty0 (11):\penalty0 925--952,
   2006.
+
+\bibitem[Dimitromanolaki and
+  Androutsopoulos(2003)]{dimitromanolaki2003learning}
+Aggeliki Dimitromanolaki and Ion Androutsopoulos.
+\newblock Learning to order facts for discourse planning in natural language
+  generation.
+\newblock \emph{arXiv preprint cs/0306062}, 2003.
 
 \bibitem[Duboue and McKeown(2003)]{duboue2003statistical}
 Pablo~A Duboue and Kathleen McKeown.

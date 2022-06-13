@@ -1,0 +1,611 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   width="160.16299mm"
+   height="84.084999mm"
+   viewBox="0 0 160.16301 84.084999"
+   version="1.1"
+   id="svg5"
+   inkscape:version="1.2 (dc2aedaf03, 2022-05-15)"
+   sodipodi:docname="content_determination.svg"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <sodipodi:namedview
+     id="namedview7"
+     pagecolor="#ffffff"
+     bordercolor="#000000"
+     borderopacity="0.25"
+     inkscape:showpageshadow="2"
+     inkscape:pageopacity="0.0"
+     inkscape:pagecheckerboard="0"
+     inkscape:deskcolor="#d1d1d1"
+     inkscape:document-units="mm"
+     showgrid="false"
+     showguides="true"
+     inkscape:zoom="1.4503086"
+     inkscape:cx="312.34732"
+     inkscape:cy="163.75825"
+     inkscape:window-width="1920"
+     inkscape:window-height="1001"
+     inkscape:window-x="-9"
+     inkscape:window-y="-9"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="g2764">
+    <inkscape:grid
+       type="xygrid"
+       id="grid461"
+       originx="-21.297289"
+       originy="-10.01797" />
+  </sodipodi:namedview>
+  <defs
+     id="defs2">
+    <rect
+       x="32.178699"
+       y="76.546303"
+       width="36.079147"
+       height="36.079147"
+       id="rect8583" />
+    <rect
+       x="25.840471"
+       y="58.994286"
+       width="29.253365"
+       height="39.979599"
+       id="rect8565" />
+    <rect
+       x="24.86536"
+       y="38.029373"
+       width="33.641369"
+       height="44.85516"
+       id="rect8543" />
+    <rect
+       x="38.029373"
+       y="231.10158"
+       width="577.26642"
+       height="36.566704"
+       id="rect6991" />
+    <rect
+       x="25.352917"
+       y="254.01671"
+       width="621.14642"
+       height="27.303141"
+       id="rect6973" />
+    <rect
+       x="62.407177"
+       y="232.56425"
+       width="589.45526"
+       height="27.790695"
+       id="rect6955" />
+    <marker
+       style="overflow:visible"
+       id="marker6568"
+       refX="0"
+       refY="0"
+       orient="auto-start-reverse"
+       inkscape:stockid="TriangleStart"
+       markerWidth="5.3244081"
+       markerHeight="6.155385"
+       viewBox="0 0 5.3244081 6.1553851"
+       inkscape:isstock="true"
+       inkscape:collect="always"
+       preserveAspectRatio="xMidYMid">
+      <path
+         transform="scale(0.5)"
+         style="fill:context-stroke;fill-rule:evenodd;stroke:context-stroke;stroke-width:1pt"
+         d="M 5.77,0 -2.88,5 V -5 Z"
+         id="path6566" />
+    </marker>
+    <marker
+       style="overflow:visible"
+       id="TriangleStart"
+       refX="0"
+       refY="0"
+       orient="auto-start-reverse"
+       inkscape:stockid="TriangleStart"
+       markerWidth="5.3244081"
+       markerHeight="6.155385"
+       viewBox="0 0 5.3244081 6.1553851"
+       inkscape:isstock="true"
+       inkscape:collect="always"
+       preserveAspectRatio="xMidYMid">
+      <path
+         transform="scale(0.5)"
+         style="fill:context-stroke;fill-rule:evenodd;stroke:context-stroke;stroke-width:1pt"
+         d="M 5.77,0 -2.88,5 V -5 Z"
+         id="path135" />
+    </marker>
+    <rect
+       x="248.89737"
+       y="20.477354"
+       width="250.8476"
+       height="147.24193"
+       id="rect439" />
+    <rect
+       x="218.6689"
+       y="156.99306"
+       width="20.477354"
+       height="49.730721"
+       id="rect337" />
+    <rect
+       x="221.83801"
+       y="92.391876"
+       width="86.784981"
+       height="14.87046"
+       id="rect173" />
+    <rect
+       x="56.556503"
+       y="91.660538"
+       width="228.66379"
+       height="194.04733"
+       id="rect117" />
+    <rect
+       x="56.556503"
+       y="91.660538"
+       width="702.08069"
+       height="53.143627"
+       id="rect7053" />
+    <rect
+       x="32.178699"
+       y="76.546303"
+       width="36.079147"
+       height="36.079147"
+       id="rect10118" />
+    <rect
+       x="32.178699"
+       y="76.546303"
+       width="36.079147"
+       height="36.079147"
+       id="rect10136" />
+    <rect
+       x="32.178699"
+       y="76.546303"
+       width="36.079147"
+       height="36.079147"
+       id="rect10904" />
+    <rect
+       x="32.178699"
+       y="76.546303"
+       width="36.079147"
+       height="36.079147"
+       id="rect10922" />
+    <rect
+       x="56.556503"
+       y="91.660538"
+       width="602.13171"
+       height="78.008987"
+       id="rect7053-7" />
+    <rect
+       x="32.178699"
+       y="76.546303"
+       width="36.079147"
+       height="36.079147"
+       id="rect10922-8" />
+    <rect
+       x="32.178699"
+       y="76.546303"
+       width="36.079147"
+       height="36.079147"
+       id="rect10922-2" />
+  </defs>
+  <g
+     inkscape:groupmode="layer"
+     id="layer2"
+     inkscape:label="Vrstva 2"
+     transform="translate(-21.297275,-10.01797)">
+    <text
+       xml:space="preserve"
+       transform="scale(0.26458333)"
+       id="text6953"
+       style="font-style:italic;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:5.33333px;font-family:sans-serif;-inkscape-font-specification:'sans-serif Italic';white-space:pre;shape-inside:url(#rect6955);display:inline;fill:none;fill-opacity:1;stroke:#000000;stroke-width:1.03181;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:none;stroke-opacity:1" />
+    <text
+       xml:space="preserve"
+       transform="scale(0.26458333)"
+       id="text6971"
+       style="font-style:italic;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:5.33333px;font-family:sans-serif;-inkscape-font-specification:'sans-serif Italic';white-space:pre;shape-inside:url(#rect6973);display:inline;fill:none;fill-opacity:1;stroke:#000000;stroke-width:1.03181;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:none;stroke-opacity:1" />
+    <text
+       xml:space="preserve"
+       transform="scale(0.26458333)"
+       id="text6989"
+       style="font-style:italic;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:17.3333px;font-family:sans-serif;-inkscape-font-specification:'sans-serif Italic';white-space:pre;shape-inside:url(#rect6991);display:inline;fill:none;fill-opacity:1;stroke:#000000;stroke-width:1.03181;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:none;stroke-opacity:1" />
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:4.5861px;font-family:sans-serif;-inkscape-font-specification:sans-serif;fill:none;fill-opacity:1;stroke:#000000;stroke-width:0.273;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:none;stroke-opacity:1"
+       x="12.254925"
+       y="64.11261"
+       id="text7009"><tspan
+         sodipodi:role="line"
+         id="tspan7007"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:sans-serif;-inkscape-font-specification:sans-serif;stroke-width:0.273"
+         x="12.254925"
+         y="64.11261" /></text>
+  </g>
+  <g
+     inkscape:groupmode="layer"
+     id="layer3"
+     inkscape:label="popisky"
+     transform="translate(-21.297275,-10.01797)" />
+  <g
+     inkscape:label="Vrstva 1"
+     inkscape:groupmode="layer"
+     id="layer1"
+     transform="translate(-21.297275,-10.01797)">
+    <text
+       xml:space="preserve"
+       transform="scale(0.26458333)"
+       id="text171"
+       style="white-space:pre;shape-inside:url(#rect173);display:inline;fill:#000000" />
+    <text
+       xml:space="preserve"
+       transform="scale(0.26458333)"
+       id="text335"
+       style="white-space:pre;shape-inside:url(#rect337);display:inline;fill:#000000" />
+    <rect
+       style="fill:none;fill-opacity:1;stroke:none;stroke-width:0.273;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:none;stroke-opacity:1"
+       id="rect12445"
+       width="154.88512"
+       height="64.945938"
+       x="15.320527"
+       y="9.6230803"
+       clip-path="none" />
+    <rect
+       style="fill:none;fill-opacity:1;stroke:none;stroke-width:0.273;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:none;stroke-opacity:1"
+       id="rect12438"
+       width="159.08109"
+       height="65.49324"
+       x="13.131338"
+       y="9.6230803" />
+    <rect
+       style="fill:none;fill-opacity:1;stroke:none;stroke-width:0.273;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:none;stroke-opacity:1"
+       id="rect12440"
+       width="151.41891"
+       height="62.756756"
+       x="16.050255"
+       y="11.447405" />
+    <text
+       xml:space="preserve"
+       transform="scale(0.26458333)"
+       id="text8541"
+       style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:14.6667px;font-family:sans-serif;-inkscape-font-specification:'sans-serif Bold';white-space:pre;shape-inside:url(#rect8543);display:inline;fill:none;fill-opacity:1;stroke:none;stroke-width:1.03181;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:none;stroke-opacity:1" />
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:3.88056px;font-family:sans-serif;-inkscape-font-specification:'sans-serif Bold';fill:none;fill-opacity:1;stroke:none;stroke-width:0.273;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:none;stroke-opacity:1"
+       x="9.6749401"
+       y="12.899921"
+       id="text8561"><tspan
+         sodipodi:role="line"
+         id="tspan8559"
+         style="stroke-width:0.273"
+         x="9.6749401"
+         y="12.899921" /></text>
+    <text
+       xml:space="preserve"
+       transform="scale(0.26458333)"
+       id="text8563"
+       style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:14.6667px;font-family:sans-serif;-inkscape-font-specification:'sans-serif Bold';white-space:pre;shape-inside:url(#rect8565);display:inline;fill:none;fill-opacity:1;stroke:none;stroke-width:1.03181;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:none;stroke-opacity:1" />
+    <g
+       id="g2764"
+       transform="translate(1.4594595,2.3716217)">
+      <text
+         xml:space="preserve"
+         id="text10920"
+         style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:13.3333px;font-family:sans-serif;-inkscape-font-specification:'sans-serif Bold';white-space:pre;shape-inside:url(#rect10922);display:inline;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1.03181;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:none;stroke-opacity:1"
+         transform="matrix(0.26458333,0,0,0.26458333,12.471803,43.756663)"
+         inkscape:transform-center-y="-1.0945947"><tspan
+           x="32.177734"
+           y="88.711248"
+           id="tspan1117"><tspan
+             style="font-weight:normal;-inkscape-font-specification:sans-serif"
+             id="tspan1115">(4)</tspan></tspan></text>
+      <text
+         xml:space="preserve"
+         id="text10920-6"
+         style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:13.3333px;font-family:sans-serif;-inkscape-font-specification:'sans-serif Bold';white-space:pre;shape-inside:url(#rect10922-8);display:inline;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1.03181;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:none;stroke-opacity:1"
+         transform="matrix(0.26458333,0,0,0.26458333,12.47761,61.003772)"><tspan
+           x="32.177734"
+           y="88.711248"
+           id="tspan1121"><tspan
+             style="font-weight:normal;-inkscape-font-specification:sans-serif"
+             id="tspan1119">(5)</tspan></tspan></text>
+      <rect
+         style="fill:#b0b0b0;fill-opacity:1;stroke:#000000;stroke-width:0.214339;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:none;stroke-opacity:1"
+         id="rect549"
+         width="56.939308"
+         height="5.7266259"
+         x="31.949059"
+         y="10.125139" />
+      <rect
+         style="fill:#b0b0b0;fill-opacity:1;stroke:#000000;stroke-width:0.235551;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:none;stroke-opacity:1"
+         id="rect5859"
+         width="67.496033"
+         height="5.8344135"
+         x="103.68324"
+         y="10.135745" />
+      <rect
+         style="fill:none;fill-opacity:1;stroke:#000000;stroke-width:0.257014;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:none;stroke-opacity:1"
+         id="rect5861"
+         width="56.896637"
+         height="35.611771"
+         x="31.970396"
+         y="16.080441" />
+      <rect
+         style="fill:none;fill-opacity:1;stroke:#000000;stroke-width:0.252183;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:none;stroke-opacity:1"
+         id="rect5863"
+         width="67.479408"
+         height="28.90864"
+         x="103.69154"
+         y="16.207026" />
+      <path
+         style="fill:none;fill-rule:evenodd;stroke:#000000;stroke-width:0.273;stroke-linecap:butt;stroke-linejoin:miter;stroke-dasharray:none;stroke-opacity:1;marker-start:url(#TriangleStart);marker-end:url(#marker6568)"
+         d="m 85.340242,17.553562 19.687518,4.801694"
+         id="path6016"
+         inkscape:connector-type="polyline"
+         inkscape:connector-curvature="28" />
+      <path
+         style="fill:none;fill-opacity:1;stroke:#000000;stroke-width:0.277596;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:none;stroke-opacity:1"
+         d="m 27.590713,48.72353 c 0.122003,7.901002 3.963027,8.264439 8.005383,8.640071 17.404808,0.04298 40.285504,0.08598 60.440648,0.128955 2.937061,0.177829 4.169376,2.115026 5.336926,5.029295"
+         id="path6896"
+         sodipodi:nodetypes="cccc" />
+      <path
+         style="fill:none;fill-opacity:1;stroke:#000000;stroke-width:0.277596;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:none;stroke-opacity:1"
+         d="m 175.16121,48.981529 c -0.122,7.901002 -3.96303,8.264439 -8.00538,8.640071 -17.40481,0.04298 -40.28551,0.08598 -60.44063,0.128955 -2.93707,0.177829 -4.16939,2.115026 -5.33694,5.029295"
+         id="path6951"
+         sodipodi:nodetypes="cccc" />
+      <text
+         xml:space="preserve"
+         id="text8581"
+         style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:13.3333px;font-family:sans-serif;-inkscape-font-specification:'sans-serif Bold';white-space:pre;shape-inside:url(#rect8583);display:inline;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1.03181;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:none;stroke-opacity:1"
+         transform="matrix(0.26458333,0,0,0.26458333,12.632103,7.1834877)"><tspan
+           x="32.177734"
+           y="88.711248"
+           id="tspan1125"><tspan
+             style="font-weight:normal;-inkscape-font-specification:sans-serif"
+             id="tspan1123">(1)</tspan></tspan></text>
+      <text
+         xml:space="preserve"
+         id="text10116"
+         style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:13.3333px;font-family:sans-serif;-inkscape-font-specification:'sans-serif Bold';white-space:pre;shape-inside:url(#rect10118);display:inline;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1.03181;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:none;stroke-opacity:1"
+         transform="matrix(0.26458333,0,0,0.26458333,163.81157,4.2165059)"><tspan
+           x="32.177734"
+           y="88.711248"
+           id="tspan1129"><tspan
+             style="font-weight:normal;-inkscape-font-specification:sans-serif"
+             id="tspan1127">(2)</tspan></tspan></text>
+      <text
+         xml:space="preserve"
+         id="text10134"
+         style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:13.3333px;font-family:sans-serif;-inkscape-font-specification:'sans-serif Bold';white-space:pre;shape-inside:url(#rect10136);display:inline;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1.03181;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:none;stroke-opacity:1"
+         transform="matrix(0.26458333,0,0,0.26458333,85.122066,-4.8134387)"><tspan
+           x="32.177734"
+           y="88.711248"
+           id="tspan1133"><tspan
+             style="font-weight:normal;-inkscape-font-specification:sans-serif"
+             id="tspan1131">(3)</tspan></tspan></text>
+      <text
+         xml:space="preserve"
+         transform="matrix(0.26458333,0,0,0.26458333,17.729146,-15.94057)"
+         id="text115"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:sans-serif;-inkscape-font-specification:sans-serif;white-space:pre;shape-inside:url(#rect117);shape-padding:7.06956;display:inline;fill:#000000"><tspan
+           x="63.626953"
+           y="114.54416"
+           id="tspan1137">                <tspan
+   style="font-weight:bold;font-size:17.3333px;-inkscape-font-specification:'sans-serif Bold'"
+   id="tspan1135">Player</tspan>
+</tspan><tspan
+           x="63.626953"
+           y="131.34506"
+           id="tspan1145"><tspan
+   style="font-style:italic;font-weight:bold;-inkscape-font-specification:'sans-serif Bold Italic'"
+   id="tspan1139">&lt;id&gt;</tspan>                      <tspan
+   style="font-size:5.33333px"
+   id="tspan1141"> </tspan><tspan
+   style="font-weight:bold;-inkscape-font-specification:'sans-serif Bold'"
+   id="tspan1143">373</tspan>
+</tspan><tspan
+           x="63.626953"
+           y="146.34506"
+           id="tspan1151"><tspan
+   style="font-style:italic;font-weight:bold;-inkscape-font-specification:'sans-serif Bold Italic'"
+   id="tspan1147">&lt;first_name&gt;</tspan>        <tspan
+   style="font-weight:bold;-inkscape-font-specification:'sans-serif Bold'"
+   id="tspan1149">Cristiano</tspan>
+</tspan><tspan
+           x="63.626953"
+           y="161.34506"
+           id="tspan1159"><tspan
+   style="font-style:italic;font-weight:bold;-inkscape-font-specification:'sans-serif Bold Italic'"
+   id="tspan1153">&lt;last_name&gt;</tspan>        <tspan
+   style="font-size:8px"
+   id="tspan1155"> </tspan><tspan
+   style="font-weight:bold;-inkscape-font-specification:'sans-serif Bold'"
+   id="tspan1157">Ronaldo</tspan>
+</tspan><tspan
+           x="63.626953"
+           y="176.34506"
+           id="tspan1163"><tspan
+   style="font-style:italic;-inkscape-font-specification:'sans-serif Italic'"
+   id="tspan1161">&lt;nickname&gt;</tspan>            CR7
+</tspan><tspan
+           x="63.626953"
+           y="191.34506"
+           id="tspan1169"><tspan
+   style="font-style:italic;-inkscape-font-specification:'sans-serif Italic'"
+   id="tspan1165">&lt;date_of_birth&gt; </tspan>     <tspan
+   style="font-size:5.33333px"
+   id="tspan1167"> </tspan>05/02/1985
+</tspan><tspan
+           x="63.626953"
+           y="206.34506"
+           id="tspan1173"><tspan
+   style="font-style:italic;-inkscape-font-specification:'sans-serif Italic'"
+   id="tspan1171">&lt;country_of_birth&gt;</tspan>  Portugal
+</tspan><tspan
+           x="63.626953"
+           y="221.34506"
+           id="tspan1177"><tspan
+   style="font-style:italic;-inkscape-font-specification:'sans-serif Italic'"
+   id="tspan1175">&lt;city_of_birth&gt;</tspan>        Funchal
+</tspan><tspan
+           x="63.626953"
+           y="236.34506"
+           id="tspan1183"><tspan
+   style="font-style:italic;-inkscape-font-specification:'sans-serif Italic'"
+   id="tspan1179">&lt;height(m)&gt;</tspan>           <tspan
+   style="font-size:5.33333px"
+   id="tspan1181"> </tspan>1,87 
+</tspan><tspan
+           x="63.626953"
+           y="251.34506"
+           id="tspan1187"><tspan
+   style="font-style:italic;-inkscape-font-specification:'sans-serif Italic'"
+   id="tspan1185">&lt;number&gt;</tspan>               7
+</tspan><tspan
+           x="63.626953"
+           y="266.34506"
+           id="tspan1189">
+</tspan><tspan
+           x="63.626953"
+           y="281.34506"
+           id="tspan1191">
+</tspan></text>
+      <text
+         xml:space="preserve"
+         transform="matrix(0.26458333,0,0,0.26458333,40.423839,5.1195004)"
+         id="text437"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:12px;font-family:sans-serif;-inkscape-font-specification:sans-serif;white-space:pre;shape-inside:url(#rect439);display:inline;fill:#000000"><tspan
+           x="248.89648"
+           y="36.290257"
+           id="tspan1195">              <tspan
+   style="font-weight:bold;font-size:17.3333px;-inkscape-font-specification:'sans-serif Bold'"
+   id="tspan1193">     Goal</tspan>
+</tspan><tspan
+           x="248.89648"
+           y="53.091152"
+           id="tspan1201"><tspan
+   style="font-style:italic;font-weight:bold;-inkscape-font-specification:'sans-serif Bold Italic'"
+   id="tspan1197">&lt;minute&gt;</tspan>           <tspan
+   style="font-weight:bold;-inkscape-font-specification:'sans-serif Bold'"
+   id="tspan1199">17</tspan>
+</tspan><tspan
+           x="248.89648"
+           y="68.091152"
+           id="tspan1207"><tspan
+   style="font-style:italic;font-weight:bold;-inkscape-font-specification:'sans-serif Bold Italic'"
+   id="tspan1203">&lt;player_id&gt;</tspan>       <tspan
+   style="font-weight:bold;-inkscape-font-specification:'sans-serif Bold'"
+   id="tspan1205">373</tspan>
+</tspan><tspan
+           x="248.89648"
+           y="83.091152"
+           id="tspan1211"><tspan
+   style="font-style:italic;-inkscape-font-specification:'sans-serif Italic'"
+   id="tspan1209">&lt;type&gt;  </tspan>              Penalty
+</tspan><tspan
+           x="248.89648"
+           y="98.091152"
+           id="tspan1215"><tspan
+   style="font-style:italic;-inkscape-font-specification:'sans-serif Italic'"
+   id="tspan1213">&lt;assistance_id&gt;</tspan>   None
+</tspan><tspan
+           x="248.89648"
+           y="113.09115"
+           id="tspan1221"><tspan
+   style="font-style:italic;font-weight:bold;-inkscape-font-specification:'sans-serif Bold Italic'"
+   id="tspan1217">&lt;team&gt;  </tspan>            <tspan
+   style="font-weight:bold;-inkscape-font-specification:'sans-serif Bold'"
+   id="tspan1219">Manchester United</tspan>
+</tspan><tspan
+           x="248.89648"
+           y="128.09115"
+           id="tspan1225"><tspan
+   style="font-style:italic;-inkscape-font-specification:'sans-serif Italic'"
+   id="tspan1223">&lt;team_type&gt;</tspan>       Home
+</tspan><tspan
+           x="248.89648"
+           y="143.09115"
+           id="tspan1231"><tspan
+   style="font-style:italic;-inkscape-font-specification:'sans-serif Italic'"
+   id="tspan1227">&lt;current_score&gt;</tspan>  <tspan
+   style="font-size:5.33333px"
+   id="tspan1229"> </tspan>3:0
+</tspan></text>
+      <text
+         xml:space="preserve"
+         transform="matrix(0.26458333,0,0,0.26458333,12.311179,33.92869)"
+         id="text7051"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:sans-serif;-inkscape-font-specification:sans-serif;white-space:pre;shape-inside:url(#rect7053);shape-padding:7.06956;display:inline;fill:#000000"><tspan
+           x="63.626953"
+           y="109.67843"
+           id="tspan1233">                
+</tspan><tspan
+           x="63.626953"
+           y="127.11134"
+           id="tspan1239"><tspan
+             style="font-size:12.2667px"
+             id="tspan1235">Message(type=Goal, full_name=&quot;Cristiano Ronaldo&quot;, team=&quot;Manchester United&quot;, time=17)</tspan><tspan
+             style="font-size:14.6667px"
+             id="tspan1237">
+</tspan></tspan><tspan
+           x="63.626953"
+           y="145.44472"
+           id="tspan1243"><tspan
+   style="font-size:14.6667px"
+   id="tspan1241"> </tspan>
+</tspan><tspan
+           x="63.626953"
+           y="148.68234"
+           id="tspan1245">
+</tspan><tspan
+           x="63.626953"
+           y="163.68234"
+           id="tspan1247">
+</tspan></text>
+      <text
+         xml:space="preserve"
+         transform="matrix(0.26458333,0,0,0.26458333,17.735198,51.620884)"
+         id="text7051-6"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:sans-serif;-inkscape-font-specification:sans-serif;white-space:pre;shape-inside:url(#rect7053-7);shape-padding:7.06956;display:inline;fill:#000000"><tspan
+           x="63.626953"
+           y="109.67843"
+           id="tspan1249">                
+</tspan><tspan
+           x="63.626953"
+           y="127.11134"
+           id="tspan1263"><tspan
+             style="font-weight:bold;font-size:14.6667px;-inkscape-font-specification:'sans-serif Bold'"
+             id="tspan1251">Cristiano Ronaldo</tspan><tspan
+             style="font-size:14.6667px"
+             id="tspan1253"> scored for </tspan><tspan
+             style="font-weight:bold;font-size:14.6667px;-inkscape-font-specification:'sans-serif Bold'"
+             id="tspan1255">Manchester United</tspan><tspan
+             style="font-size:14.6667px"
+             id="tspan1257"> in </tspan><tspan
+             style="font-weight:bold;font-size:14.6667px;-inkscape-font-specification:'sans-serif Bold'"
+             id="tspan1259">17th</tspan><tspan
+             style="font-size:14.6667px"
+             id="tspan1261"> minute.
+</tspan></tspan><tspan
+           x="63.626953"
+           y="145.44472"
+           id="tspan1267"><tspan
+   style="font-size:14.6667px"
+   id="tspan1265"> </tspan>
+</tspan><tspan
+           x="63.626953"
+           y="161.34518"
+           id="tspan1269">
+</tspan><tspan
+           x="63.626953"
+           y="173.54757"
+           id="tspan1271">
+</tspan></text>
+      <path
+         style="fill:none;fill-rule:evenodd;stroke:#000000;stroke-width:1.00958;stroke-linecap:butt;stroke-linejoin:miter;stroke-dasharray:none;stroke-opacity:1;marker-end:url(#TriangleStart)"
+         d="m 101.43243,69.324325 v 6.621087"
+         id="path1675"
+         inkscape:connector-type="polyline"
+         inkscape:connector-curvature="0" />
+    </g>
+  </g>
+</svg>

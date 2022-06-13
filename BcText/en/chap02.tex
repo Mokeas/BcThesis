@@ -1,4 +1,4 @@
-\chapter{A- NLG Tasks}
+\chapter{A- NLG Tasks}\label{chap:tasks}
 Transforming non-linguistic data into grammatically correct sentences in a given language seems like a rather complicated problem. Therefore it is intuitive to divide the initial problem to smaller tasks, which are easier to solve. This task structure is described by \cite{reiter1997building} and it is widely-used to cover every challenge a fundamental NLG problem should deal with:
 \begin{itemize}
 	\item Content determination
@@ -6,59 +6,84 @@ Transforming non-linguistic data into grammatically correct sentences in a given
 	\item Sentence aggregation
 	\item Lexicalization
 	\item Referring expression generation
-	\item Linguistic realization
+	\item Linguistic realisation
 \end{itemize}
 
-In this section of the article we will discuss every task mentioned above. Note that approaches, which will be described later, may change this structure - there might be just a few changes by combining two steps and process them simultaneously or the structure may be completely different. 
+In this section of the article we will discuss every task mentioned above. Note that approaches, which will be described later, may change this structure - there might be just a few changes by combining multiple steps and process them simultaneously or the structure may be completely decomposed. 
 
 The reason we describe every task individually is to highlight challenges that will arise along the way of creating the NLG system. Understanding these tasks is a crucial aspect to produce a well-built software regardless of the choice of the approach. To illustrate the problems we state numerous simple examples that should ease the process of fully recognizing the extent of issues related to each task.
 
-\section{A-Content determination}
-The goal of this task is to decide what information from input data should be included in the text. Usually the range of the input data is significantly larger than the amount of information we would actually transfer to the user. Naturally, this task is heavily influenced by the specifications of the assignment, namely domain, intention of the text and target audience. Consider the problem of creating a medical report from a complete blood count for a patient to read. This domain requires data preprocessing to recognize negative indicators from values of the components of blood. In addition, a doctor or expert is needed to assist in order to interpret values correctly and set rules on how to identify diagnosis. The goal of the text is to describe the diagnosis in an understandable way and therefore using Latin or overly technical terminology should be avoided. However, if we take the doctor as a target audience, we now want to use the as precise expert language as possible and probably change the content to present segments of the test results and not just the overall diagnosis to enable the doctor to better interpret marginal symptoms or flag values.
+\section{B - Content determination}
+The goal of this task is to decide what information from input data should be included in the text. Usually the range of the input data is significantly larger than the amount of information we would actually transfer to the user. Naturally, this task is heavily influenced by the specifications of the assignment, namely domain, intention of the text and target audience. Consider the problem of creating a medical report from a complete blood count for a patient to read. This domain requires data preprocessing to recognize negative indicators from values contained in test results. In addition, a doctor or expert is needed to assist in order to interpret values correctly and set rules on how to identify diagnosis. The goal of the text is to describe the diagnosis in an understandable way and therefore using Latin or overly technical terminology should be avoided. However, if we take the doctor as a target audience, we now want to use the as precise expert language as possible and probably change the content to present segments of the test results and not just the overall diagnosis to enable the doctor to better interpret marginal symptoms or flag values.
 
-The result of the content determination is usually outputted as a set of preverbal messages, carrying semantic meaning of the statement. To carry all the information an implementation that can describe abstract concepts such relations between statements, entities or conditions is needed. This sub-task of creating suitable representation is usually domain-dependent. Since the important semantic information is mapped into some formal language, there is no need for language to be specified, and therefore this task is language-independent. Concrete examples of formal representation language used to store these semantic attributes are for instance logical language, attribute-value matrices or graphs.
+The result of the content determination is usually outputted as a set of preverbal messages, carrying semantic meaning of the statement. To carry all the information an implementation that can describe abstract concepts such relations between statements, entities or conditions is needed. This sub-task of creating suitable representation is usually domain-dependent. Since the important semantic information is mapped into some formal language, there is no need for (human) language to be specified, and therefore this task is language-independent. Concrete examples of formal representation language used to store these semantic attributes are for instance logical language, attribute-value matrices or graphs.
 
-\section{A-Discourse planning}
-Previous part determines what messages will be transmitted to the reader and this part resolves the issue of the order in which the information is presented. This process is also referred to as text or document structuring. Selecting the right sequence of messages is crucial for text to accomplish its goal. Similarly we structure academic texts to logically ordered paragraphs, which present the topic in as understandable a way as possible for the reader to gain knowledge.
+Example of the result of possible content determination is shown below in \figref{cd}, where we would like to choose the content to report one simple message - a goal being scored in a football domain. We have two related (3) sets of attribute-value pairs - (1) is about a player and (2) contains goal statistics. Obviously some information in tables (1) and (2) are too specific (e.g. height of the player) for the message to convey and therefore redundant. Bold attribute-value pairs are highlighted as the ones to be present in the final text, creating preverbal message (4) in pseudocode, which is an output of content determination task. After performing the remaining NLG tasks possible result could look like (5). 
 
-As well as content determination this task is highly domain-dependent as we have to know how to order messages. For instance, a medical report (as an example mentioned earlier) would likely display diagnoses and order decreasingly by how dangerous and life threatening they are. On the other hand, a report from a business meeting could start with a brief overview of achievements and goals and then with issues that were discussed ordered chronologically to allow the reader to follow the course of the meeting.
+\begin{figure}[h]
+	\centerline{\includegraphics[width=0.9\textwidth]{../img/content_determination.pdf}}
+	\caption{Process of content determination}
+	\label{fig:cd}
+\end{figure}
 
-Human brain orders information to be conveyed in a speech intuitively, but the process as an algorithm itself is not quite trivial. Most of common method is to create rules based on the specific domain since the suitable structure heavily relies on the domain. Some researchers suggest using machine learning techniques for creating a  uniform algorithm independent of the domain. (TODO - B - příklad)
+\section{B-Discourse planning}
+Previous part determines what messages will be transmitted to the reader and this part resolves the issue of the order in which the information is presented. This process is also referred to as text or document structuring. Selecting the right sequence of messages is crucial for text to accomplish its goal. Similarly we structure academic texts to logically ordered paragraphs, which present the topic in a way as understandable as possible for the reader to gain knowledge.
+
+Similarly to content determination this task is highly domain-dependent as we have to know how to order messages. For instance, a medical report (as an example mentioned earlier) would likely display diagnoses and order decreasingly by how dangerous and life threatening they are. On the other hand, a report from a business meeting could start with a brief overview of achievements and goals and then with issues that were discussed ordered chronologically to allow the reader to follow the course of the meeting.
+
+Human brain orders information to be conveyed in a speech intuitively, but the process as an algorithm itself is not quite trivial. Most of common method is to create rules based on the specific domain since the suitable structure heavily relies on the domain. Some researchers suggest using machine learning techniques for creating a  uniform algorithm independent of the domain as seen in \cite{dimitromanolaki2003learning}.
 
 Form of the output of discourse planning can differ. One possible option as described by \cite{reiter1997building} is a tree structure. Leaves of the trees are messages and inner nodes describe specifics of their function in a sentence. This may seem like an unnecessary complicated solution when clustering messages to be said in one sentence can be just an array of messages. The benefit of the tree structure is the amount of information we can store along the messages including constraints under which the message can be said, relations between them and their overall structure.
 
-\section{A-Sentence Aggregation}
+\section{B-Sentence Aggregation}
 The cardinality of the relation message and sentence is rarely one-to-one. Usually multiple messages are formed into one sentence. This process is called sentence aggregation and it is fundamental for generating text that is readable and flows well. To clarify we provide set of verbal messages:
 \begin{enumerate}
 	\item \emph{Peter bought an apple.}\label{sa-one}
 	\item \emph{Peter bought a banana.}\label{sa-two}
 	\item \emph{Anne did not buy anything.}\label{sa-three}	
 \end{enumerate}
+
 This set of sentences is clearly non-optimal\footnote{Naturally, no such concept as "optimal" sentence exists. The optimum in this case is to express the information in a sentence that would likely occur in a spoken human language and also would appear fluid and natural.} and can be aggregated in two steps as follows:
 \begin{enumerate}[resume]
 	\item \emph{Peter bought an apple and a banana. Anne did not buy anything.}\label{sa-four}
 	\item \emph{Peter bought an apple and a banana, whereas Anne did not buy anything.}\label{sa-five}	
 \end{enumerate}
+
 We can notice two types of aggregation leading to the optimal sentence (\ref{sa-five}). Aggregation of:
 \begin{itemize}
-	\item constituents - Constituents that have equal syntactic importance can be aggregated using suitable coordinating conjunctions expressing their relation. Take example sentences (\ref{sa-one}) and (\ref{sa-two}). \emph{Apple} and \emph{banana} are both items \emph{Peter} bought so their semantic meaning is identical. Therefore they can be aggregated via cumulative conjunction \emph{and} creating new noun phrase in the result sentence (\ref{sa-four}) \emph{an apple and a banana}. Another examples of cumulative conjunctions are \emph{both ... and} or \emph{as well as}.
-	\item sentences - Sentences can be aggregated as well using coordinators as seen in the result sentence, which was created by inserting an adversative conjunction to in between sentences in example (\ref{sa-four}) to express opposition. This contrast can be expressed by another words like \emph{but}, \emph{yet}, \emph{while}, etc. More relations can be expressed when aggregating sentences using another kinds of coordinating conjunctions - \emph{alternative} (\emph{or}, \emph{either ...or}, \emph{nor}) to express two or more alternatives and \emph{illative} (\emph{for}, \emph{so}) to express interference or consequence.
+	\item \textbf{constituents} - Constituents that have equal syntactic importance can be aggregated using suitable coordinating conjunctions expressing their relation. Take example sentences (\ref{sa-one}) and (\ref{sa-two}). \emph{Apple} and \emph{banana} are both items \emph{Peter} bought so their semantic meaning is identical. Therefore they can be aggregated via cumulative conjunction \emph{and} creating a new noun phrase in the result sentence (\ref{sa-four}) \emph{an apple and a banana}. Another example of cumulative conjunctions is \emph{both ... and} or \emph{as well as}.
+	\item \textbf{sentences} - Sentences can be aggregated as well using coordinators as seen in the result sentence, which was created by inserting an adversative conjunction in between sentences in example (\ref{sa-four}) to express opposition. This contrast can be expressed by other words like \emph{but}, \emph{yet}, \emph{while}, etc. More relations can be expressed when aggregating sentences using another kinds of coordinating conjunctions - \emph{alternative} (\emph{or}, \emph{either ...or}, \emph{nor}) to express two or more alternatives and \emph{illative} (\emph{for}, \emph{so}) to express interference or consequence.
 \end{itemize}
 
-Note that these aggregations are simple for humans, but to perform them in a NLG we need some semantic knowledge of the sentences (or constituents). The easiest approach is to define domain-specific constraints when to perform aggregation. Defining complex domain-independent rules and universal representation of relations is rather a difficult task and nowadays often solved using data-driven methods, which are described later in Chapter (TODO - A - doplnit cislo kapitoly). 
+One more type of aggregation can occur based on explicit hand-crafted domain-based rules. Take these three preverbal messages from football domain reporting a goal, which are similar to the one as used in \figref{cd}-(4) (Manchester United shortened to MU):
+\begin{enumerate}[resume]
+	\item \emph{(type=Goal, full\_name="Cristiano Ronaldo", team = "MU", time = 4)}\label{sa-six}	
+	\item \emph{(type=Goal, full\_name="Cristiano Ronaldo", team = "MU", time = 8)}\label{sa-seven}
+	\item \emph{(type=Goal, full\_name="Cristiano Ronaldo", team = "MU", time = 14)}\label{sa-eight}	
+\end{enumerate}
 
-Furthermore, the idea that the more aggregations we perform the better the final text is wrong. Sometimes slowing down the flow of information by fracturing the message into smaller individual sentences is useful in order to produce more understandable text. Overloading sentences can often result in less fluency as the more information is conveyed in one sentence the harder it is for a reader to follow. \cite{barzilay2006aggregation} are perceiving this as a linear programming problem where similarity is classified for each pair of database entries. Using this similarity, transitivity and global constraints (e.g. maximum number of aggregation across the document) they find a optimal solution.   
-	
+Surely realising messages (\ref{sa-six}), (\ref{sa-seven}) and (\ref{sa-eight}) as three different sentences would not create fluid and natural results as sentences would vary only in time of the goal. Since three goals in football form a so called hat-trick we could aggregate messages in one sentence:
+\begin{center}
+	\emph{Cristiano Ronaldo completes hat-trick for MU in under 15 minutes.}
+\end{center}
 
-\section{A-Lexicalization}
-After performing discourse planning and sentence aggregation the preverbal messages are in a correct order and they contain suitable information. Goal of this task is to create mapping from these messages to specific expressions in a given human language. There are two main problems associated with lexicalization. Firstly, the amount of combinations of how to narrate a message is enormous, only restricted to those that fit into the given context. And secondly, transformation of concept into a word (or more words) is very abstract and interferes with many layers of the language (semantics, phonetics and pragmatics) and therefore choosing a suitable expression is rather difficult. This transformation is not even easy for humans. Imagine an essay contest in grammar school with a given topic of the essay. If the transformation was easy and had only one solution, the contest would not exist as essays would be identical. In fact, the perspective and overall understanding of the topic, style of describing one’s point of view and finally even choosing words to present the idea is partly what distinguishes us as people. 
+This aggregation realises the messages (\ref{sa-six}, \ref{sa-seven}, \ref{sa-eight}) beautifully as the result is well-formed and natural. Notice that the aggregation happened also in expressing the time of the goals - instead of mentioning three different timestamps the time is summarised as "under 15 minutes" highlighting the fact that this rare figure was achieved in a short amount of time. As described in the previous section, domain knowledge is necessary to decide what is "long", "short" or "average" (and therefore not worth mentioning) amount of time for an event to happen.
+
+Note that these aggregations are simple for humans, but to perform them in a NLG we need some semantic knowledge and relations of the sentences (or constituents). The easiest approach is to define domain-specific constraints when to perform aggregation. Defining complex domain-independent rules and universal representation of relations is rather a difficult task and nowadays often solved using data-driven methods, which are described later in \autoref{chap:approaches}. 
+
+Furthermore, the idea that the more aggregations we perform the better the final text is wrong. Sometimes slowing down the flow of information by fracturing the message into smaller individual sentences is useful in order to produce more understandable text. Overloading sentences can often result in less fluency as the more information is conveyed in one sentence the harder it is for a reader to follow. \cite{barzilay2006aggregation} are perceiving this as a linear programming problem where similarity is classified for each pair of database entries. Using this similarity, transitivity and global constraints (e.g. maximum number of aggregation across the document) they find an optimal solution.   
+
+\section{B-Lexicalization}
+After performing discourse planning and sentence aggregation the preverbal messages are in a correct order and they contain suitably aggregated information. Goal of this task is to create mapping from these messages to specific expressions in a given human language. This task is the first that is language-dependent. There are two main problems associated with lexicalization. Firstly, the amount of combinations of how to narrate a message is enormous, only restricted to those that fit into the given context. And secondly, transformation of concept into a word (or more words) is very abstract and interferes with many layers of the language (semantics, phonetics and pragmatics) and therefore choosing a suitable expression is rather difficult. This transformation is not even easy for humans. Imagine an essay contest in grammar school with a given topic of the essay. If the transformation was easy and had only one solution, the contest would not exist as essays would be identical. In fact, the perspective and overall understanding of the topic, style of describing one’s point of view and finally even choosing words to present the idea is partly what distinguishes us as people. 
 
 Another factor is the target audience and the overall goal of the language. If the target audience is educated on the matter then using adequate technical terminology is reasonable. Contrastingly, for low-skilled readers all terminology must be explained in an easy way and the content of the text should be more about overall ideas rather than about specific concepts. 
 
-Trivial approach to this task is to pair a word or a whole phrase with a concept in a message. This approach has exactly two drawbacks. 
+Trivial approach to this task is to hand-craft pairings of a word or a whole phrase and a concept in a message. This solution results in monotonic outputs as the aspect of choice is missing. Slight improvement would be to add more semantically similar options for each item. However, this can cause problems. First of them is how to decide, which possibility is the best. Second is the possible non-viable combinations of words together. One example, that may be not visible on the first glance, is generation of adjectives interpreting numbers. For example, take a person with height 185 cm. If it was a man, the height is "average", while a woman could be described as "tall". Therefore semantic background and suitable comparison need to be taken into account. What is more, combinations of chosen phrases may result in non-realisable or simply weird expressions. 
 
-\section{A-Reffering expression generation}
-Referring expression generation (REG) is a process, when you want to choose words to express domain entities or other constituents of the message. There is a li. Naturally, utilising one noun phrase for one specific entity, which is used more than once in a short amount of text, results in less readable and fluid text. On the contrary, there is a limit to how many such expressions we can generate since a reader needs to identify the entity. Ambiguity is a highly unwanted effect since the information that needs to be conveyed may differ from its actual language semantic meaning.
+Due to the vagueness and coherence of the process, NLG systems combine lexicalization, REG and linguistic realisation under one operation called surface realisation or tactical part of the process.  
+
+\section{B-Referring expression generation}
+Referring expression generation (REG) is a process, when you choose words to express domain entities or other constituents of the message. Naturally, utilising one noun phrase for one specific entity, which is used more than once in a short amount of text, results in less readable and fluid text. On the contrary, there is a limit to how many such expressions we can generate since a reader needs to identify the entity correctly. Ambiguity is a highly unwanted effect since the information that needs to be conveyed may differ from its actual language semantic meaning.
 
 To fully understand the challenges and also possible solutions for REG here is an example of sentence where we would like to lexicalize its subject represented as an entity in pseudocode:
 \begin{center}
@@ -78,20 +103,51 @@ This particular country can be lexically expressed in this sentence for example 
 \end{enumerate}
 Notice the linguistic techniques we used to express this subject:
 \begin{itemize}
-	\item Entity name - Using the name of the entity is a trivial solution and works fine as seen example (\ref{reg-1}).
-	\item Synonyms - Using a synonym or a different name for the entity as shown in example (\ref{reg-2}) and (\ref{reg-3}). (TODO - C - popsat proč je k tomu často potřeba člověk, dohledat nějaký ML metody)
-	\item Descriptive transcription  - using the knowledge of physical appearance, characteristics or its location we can describe an entity without any need of using its initial name. Examples (\ref{reg-5}), (\ref{reg-6}) and (\ref{reg-7}) are all using the location in Europe. Although expression (\ref{reg-6}) identifies Czechia unambiguously, the description of the location may be too specific for a less-educated reader (or possibly for a reader living outside of Europe), who has no idea where Germany is. The information that the country is situated in Europe is then sufficient. Therefore the target reader, his knowledge about a topic and also the purpose of the text are important even in this task. This technique is also prone to ambiguity as seen in example (\ref{reg-5}) - reader should already know what country is described in the text to use this expression since more countries can be characterised as “central European”.
-	\item Definite descriptions - The expression can be enriched by adding valid adjectives, adverbs or other linguistic structures to further specify the object as seen in example (\ref{reg-7}) where adjectives rustic and beautiful describe the country even a little bit more.
-	\item Pronouns - In a human language pronouns are often used to represent entities (e.g. “I have seen him.” or examples (\ref{reg-8}), (\ref{reg-9})). Using pronouns correctly can help to improve readability of the text and also minimise the obvious flags of computer-generated text. The main obstacle to overcome is when to use pronouns. Sometimes usage of a pronoun can arise from context, sometimes if there is absolutely certainty that everyone knows what the pronoun is referring to - those examples are hard to deal with and usually handled explicitly. Usual approach is to use pronoun if the entity was mentioned in a previous sentence under the condition the entity was the only constituent the pronoun could refer to.
+	\item \textbf{Entity name} - Using the name of the entity is a trivial solution and works fine as seen example (\ref{reg-1}).
+	\item \textbf{Synonyms} - Using a synonym or a different name having the identical semantic meaning for the entity as shown in example (\ref{reg-2}) and (\ref{reg-3}). 
+	\item \textbf{Descriptive transcription}  - using the knowledge of physical appearance, characteristics or its location we can describe an entity without any need of using its initial name. Examples (\ref{reg-5}), (\ref{reg-6}) and (\ref{reg-7}) are all using the location in Europe. Although expression (\ref{reg-6}) identifies Czechia unambiguously, the description of the location may be too specific for a less-educated reader (or possibly for a reader living outside of Europe), who has no idea where Germany is. The information that the country is situated in Europe is then sufficient. Therefore the target reader, his knowledge about a topic and also the purpose of the text are important even in this task. This technique is also prone to ambiguity as seen in example (\ref{reg-5}) - reader should already know what country is described in the text to use this expression since more countries can be characterised as “central European”.
+	\item \textbf{Definite descriptions} - The expression can be enriched by adding valid adjectives, adverbs or other linguistic structures to further specify the object as seen in example (\ref{reg-7}) where adjectives rustic and beautiful describe the country even a little bit more creating enriched and complex noun phrase.
+	\item \textbf{Pronouns} - In a human language pronouns are often used to represent entities (e.g. “I have seen him.” or examples (\ref{reg-8}), (\ref{reg-9})). Using pronouns correctly can help to improve readability of the text and also minimise the obvious flags of computer-generated text. The main obstacle to overcome is when to use pronouns. Sometimes usage of a pronoun can arise from context, sometimes if there is absolutely certainty that everyone knows what the pronoun is referring to - those examples are hard to deal with and usually handled explicitly. Usual approach is to use pronoun if the entity was mentioned in a previous sentence under the condition the entity was the only constituent the pronoun could refer to.
 \end{itemize}
 
+How to approach REG depends also on repetition of the entities in the text and the final text variability. In a domain where identifying the entity unambiguously is primary (e.g. city in air travel) the usage of REG is even harmful. For instance, expressing "New York, USA" as "The city that never sleeps" in the air travel domain. To the contrary, expressing an entity identically multiple times in a short span of prosaic text eventuates in dull, plain and stereotypical language. 
 
 \section{A-Linguistic realization}
 This task transforms every constituent to form a grammatically and syntactically well-built sentence. Example of a struggle when building even a simple noun phrase is:
 \begin{enumerate}
 	\item \emph{(entity=Animal, name =”dog”, count=1) $\rightarrow$ one dog} \label{lr-1}
-	\item \emph{(entity=Animal, name=”dog”, count=20) $\rightarrow$ twenty dogs} \label{lr-2}
+	\item \emph{(entity=Animal, name=”dog”, count=23) $\rightarrow$ 23 dogs} \label{lr-2}
 	\item \emph{(entity=Animal, name=”mouse”, count=2) $\rightarrow$ two mice} \label{lr-3}
-	\item \emph{(entity=Animal, name=”fish”, count=5) $\rightarrow$ five fish} \label{lr-4}
+	\item \emph{(entity=Animal, name=”fish”, count=1000) $\rightarrow$ thousand fish} \label{lr-4}
 \end{enumerate}
-Trivial solution for this simple noun phrase building can be to append morpheme “s” to the name of the animal if the count is more than one. As you can see in example (\ref{lr-3}) and (\ref{lr-4}) this solution can work only for animals that have regular plural. 
+
+Trivial and also naive solution for this simple noun phrase building can be to append morpheme “s” to the name of the animal if the count is more than one. As you can see in example (\ref{lr-3}) and (\ref{lr-4}) this solution can work only for animals that have regular plural. In addition, the count itself is recommended to be expressed by a word and not by numeral if the number is either a small integer (1-10) as seen in the comparison of  examples (\ref{lr-1}) and (\ref{lr-2}). Same rule applies as well for a well-known rounded number (hundred, thousand, billion, etc.) shown in (\ref{lr-4}).
+
+One so far omitted important aspect is the principles of morphology and syntax of the language. Concept of appending morpheme "s" to express plural might not be so easily transferable into different language. In Slavic languages morphemes to express plural differ and also can be infixed, meaning they could be inserted into the word stem instead of using a suffix. In Czech, a word for dog is \emph{pes}. Then realising their number would look like: \emph{1 pes, 2 psi, 5 psů}. To further complicate the situation, Slavic languages are fusional. That means a single morpheme carries multiple grammatical, syntactical or semantic meanings. In Czech, agreement between the grammatical case and the noun is resolved as well with a infix morpheme. Here are three examples in Czcech using different grammatical cases along with English translation:
+
+\begin{itemize}
+	\item (case: nominativ) \emph{two \textbf{dogs}	$\rightarrow$ dva \textbf{psi}}
+	\item (case: genitive) 	\emph{without two \textbf{dogs}  $\rightarrow$ bez dvou \textbf{psů}}
+	\item (case: instrumental) \emph{with two \textbf{dogs} 	$\rightarrow$ s dvěma \textbf{psy}}
+\end{itemize}
+
+Notice that not only the noun, but the word for number 2 (\emph{dva}) as well are subject to the linguistic transformation as the infix morpheme carries both the agreement with case and the plural. 
+
+We have mentioned typology according to morphology (fusional language). Other type is analytic languages (e.g. Vietnamese), where every single word is exactly one morpheme. Lastly, the complete opposite is polysynthetic languages (e.g. Inuit languages), where one word is constructed by combining plenty of morphemes representing a whole sentence. In central Nunavut Inuktitut \emph{Tusaatsiarunnanngittualuujunga} means \emph{I cannot hear very well}. This section just illustrated the need of the knowledge and principles of the language during the linguistic realisation.  
+
+
+  
+  
+(TODO  -A -  teď krátce popsat další nástrahy - vlkádání slov, předložek, interpunkce, zajišťovat shody - je to ttrochu napsaný v NLG articlu)
+
+(TODO  -A -  O TEMPLATÁCH A GRAMATIKÁCH v rámci realizace, pak to projet google doc překladačem)
+
+(TODO  -A -  pak se vrhnout na přepsání corpusu ve smyslu získávání dat i automaticky, nejen hand-crafting)
+
+(TODO  -A -  pak rozdělit approache jen na modulární a ten co to rozbíjí, ne na 3)
+
+(TODO  -A -  pak přidat schéma modulárního approache)
+
+(TODO  -A -  pak přidat evaluaci)
+
+(TODO  -A -  pak zadefinovat a vhodně propojit se zbytkem textu NLG process - analýza jazyka, cíle, dat, evaluace, cíle, prostředků atd.)

@@ -1,28 +1,28 @@
 \contentsline {chapter}{Introduction}{2}{chapter*.2}%
-\contentsline {chapter}{\numberline {1}A - Natural Language Generation}{3}{chapter.1}%
-\contentsline {section}{\numberline {1.1}A- What is NLG?}{3}{section.1.1}%
-\contentsline {section}{\numberline {1.2}A - Usage of NLG}{4}{section.1.2}%
+\contentsline {chapter}{\numberline {1}B - Natural Language Generation}{3}{chapter.1}%
+\contentsline {section}{\numberline {1.1}B- What is NLG?}{3}{section.1.1}%
+\contentsline {section}{\numberline {1.2}B - Usage of NLG}{4}{section.1.2}%
 \contentsline {chapter}{\numberline {2}A- NLG Tasks}{6}{chapter.2}%
-\contentsline {section}{\numberline {2.1}A-Content determination}{6}{section.2.1}%
-\contentsline {section}{\numberline {2.2}A-Discourse planning}{7}{section.2.2}%
-\contentsline {section}{\numberline {2.3}A-Sentence Aggregation}{7}{section.2.3}%
-\contentsline {section}{\numberline {2.4}A-Lexicalization}{9}{section.2.4}%
-\contentsline {section}{\numberline {2.5}A-Reffering expression generation}{9}{section.2.5}%
-\contentsline {section}{\numberline {2.6}A-Linguistic realization}{11}{section.2.6}%
-\contentsline {chapter}{\numberline {3}A- Requirements analysis}{12}{chapter.3}%
-\contentsline {section}{\numberline {3.1}A-Corpora building}{12}{section.3.1}%
-\contentsline {chapter}{\numberline {4}NLG approaches}{14}{chapter.4}%
-\contentsline {section}{\numberline {4.1}Modular architecture}{14}{section.4.1}%
-\contentsline {section}{\numberline {4.2}Planning approach}{15}{section.4.2}%
-\contentsline {section}{\numberline {4.3}Data-driven approach}{16}{section.4.3}%
-\contentsline {chapter}{\numberline {5}Implementation}{19}{chapter.5}%
-\contentsline {section}{\numberline {5.1}architektura (zdůvodnění výběru) + přehled fungování }{19}{section.5.1}%
-\contentsline {section}{\numberline {5.2}jak jsou řešeny a implementovány úlohy NLG (zdůvodnění jejich výběru)}{19}{section.5.2}%
-\contentsline {section}{\numberline {5.3}diskuze řešení - alternativy, rozšíření, další podněty}{19}{section.5.3}%
-\contentsline {chapter}{Conclusion}{20}{chapter*.3}%
-\contentsline {chapter}{Bibliography}{21}{chapter*.4}%
-\contentsline {chapter}{List of Figures}{23}{chapter*.5}%
-\contentsline {chapter}{List of Tables}{24}{chapter*.6}%
-\contentsline {chapter}{List of Abbreviations}{25}{chapter*.7}%
-\contentsline {chapter}{\numberline {A}Attachments}{26}{appendix.A}%
-\contentsline {section}{\numberline {A.1}First Attachment}{26}{section.A.1}%
+\contentsline {section}{\numberline {2.1}B - Content determination}{6}{section.2.1}%
+\contentsline {section}{\numberline {2.2}B-Discourse planning}{7}{section.2.2}%
+\contentsline {section}{\numberline {2.3}B-Sentence Aggregation}{8}{section.2.3}%
+\contentsline {section}{\numberline {2.4}B-Lexicalization}{10}{section.2.4}%
+\contentsline {section}{\numberline {2.5}B-Referring expression generation}{10}{section.2.5}%
+\contentsline {section}{\numberline {2.6}A-Linguistic realization}{12}{section.2.6}%
+\contentsline {chapter}{\numberline {3}A- Requirements analysis}{14}{chapter.3}%
+\contentsline {section}{\numberline {3.1}A-Corpora building}{14}{section.3.1}%
+\contentsline {chapter}{\numberline {4}NLG approaches}{16}{chapter.4}%
+\contentsline {section}{\numberline {4.1}Modular architecture}{16}{section.4.1}%
+\contentsline {section}{\numberline {4.2}Planning approach}{17}{section.4.2}%
+\contentsline {section}{\numberline {4.3}Data-driven approach}{18}{section.4.3}%
+\contentsline {chapter}{\numberline {5}Implementation}{21}{chapter.5}%
+\contentsline {section}{\numberline {5.1}architektura (zdůvodnění výběru) + přehled fungování }{21}{section.5.1}%
+\contentsline {section}{\numberline {5.2}jak jsou řešeny a implementovány úlohy NLG (zdůvodnění jejich výběru)}{21}{section.5.2}%
+\contentsline {section}{\numberline {5.3}diskuze řešení - alternativy, rozšíření, další podněty}{21}{section.5.3}%
+\contentsline {chapter}{Conclusion}{22}{chapter*.3}%
+\contentsline {chapter}{Bibliography}{23}{chapter*.4}%
+\contentsline {chapter}{List of Figures}{25}{chapter*.5}%
+\contentsline {chapter}{List of Tables}{26}{chapter*.6}%
+\contentsline {chapter}{List of Abbreviations}{27}{chapter*.7}%
+\contentsline {chapter}{\numberline {A}Attachments}{28}{appendix.A}%
+\contentsline {section}{\numberline {A.1}First Attachment}{28}{section.A.1}%

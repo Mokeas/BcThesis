@@ -30,45 +30,45 @@ Warning--empty year in gpt32020robot
 Warning--empty year in johnson2022ai
 Warning--empty year in johnson2022ai
 Warning--empty journal in thomas2007atlas
-You've used 20 entries,
+You've used 21 entries,
             2773 wiz_defined-function locations,
-            717 strings with 8591 characters,
-and the built_in function-call counts, 9001 in all, are:
-= -- 823
-> -- 445
-< -- 20
-+ -- 152
-- -- 132
-* -- 648
-:= -- 1350
-add.period$ -- 64
-call.type$ -- 20
-change.case$ -- 103
-chr.to.int$ -- 20
-cite$ -- 46
-duplicate$ -- 450
-empty$ -- 786
-format.name$ -- 173
-if$ -- 1922
+            721 strings with 8770 characters,
+and the built_in function-call counts, 9364 in all, are:
+= -- 855
+> -- 466
+< -- 21
++ -- 159
+- -- 138
+* -- 671
+:= -- 1408
+add.period$ -- 67
+call.type$ -- 21
+change.case$ -- 108
+chr.to.int$ -- 21
+cite$ -- 48
+duplicate$ -- 469
+empty$ -- 816
+format.name$ -- 182
+if$ -- 1998
 int.to.chr$ -- 1
 int.to.str$ -- 1
-missing$ -- 20
-newline$ -- 110
-num.names$ -- 80
-pop$ -- 226
+missing$ -- 21
+newline$ -- 115
+num.names$ -- 84
+pop$ -- 236
 preamble$ -- 1
-purify$ -- 83
+purify$ -- 87
 quote$ -- 0
-skip$ -- 345
+skip$ -- 361
 stack$ -- 0
-substring$ -- 344
-swap$ -- 58
+substring$ -- 346
+swap$ -- 59
 text.length$ -- 4
 text.prefix$ -- 0
 top$ -- 0
-type$ -- 220
+type$ -- 231
 warning$ -- 6
-while$ -- 87
+while$ -- 90
 width$ -- 0
-write$ -- 261
+write$ -- 273
 (There were 7 warnings)
