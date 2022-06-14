@@ -8,21 +8,21 @@
 \contentsline {section}{\numberline {2.3}B-Sentence Aggregation}{8}{section.2.3}%
 \contentsline {section}{\numberline {2.4}B-Lexicalization}{10}{section.2.4}%
 \contentsline {section}{\numberline {2.5}B-Referring expression generation}{10}{section.2.5}%
-\contentsline {section}{\numberline {2.6}A-Linguistic realization}{12}{section.2.6}%
-\contentsline {chapter}{\numberline {3}A- Requirements analysis}{14}{chapter.3}%
-\contentsline {section}{\numberline {3.1}A-Corpora building}{14}{section.3.1}%
-\contentsline {chapter}{\numberline {4}NLG approaches}{16}{chapter.4}%
-\contentsline {section}{\numberline {4.1}Modular architecture}{16}{section.4.1}%
-\contentsline {section}{\numberline {4.2}Planning approach}{17}{section.4.2}%
-\contentsline {section}{\numberline {4.3}Data-driven approach}{18}{section.4.3}%
-\contentsline {chapter}{\numberline {5}Implementation}{21}{chapter.5}%
-\contentsline {section}{\numberline {5.1}architektura (zdůvodnění výběru) + přehled fungování }{21}{section.5.1}%
-\contentsline {section}{\numberline {5.2}jak jsou řešeny a implementovány úlohy NLG (zdůvodnění jejich výběru)}{21}{section.5.2}%
-\contentsline {section}{\numberline {5.3}diskuze řešení - alternativy, rozšíření, další podněty}{21}{section.5.3}%
-\contentsline {chapter}{Conclusion}{22}{chapter*.3}%
-\contentsline {chapter}{Bibliography}{23}{chapter*.4}%
-\contentsline {chapter}{List of Figures}{25}{chapter*.5}%
-\contentsline {chapter}{List of Tables}{26}{chapter*.6}%
-\contentsline {chapter}{List of Abbreviations}{27}{chapter*.7}%
-\contentsline {chapter}{\numberline {A}Attachments}{28}{appendix.A}%
-\contentsline {section}{\numberline {A.1}First Attachment}{28}{section.A.1}%
+\contentsline {section}{\numberline {2.6}A-Linguistic realisation}{12}{section.2.6}%
+\contentsline {chapter}{\numberline {3}A- Requirements analysis}{15}{chapter.3}%
+\contentsline {section}{\numberline {3.1}A-Corpora building}{15}{section.3.1}%
+\contentsline {chapter}{\numberline {4}NLG approaches}{17}{chapter.4}%
+\contentsline {section}{\numberline {4.1}Modular architecture}{17}{section.4.1}%
+\contentsline {section}{\numberline {4.2}Planning approach}{18}{section.4.2}%
+\contentsline {section}{\numberline {4.3}Data-driven approach}{19}{section.4.3}%
+\contentsline {chapter}{\numberline {5}Implementation}{22}{chapter.5}%
+\contentsline {section}{\numberline {5.1}architektura (zdůvodnění výběru) + přehled fungování }{22}{section.5.1}%
+\contentsline {section}{\numberline {5.2}jak jsou řešeny a implementovány úlohy NLG (zdůvodnění jejich výběru)}{22}{section.5.2}%
+\contentsline {section}{\numberline {5.3}diskuze řešení - alternativy, rozšíření, další podněty}{22}{section.5.3}%
+\contentsline {chapter}{Conclusion}{23}{chapter*.3}%
+\contentsline {chapter}{Bibliography}{24}{chapter*.4}%
+\contentsline {chapter}{List of Figures}{26}{chapter*.5}%
+\contentsline {chapter}{List of Tables}{27}{chapter*.6}%
+\contentsline {chapter}{List of Abbreviations}{28}{chapter*.7}%
+\contentsline {chapter}{\numberline {A}Attachments}{29}{appendix.A}%
+\contentsline {section}{\numberline {A.1}First Attachment}{29}{section.A.1}%
