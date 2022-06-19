@@ -43,7 +43,7 @@ The cardinality of the relation message and sentence is rarely one-to-one. Usual
 	\item \emph{Anne did not buy anything.}\label{sa-three}	
 \end{enumerate}
 
-This set of sentences is clearly non-optimal\footnote{Naturally, no such concept as "optimal" sentence exists. The optimum in this case is to express the information in a sentence that would likely occur in a spoken human language and also would appear fluid and natural.} and can be aggregated in two steps as follows:
+This set of sentences is clearly non-optimal\footnote{\label{footnote-opt}Naturally, no such concept as "optimal" sentence exists. The optimum in this case is to express the information in a sentence that would likely occur in a spoken human language and also would appear fluid and natural.} and can be aggregated in two steps as follows:
 \begin{enumerate}[resume]
 	\item \emph{Peter bought an apple and a banana. Anne did not buy anything.}\label{sa-four}
 	\item \emph{Peter bought an apple and a banana, whereas Anne did not buy anything.}\label{sa-five}	
@@ -112,7 +112,7 @@ Notice the linguistic techniques we used to express this subject:
 
 How to approach REG depends also on repetition of the entities in the text and the final text variability. In a domain where identifying the entity unambiguously is primary (e.g. city in air travel) the usage of REG is even harmful. For instance, expressing "New York, USA" as "The city that never sleeps" in the air travel domain. To the contrary, expressing an entity identically multiple times in a short span of prosaic text eventuates in dull, plain and stereotypical language. 
 
-\section{A-Linguistic realisation}
+\section{B-Linguistic realisation}
 This task transforms every constituent to form a grammatically and syntactically well-built sentence. Example of a struggle when building even a simple noun phrase is:
 \begin{enumerate}
 	\item \emph{(entity=Animal, name =”dog”, count=1) $\rightarrow$ one dog} \label{lr-1}
@@ -121,9 +121,9 @@ This task transforms every constituent to form a grammatically and syntactically
 	\item \emph{(entity=Animal, name=”fish”, count=1000) $\rightarrow$ thousand fish} \label{lr-4}
 \end{enumerate}
 
-Trivial and also naive solution for this simple noun phrase building can be to append morpheme “s” to the name of the animal if the count is more than one. As you can see in example (\ref{lr-3}) and (\ref{lr-4}) this solution can work only for animals that have regular plural. In addition, the count itself is recommended to be expressed by a word and not by numeral if the number is either a small integer (1-10) as seen in the comparison of  examples (\ref{lr-1}) and (\ref{lr-2}). Same rule applies as well for a well-known rounded number (hundred, thousand, billion, etc.) shown in (\ref{lr-4}).
+Trivial and also naive solution for this simple noun phrase building can be to append morpheme “s” to the name of the animal if the count is more than one. As you can see in example (\ref{lr-3}) and (\ref{lr-4}) this solution can work only for animals that have regular plurals. In addition, the count itself is recommended to be expressed by a word and not by numeral if the number is either a small integer (1-10) as seen in the comparison of  examples (\ref{lr-1}) and (\ref{lr-2}). Same rule applies as well for a well-known rounded number (hundred, thousand, billion, etc.) shown in (\ref{lr-4}).
 
-One so far omitted important aspect is the principles of morphology and syntax of the language. Concept of appending morpheme "s" to express plural might not be so easily transferable into different language. In Slavic languages morphemes to express plural differ and also can be infixed, meaning they could be inserted into the word stem instead of using a suffix. In Czech, a word for dog is \emph{pes}. Then realising their number would look like: \emph{1 pes, 2 psi, 5 psů}. To further complicate the situation, Slavic languages are fusional. That means a single morpheme carries multiple grammatical, syntactical or semantic meanings. In Czech, agreement between the grammatical case and the noun is resolved as well with a infix morpheme. Here are three examples in Czech using different grammatical cases along with translation from English:
+One, so far omitted important, aspect is the principles of morphology and syntax of the language. Concept of appending morpheme "s" to express plural might not be so easily transferable into different languages. In Slavic languages morphemes to express plural differ and also can be infixed, meaning they could be inserted into the word stem instead of using a suffix. In Czech, a word for dog is \emph{pes}. Then realising their number would look like: \emph{1 pes, 2 psi, 5 psů}. To further complicate the situation, Slavic languages are fusional. That means a single morpheme carries multiple grammatical, syntactic or semantic meanings. In Czech, agreement between the grammatical case and the noun is resolved as well with an infix morpheme. Here are three examples in Czech using different grammatical cases along with translation from English:
 
 \begin{itemize}
 	\item (case: nominative) \emph{two \textbf{dogs}	$\rightarrow$ dva \textbf{psi}}
@@ -133,40 +133,27 @@ One so far omitted important aspect is the principles of morphology and syntax o
 
 Notice that not only the noun, but the word for number 2 (\emph{dva}) as well are subject to the linguistic transformation as the infix morpheme carries both the agreement with case and the plural. 
 
-We have mentioned typology according to morphology (fusional language). Other type is analytic languages (e.g. Vietnamese), where every single word is exactly one morpheme. Lastly, the complete opposite is polysynthetic languages (e.g. Inuit languages), where one word is constructed by combining plenty of morphemes representing a whole sentence. In central Nunavut Inuktitut \emph{Tusaatsiarunnanngittualuujunga} means \emph{I cannot hear very well}. This section just illustrated the need of the knowledge and principles of the language during the linguistic realisation.  
+We have mentioned typology according to morphology (fusional language). Another type is analytic languages (e.g. Vietnamese), where every single word is exactly one morpheme. Lastly, the complete opposite is polysynthetic languages (e.g. Inuit languages), where one word is constructed by combining plenty of morphemes representing a whole sentence. In central Nunavut Inuktitut \emph{Tusaatsiarunnanngittualuujunga} means \emph{I cannot hear very well}. 
 
-Realisation has quite an extensive magnitude caused by the non-trivial goal of correctly morphologically and syntactically (as well as semantically) express each of the lexical item in the sentence. This process requires adding auxiliary words (prepositions, verbs, etc.), handling agreements, ordering,  inserting punctuation and other similar transformations all in order to present the language not only factually, but even grammatically right. Due to the complexity of the task multiple approaches exist. Here are two among one of the most used approaches for lexical realisation described further below:
-\begin{itemize}
-	\item \textbf{Templates} - example of a template usage in football domain (same as already seen in \figref{cd}):
-	\begin{enumerate}
-		\item preverbal message $\rightarrow$ 
-		
-		Message(type=Goal, full\_name = "Cristiano Ronaldo", team = "Manchester United", time = 17) \label{lr-t-1}
-		\item template $\rightarrow$ 
-		
-		\textbf{\$full\_name} \emph{scored for} \textbf{\$team} \emph{in} \textbf{\$minute}\emph{th} \emph{minute}. \label{lr-t-2}
-		\item result $\rightarrow$
-		
-		\textbf{Cristiano Ronaldo} \emph{scored for} \textbf{Manchester United} \emph{in} \textbf{17}\emph{th} \emph{minute}. \label{lr-t-3}
-	\end{enumerate}
-	\item \textbf{Grammars}
-\end{itemize}
+The extent of language influence is huge even in the semantic part as well. To demonstrate, imagine generating a sentence, in which the action will happen in the future. This may seem like a trivial problem in English since we may just use the word "will" (or other modals). However, English, unlike Romance languages (French, Spanish, Italian and more) does not have future grammatical tense. Some languages are even tenseless, e.g. Tokelauan spoken in American Samoa (Polynesia). This section just illustrated the need for the knowledge and principles of the language during the linguistic realisation.  
+
+Realisation has quite an extensive magnitude caused by the non-trivial goal of correctly morphologically and syntactically (as well as semantically) expressing each of the lexical items in the sentence. This process requires adding auxiliary words (prepositions, verbs, etc.), handling agreements, ordering,  inserting punctuation and other similar transformations all in order to present the language not only factually, but even grammatically right. Due to the complexity of the task multiple approaches exist. One of them is using templates. 
 
 \textbf{Templates} are hand-crafted using fixed lexical items and attributes substituted in the template. Preverbal message (\ref{lr-t-1}) is assigned to a template (\ref{lr-t-2}) and three variables are then substituted with values creating the target sentence (\ref{lr-t-3}). 
 
-The advantage of this approach is simplicity and prevention of grammatical errors considering that we have full control of what the fixed segments are and any unwanted error is highly improbable. The disadvantages prevail. First of all, applying templates could be only feasible in a well-defined low-volume domains as entities must have easy to-text-interpretation. Another reason is creating templates is time-consuming. And most importantly, the variation of the output is low as the immutable parts of the text generate very limited output. In addition, template approach for more complicated languages tends to struggle, because the constituents usually depend on each other (e.g. agreement, auxiliary words, etc.) creating requirements that hard to fulfil. 
+\begin{enumerate}
+	\item preverbal message $\rightarrow$ Message(type=Goal, full\_name = "Cristiano Ronaldo", team = "Manchester United", time = 17) \label{lr-t-1}
+	\item template $\rightarrow$ \textbf{\$full\_name} \emph{scored for} \textbf{\$team} \emph{in} \textbf{\$minute}\emph{th} \emph{minute}. \label{lr-t-2}
+	\item result $\rightarrow$ \textbf{Cristiano Ronaldo} \emph{scored for} \textbf{Manchester United} \emph{in} \textbf{17}\emph{th} \emph{minute}. \label{lr-t-3}
+\end{enumerate}
 
-However, templates are extremely practical when the expected output is expected to be simple and 
-rarely changing. Great example is generating spoken announcements transportation domain e.g. departures of flights on the airport, where the template could look like: \emph{The departure of flight number \$number from \$destination\_from to \$destiantion\_to will be slightly delayed. $\rightarrow$ The departure of flight number FD-2018 from Rome to Paris will be slightly delayed}. Results are admittedly blunt in terms of language richness, but they are factually correct, clear and easy to comprehend, which was the initial purpose.
+The advantage of this approach is simplicity and prevention of grammatical errors considering that we have full control of what the fixed segments are and any unwanted error is highly improbable. The disadvantages prevail. First of all, applying templates could be only feasible in well-defined low-volume domains as entities must be have easy-to-text-interpretation. Another reason is that creating templates is time-consuming. And most importantly, the variation of the output is low as the immutable parts of the text generate very limited output. In addition, the template approach for more complicated languages tends to struggle, because the constituents usually depend on each other (e.g. agreement, auxiliary words, etc.) creating requirements that are hard to fulfil. 
+
+However, templates are extremely practical when the target output is expected to be simple and 
+rarely changing. Great example is generating spoken announcements in the transportation domain e.g. departures of flights on the airport, where the template could look like: \emph{The departure of flight number \$number from \$destination\_from to \$destination\_to will be slightly delayed. $\rightarrow$ The departure of flight number FD-2018 from Rome to Paris will be slightly delayed}. Results are admittedly blunt in terms of language richness, but they are factually correct, clear and easy to comprehend, which was the initial purpose.
      
-\textbf{Grammars} are the approach ... 
+Other approaches are more complicated in order to outperform templates in a range of expressions.  First of them is building a grammar for the natural language. This approach relies on thorough knowledge and examination of the language behaviour and principles offering domain-independent solutions that can be applied to a different NLG system performing linguistic realisation. The advantage of this approach is definitely the domain independence of the realiser as well as its variety in produced output. Disadvantage is that building such grammar is labour-expensive and the disability to select the best possible result. All generated sentences will be correct, but the choice, which one is the optimal one is beyond grammar's reach.
 
-(TODO  -A -  GRAMATIKÁCH v rámci realizace, pak to projet google doc překladačem)
+Secondly, data-driven (further described \autoref{chap:approaches})methods can be applied in this task too. However their usage can vary greatly. Both approaches above can be enhanced by these stochastic methods since we can reduce manual workload. Templates can be automatically extracted from training corpus (more about corpora in \autoref{chap:requirements}). Similarly, hand-crafted grammars can be created automatically from corpora. Also, linguistic approaches can be avoided by using these methods. However, fusing traditional linguistic approaches and the power of statistical approach can result in a well-performing system. For instance, using hand-crafted grammar in combination with stochastic methods to resolve the optimal-among-the-correct-ones issue.
 
-(TODO  -A -  pak se vrhnout na přepsání corpusu ve smyslu získávání dat i automaticky, nejen hand-crafting)
 
-(TODO  -A -  pak přidat schéma modulárního approache)
-
-(TODO  -A -  pak přidat evaluaci)
-
-(TODO  -A -  pak zadefinovat a vhodně propojit se zbytkem textu NLG process - analýza jazyka, cíle, dat, evaluace, cíle, prostředků atd.)
