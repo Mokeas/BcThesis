@@ -4,7 +4,6 @@ Input is the name of the json file (string) and output is the article (stdout).
 
 # Python's libraries
 from typing import List
-from dataclasses import dataclass
 import random
 
 # Other parts of the code
@@ -12,8 +11,8 @@ import Data
 import data_initializer as di
 import document_planner as dp
 import printer as p
-import lexicalizer as lex
-import realizer as real
+import sentence_planner as sp
+import linguistic_realiser as lr
 
 
 def generate_articles(file_name: str, detailed_output: bool, text_count: int):
@@ -28,7 +27,7 @@ def generate_articles(file_name: str, detailed_output: bool, text_count: int):
     match_data: Data.Match = di.DataInitializer.init_match_data(file_name)
 
     # transforming data into document plan (list of messages)
-    doc_plan: DP.DocumentPlan = dp.DocumentPlanner.plan_document(match_data)
+    doc_plan: dp.DocumentPlan = dp.DocumentPlanner.plan_document(match_data)
 
     # printing overview of the match
     p.Printer.print_overview(doc_plan)
@@ -39,10 +38,10 @@ def generate_articles(file_name: str, detailed_output: bool, text_count: int):
     for i in range(text_count):
         # lexicalizing Messages into language-specific expressions
         # transforming those expressions into well-build input fo Geneea API
-        plain_article: (str, List[str]) = lex.Lexicalizer.lexicalize_article(doc_plan, match_data)
+        plain_article: (str, List[str]) = sp.SentencePlanner.lexicalize_article(doc_plan, match_data)
 
         # calling Geneea API on article
-        article: (str, str) = real.Realizer.realize_article(plain_article)
+        article: (str, str) = lr.LinguisticRealiser.realise_article(plain_article)
 
         # printing detailed output of article if needed
         if detailed_output:

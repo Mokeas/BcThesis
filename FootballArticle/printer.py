@@ -13,16 +13,16 @@ class Printer:
     """Class handling printing of the overview of the match."""
 
     # constants for changing looks of the output
-    LINE_WIDTH = 113
-    BORDER_SIDE = '|'
-    BORDER_TOP = '_'
-    BORDER_BOTTOM = '_'
-    BORDER_MIDDLE = '|'
-    HEADER_TOP = '_'
+    LINE_WIDTH = 91
+    BORDER_SIDE = ''
+    BORDER_TOP = ''
+    BORDER_BOTTOM = ''
+    BORDER_MIDDLE = ''
+    HEADER_TOP = ''
     MESSAGE_BULLET = '#'
     DELIMITER_TIME = '->'
     ARTICLE_WIDTH = LINE_WIDTH
-    DELIMITER_OUTPUT = '_'
+    DELIMITER_OUTPUT = ''
 
     @staticmethod
     def print_overview(doc_plan: dp.DocumentPlan):

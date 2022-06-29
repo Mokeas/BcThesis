@@ -409,7 +409,7 @@ class TemplateHandler:
         elif subtype == 'yellow_card':
             __init_yellow_card_templates()
         elif subtype == 'red_card':
-            __init_red_templates()
+            __init_red_card_templates()
         elif subtype == 'draw':
             __init_result_draw_templates()
         elif subtype == 'lose':
@@ -1092,7 +1092,7 @@ class SentenceHandler:
         return s
 
 
-class Lexicalizer:
+class SentencePlanner:
     """Class to transform document plan in the form of messages to text,
     which is then transformed into well-build input for Geneea API."""
     @staticmethod

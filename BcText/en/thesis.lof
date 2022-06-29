@@ -1,7 +1,12 @@
 \addvspace {10\p@ }
 \addvspace {10\p@ }
-\contentsline {figure}{\numberline {2.1}{\ignorespaces Process of content determination}}{7}{figure.2.1}%
+\contentsline {figure}{\numberline {2.1}{\ignorespaces Process of content determination}}{8}{figure.2.1}%
 \addvspace {10\p@ }
 \addvspace {10\p@ }
 \addvspace {10\p@ }
+\contentsline {figure}{\numberline {5.1}{\ignorespaces Table summary of the example match.}}{28}{figure.5.1}%
+\contentsline {figure}{\numberline {5.2}{\ignorespaces Overview of solution structure.}}{30}{figure.5.2}%
+\contentsline {figure}{\numberline {5.3}{\ignorespaces Transformation of entity \emph {Player} from JSON to a Python class.}}{31}{figure.5.3}%
+\contentsline {figure}{\numberline {5.4}{\ignorespaces Transformation of entity \emph {Incident} from JSON to a Python class.}}{32}{figure.5.4}%
+\contentsline {figure}{\numberline {5.5}{\ignorespaces Implementation of preverbal messages.}}{33}{figure.5.5}%
 \addvspace {10\p@ }

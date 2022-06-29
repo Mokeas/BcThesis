@@ -3,7 +3,7 @@
 # Python's libraries
 import argparse
 # Other parts of the code
-import article_generator as ag
+import articles_generator as ag
 
 
 def run(args):
