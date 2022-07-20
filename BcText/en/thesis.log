@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.22 (MiKTeX 21.2) (preloaded format=pdflatex 2021.3.6)  29 JUN 2022 19:02
+This is pdfTeX, Version 3.141592653-2.6-1.40.22 (MiKTeX 21.2) (preloaded format=pdflatex 2021.3.6)  20 JUL 2022 15:11
 entering extended mode
 **./thesis.tex
 (thesis.tex
@@ -629,7 +629,7 @@ LaTeX Info: Redefining \nameref on input line 114.
 
  (title.tex
 Package hyperref Info: Option `pageanchor' set `false' on input line 6.
-<../img/logo-en.pdf, id=166, 506.4591pt x 156.49065pt>
+<../img/logo-en.pdf, id=158, 506.4591pt x 156.49065pt>
 File: ../img/logo-en.pdf Graphic file (type pdf)
 <use ../img/logo-en.pdf>
 Package pdftex.def Info: ../img/logo-en.pdf  used on input line 9.
@@ -680,16 +680,16 @@ LaTeX Font Info:    Trying to load font information for U+msb on input line 3.
 
 (C:\MikTex\tex/latex/amsfonts\umsb.fd
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
-) [1
-
-
-
-
-])
+))
 \tf@toc=\write6
 \openout6 = `thesis.toc'.
 
- [2]
+ [1
+
+
+
+
+] [2]
 \openout2 = `preface.aux'.
 
  (preface.tex) [3
@@ -707,16 +707,16 @@ Chapter 1.
 
 ]
 LaTeX Font Info:    Trying to load font information for TS1+lmr on input line 2
-4.
+3.
  (C:\MikTex\tex/latex/lm\ts1lmr.fd
 File: ts1lmr.fd 2009/10/30 v1.6 Font defs for Latin Modern
 ) [5]
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <10> on input line 43.
+(Font)              <10> on input line 42.
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <7> on input line 43.
+(Font)              <7> on input line 42.
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <5> on input line 43.
+(Font)              <5> on input line 42.
 ) [6]
 \openout2 = `chap02.aux'.
 
@@ -728,7 +728,7 @@ Chapter 2.
 
 
 ]
-<../img/content_determination.pdf, id=325, 455.70786pt x 239.245pt>
+<../img/content_determination.pdf, id=315, 455.70786pt x 239.245pt>
 File: ../img/content_determination.pdf Graphic file (type pdf)
 <use ../img/content_determination.pdf>
 Package pdftex.def Info: ../img/content_determination.pdf  used on input line 2
@@ -777,24 +777,24 @@ Chapter 5.
 
 
 ]
-<../img/match_overview.pdf, id=576, 358.72821pt x 562.49748pt>
+<../img/match_overview.pdf, id=566, 358.72821pt x 562.49748pt>
 File: ../img/match_overview.pdf Graphic file (type pdf)
 <use ../img/match_overview.pdf>
 Package pdftex.def Info: ../img/match_overview.pdf  used on input line 40.
 (pdftex.def)             Requested size: 371.30594pt x 582.22844pt.
  [27] [28 <../img/match_overview.pdf>]
-<../img/program_structure.pdf, id=665, 662.94919pt x 756.8433pt>
+<../img/program_structure.pdf, id=655, 662.94919pt x 756.8433pt>
 File: ../img/program_structure.pdf Graphic file (type pdf)
 <use ../img/program_structure.pdf>
 Package pdftex.def Info: ../img/program_structure.pdf  used on input line 63.
 (pdftex.def)             Requested size: 412.56496pt x 470.99338pt.
  [29] [30 <../img/program_structure.pdf>]
-<../img/data_player.pdf, id=703, 426.79132pt x 173.56181pt>
+<../img/data_player.pdf, id=693, 426.79132pt x 173.56181pt>
 File: ../img/data_player.pdf Graphic file (type pdf)
 <use ../img/data_player.pdf>
 Package pdftex.def Info: ../img/data_player.pdf  used on input line 86.
 (pdftex.def)             Requested size: 371.30594pt x 151.0002pt.
-<../img/data_incident.pdf, id=705, 429.63661pt x 284.52756pt>
+<../img/data_incident.pdf, id=695, 429.63661pt x 284.52756pt>
 File: ../img/data_incident.pdf Graphic file (type pdf)
 <use ../img/data_incident.pdf>
 Package pdftex.def Info: ../img/data_incident.pdf  used on input line 94.
@@ -804,7 +804,7 @@ Package pdftex.def Info: ../img/data_incident.pdf  used on input line 94.
 LaTeX Warning: `h' float specifier changed to `ht'.
 
 [31 <../img/data_player.pdf>] [32 <../img/data_incident.pdf>]
-<../img/message_implementation.pdf, id=737, 557.67404pt x 275.99173pt>
+<../img/message_implementation.pdf, id=727, 557.67404pt x 275.99173pt>
 File: ../img/message_implementation.pdf Graphic file (type pdf)
 <use ../img/message_implementation.pdf>
 Package pdftex.def Info: ../img/message_implementation.pdf  used on input line 
@@ -840,32 +840,23 @@ File: ot1lmtt.fd 2009/10/30 v1.6 Font defs for Latin Modern
 
 
 
-] (thesis.lot)
-\tf@lot=\write8
-\openout8 = `thesis.lot'.
-
-
-[38
-
-] [39
-
 ]
-Appendix A.
-[40
+Chapter 6.
+[38
 
 ] (thesis.aux (title.aux) (preface.aux) (chap01.aux) (chap02.aux)
 (chap03.aux) (chap04.aux) (chap05.aux) (epilog.aux) (bibliography.aux))
 Package rerunfilecheck Info: File `thesis.out' has not changed.
-(rerunfilecheck)             Checksum: 7C0273BF20F2028B1A1F3AC3493BBFEB;6128.
+(rerunfilecheck)             Checksum: EC720E3839DEFB98208C899662F5A294;5849.
  ) 
 Here is how much of TeX's memory you used:
- 15310 strings out of 479334
- 216120 string characters out of 2873605
- 522866 words of memory out of 3000000
- 32236 multiletter control sequences out of 15000+200000
+ 15299 strings out of 479334
+ 215968 string characters out of 2873605
+ 522765 words of memory out of 3000000
+ 32232 multiletter control sequences out of 15000+200000
  483151 words of font info for 91 fonts, out of 3000000 for 9000
  1141 hyphenation exceptions out of 8191
- 88i,8n,90p,1859b,2364s stack positions out of 5000i,500n,10000p,200000b,50000s
+ 88i,8n,90p,1858b,2364s stack positions out of 5000i,500n,10000p,200000b,50000s
 {C:/MikTex/fonts/enc/dvips/lm/lm-rmtt.enc}{C:/MikTex/fonts/enc/dvips/lm/lm-ts
 1.enc}{C:/MikTex/fonts/enc/dvips/lm/lm-rm.enc}{C:/MikTex/fonts/enc/dvips/lm/lm-
 mathsy.enc}<C:/MikTex/fonts/type1/public/lm/lmbx12.pfb><C:/MikTex/fonts/type1/p
@@ -874,9 +865,9 @@ s/type1/public/lm/lmr12.pfb><C:/MikTex/fonts/type1/public/lm/lmr17.pfb><C:/MikT
 ex/fonts/type1/public/lm/lmr7.pfb><C:/MikTex/fonts/type1/public/lm/lmr8.pfb><C:
 /MikTex/fonts/type1/public/lm/lmri12.pfb><C:/MikTex/fonts/type1/public/lm/lmsy1
 0.pfb><C:/MikTex/fonts/type1/public/lm/lmtt12.pfb>
-Output written on thesis.pdf (44 pages, 910736 bytes).
+Output written on thesis.pdf (42 pages, 907295 bytes).
 PDF statistics:
- 880 PDF objects out of 1000 (max. 8388607)
- 152 named destinations out of 1000 (max. 500000)
- 368 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 860 PDF objects out of 1000 (max. 8388607)
+ 148 named destinations out of 1000 (max. 500000)
+ 352 words of extra memory for PDF output out of 10000 (max. 10000000)
 

@@ -34,7 +34,5 @@
 \contentsline {chapter}{Conclusion}{34}{chapter*.3}%
 \contentsline {chapter}{Bibliography}{35}{chapter*.4}%
 \contentsline {chapter}{List of Figures}{37}{chapter*.5}%
-\contentsline {chapter}{List of Tables}{38}{chapter*.6}%
-\contentsline {chapter}{List of Abbreviations}{39}{chapter*.7}%
-\contentsline {chapter}{\numberline {A}Attachments}{40}{appendix.A}%
-\contentsline {section}{\numberline {A.1}First Attachment}{40}{section.A.1}%
+\contentsline {chapter}{\numberline {6}Attachments}{38}{chapter.6}%
+\contentsline {section}{\numberline {6.1}First Attachment}{38}{section.6.1}%
