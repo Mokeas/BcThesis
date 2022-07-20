@@ -1,0 +1,346 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   width="151mm"
+   height="100mm"
+   viewBox="0 0 151 100"
+   version="1.1"
+   id="svg5"
+   inkscape:version="1.2 (dc2aedaf03, 2022-05-15)"
+   sodipodi:docname="data_incident.svg"
+   inkscape:export-filename="..\BcText\img\data_incident.pdf"
+   inkscape:export-xdpi="96"
+   inkscape:export-ydpi="96"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <sodipodi:namedview
+     id="namedview7"
+     pagecolor="#ffffff"
+     bordercolor="#000000"
+     borderopacity="0.25"
+     inkscape:showpageshadow="2"
+     inkscape:pageopacity="0.0"
+     inkscape:pagecheckerboard="0"
+     inkscape:deskcolor="#d1d1d1"
+     inkscape:document-units="mm"
+     showgrid="false"
+     inkscape:zoom="1.4912879"
+     inkscape:cx="240.06096"
+     inkscape:cy="198.48615"
+     inkscape:window-width="1920"
+     inkscape:window-height="1017"
+     inkscape:window-x="1912"
+     inkscape:window-y="-8"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="layer1">
+    <inkscape:grid
+       type="xygrid"
+       id="grid2910"
+       originx="0"
+       originy="0" />
+  </sodipodi:namedview>
+  <defs
+     id="defs2">
+    <rect
+       x="332.59842"
+       y="11.399543"
+       width="335.28067"
+       height="364.11481"
+       id="rect863" />
+    <rect
+       x="287.67081"
+       y="133.44171"
+       width="134.78284"
+       height="22.799086"
+       id="rect2946" />
+    <rect
+       x="609.54028"
+       y="150.8763"
+       width="48.950977"
+       height="22.799086"
+       id="rect2900" />
+    <rect
+       x="79.126236"
+       y="152.88799"
+       width="65.715012"
+       height="45.598171"
+       id="rect2888" />
+    <rect
+       x="400.99567"
+       y="65.044449"
+       width="245.42545"
+       height="203.85065"
+       id="rect2086" />
+    <rect
+       x="400.99567"
+       y="59.009399"
+       width="270.90677"
+       height="254.14275"
+       id="rect2067" />
+    <rect
+       x="496.21539"
+       y="59.679958"
+       width="54.315468"
+       height="42.915928"
+       id="rect2055" />
+    <rect
+       x="405.68961"
+       y="61.021084"
+       width="298.39981"
+       height="242.74321"
+       id="rect2043" />
+    <marker
+       style="overflow:visible"
+       id="RoundedArrow"
+       refX="0"
+       refY="0"
+       orient="auto-start-reverse"
+       inkscape:stockid="RoundedArrow"
+       markerWidth="6.1347523"
+       markerHeight="5.9304953"
+       viewBox="0 0 6.1347524 5.9304951"
+       inkscape:isstock="true"
+       inkscape:collect="always"
+       preserveAspectRatio="xMidYMid">
+      <path
+         transform="scale(0.7)"
+         d="m -0.21114562,-4.1055728 6.42229122,3.21114561 a 1,1 90 0 1 0,1.78885438 L -0.21114562,4.1055728 A 1.236068,1.236068 31.717474 0 1 -2,3 v -6 a 1.236068,1.236068 148.28253 0 1 1.78885438,-1.1055728 z"
+         style="fill:context-stroke;fill-rule:evenodd;stroke:none"
+         id="path1367" />
+    </marker>
+    <rect
+       x="88.514099"
+       y="56.327152"
+       width="267.91788"
+       height="363.48495"
+       id="rect63" />
+  </defs>
+  <g
+     inkscape:label="Vrstva 1"
+     inkscape:groupmode="layer"
+     id="layer1">
+    <text
+       xml:space="preserve"
+       transform="scale(0.26458333)"
+       id="text2041"
+       style="white-space:pre;shape-inside:url(#rect2043);display:inline;fill:none;stroke:#000000;stroke-width:1.75748;stroke-linecap:butt;stroke-dasharray:none;stroke-opacity:1" />
+    <text
+       xml:space="preserve"
+       transform="scale(0.26458333)"
+       id="text2053"
+       style="white-space:pre;shape-inside:url(#rect2055);display:inline;fill:none;stroke:#000000;stroke-width:1.75748;stroke-linecap:butt;stroke-dasharray:none;stroke-opacity:1" />
+    <path
+       style="display:inline;fill:none;fill-rule:evenodd;stroke:#000000;stroke-width:0.417803;stroke-linecap:butt;stroke-linejoin:miter;stroke-dasharray:none;stroke-opacity:1;marker-end:url(#RoundedArrow)"
+       d="m 65.964099,47.795102 16.553392,1.5e-5"
+       id="path1053"
+       inkscape:connector-type="polyline"
+       inkscape:connector-curvature="0" />
+    <text
+       xml:space="preserve"
+       transform="matrix(0.27206419,0,0,0.27206419,-21.732839,-14.216206)"
+       id="text61"
+       style="white-space:pre;shape-inside:url(#rect63);display:inline;fill:#000000"><tspan
+         x="88.513672"
+         y="67.276089"
+         id="tspan1116">    {
+</tspan><tspan
+         x="88.513672"
+         y="82.276089"
+         id="tspan1118">      &quot;addedTime&quot;: null,
+</tspan><tspan
+         x="88.513672"
+         y="97.276089"
+         id="tspan1120">      &quot;id&quot;: 300823612,
+</tspan><tspan
+         x="88.513672"
+         y="112.27609"
+         id="tspan1122">      &quot;parentId&quot;: null,
+</tspan><tspan
+         x="88.513672"
+         y="127.27609"
+         id="tspan1124">      &quot;stageId&quot;: 12,
+</tspan><tspan
+         x="88.513672"
+         y="142.27609"
+         id="tspan1126">      &quot;time&quot;: 44,
+</tspan><tspan
+         x="88.513672"
+         y="157.27609"
+         id="tspan1128">      &quot;timeSec&quot;: null,
+</tspan><tspan
+         x="88.513672"
+         y="172.27609"
+         id="tspan1130">      &quot;value&quot;: &quot;1:1&quot;,
+</tspan><tspan
+         x="88.513672"
+         y="187.27609"
+         id="tspan1132">      &quot;participant&quot;: {
+</tspan><tspan
+         x="88.513672"
+         y="202.27609"
+         id="tspan1134">        &quot;fullName&quot;: &quot;Hašek Martin&quot;,
+</tspan><tspan
+         x="88.513672"
+         y="217.27609"
+         id="tspan1136">        &quot;id&quot;: 222801
+</tspan><tspan
+         x="88.513672"
+         y="232.27609"
+         id="tspan1138">      },
+</tspan><tspan
+         x="88.513672"
+         y="247.27609"
+         id="tspan1140">      &quot;type&quot;: {
+</tspan><tspan
+         x="88.513672"
+         y="262.27609"
+         id="tspan1142">        &quot;name&quot;: &quot;Goal&quot;
+</tspan><tspan
+         x="88.513672"
+         y="277.27609"
+         id="tspan1144">      },
+</tspan><tspan
+         x="88.513672"
+         y="292.27609"
+         id="tspan1146">      &quot;sortKey&quot;: 3,
+</tspan><tspan
+         x="88.513672"
+         y="307.27609"
+         id="tspan1148">      &quot;eventParticipant&quot;: {
+</tspan><tspan
+         x="88.513672"
+         y="322.27609"
+         id="tspan1150">        &quot;participant&quot;: [
+</tspan><tspan
+         x="88.513672"
+         y="337.27609"
+         id="tspan1152">          {
+</tspan><tspan
+         x="88.513672"
+         y="352.27609"
+         id="tspan1154">            &quot;id&quot;: 804,
+</tspan><tspan
+         x="88.513672"
+         y="367.27609"
+         id="tspan1156">            &quot;name&quot;: &quot;Bohemians 1905&quot;
+</tspan><tspan
+         x="88.513672"
+         y="382.27609"
+         id="tspan1158">          }
+</tspan><tspan
+         x="88.513672"
+         y="397.27609"
+         id="tspan1160">        ]
+</tspan><tspan
+         x="88.513672"
+         y="412.27609"
+         id="tspan1162">    }
+</tspan><tspan
+         x="88.513672"
+         y="430.76046"
+         id="tspan1166"><tspan
+           dx="0 4.21875 4.21875 4.21875 4.21875"
+           id="tspan1164">    }</tspan></tspan></text>
+    <rect
+       style="fill:none;stroke:#000000;stroke-width:0.32476;stroke-dasharray:none;stroke-opacity:1"
+       id="rect169"
+       width="56.452644"
+       height="98.281639"
+       x="6.7833633"
+       y="0.91697854" />
+    <text
+       xml:space="preserve"
+       transform="matrix(0.27206419,0,0,0.27206419,-21.180516,4.2253739)"
+       id="text2886"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:12px;font-family:sans-serif;-inkscape-font-specification:'sans-serif, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;white-space:pre;shape-inside:url(#rect2888);display:inline;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1.00157;stroke-linecap:butt;stroke-dasharray:none;stroke-opacity:1"><tspan
+         x="79.126953"
+         y="163.83664"
+         id="tspan1168">(3)</tspan></text>
+    <text
+       xml:space="preserve"
+       transform="matrix(0.27206419,0,0,0.27206419,-20.126032,4.615326)"
+       id="text2898"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:12px;font-family:sans-serif;-inkscape-font-specification:'sans-serif, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;white-space:pre;shape-inside:url(#rect2900);display:inline;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1.00157;stroke-linecap:butt;stroke-dasharray:none;stroke-opacity:1"><tspan
+         x="609.54102"
+         y="161.82492"
+         id="tspan1170">(4)</tspan></text>
+    <text
+       xml:space="preserve"
+       transform="scale(0.26458333)"
+       id="text2944"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:12px;font-family:sans-serif;-inkscape-font-specification:'sans-serif, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;white-space:pre;shape-inside:url(#rect2946);display:inline;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1.00157;stroke-linecap:butt;stroke-dasharray:none;stroke-opacity:1"><tspan
+         x="287.66992"
+         y="144.38937"
+         id="tspan1172">
+</tspan><tspan
+         x="287.66992"
+         y="167.1882"
+         id="tspan1174">i</tspan></text>
+    <rect
+       style="fill:none;stroke:#000000;stroke-width:0.32476;stroke-dasharray:none;stroke-opacity:1"
+       id="rect169-6"
+       width="56.452644"
+       height="98.281639"
+       x="87.273674"
+       y="0.89143831" />
+    <text
+       xml:space="preserve"
+       transform="matrix(0.27661777,0,0,0.27661777,-2.0584168,19.712442)"
+       id="text861"
+       style="font-size:12px;font-family:sans-serif;-inkscape-font-specification:'sans-serif, Normal';white-space:pre;shape-inside:url(#rect863);display:inline;fill:#000000;stroke-width:1.00157"><tspan
+         x="332.59766"
+         y="22.348354"
+         id="tspan1176">@dataclass(frozen=True)
+</tspan><tspan
+         x="332.59766"
+         y="37.348354"
+         id="tspan1178">class IncidentParent:
+</tspan><tspan
+         x="332.59766"
+         y="52.348354"
+         id="tspan1180">	   type: Types.Incident
+</tspan><tspan
+         x="332.59766"
+         y="67.348354"
+         id="tspan1182">	   participant: Player
+</tspan><tspan
+         x="332.59766"
+         y="82.348354"
+         id="tspan1184">	   team: Team
+</tspan><tspan
+         x="332.59766"
+         y="97.348354"
+         id="tspan1186">	   time: Time
+</tspan><tspan
+         x="332.59766"
+         y="112.34835"
+         id="tspan1188">	
+</tspan><tspan
+         x="332.59766"
+         y="127.34835"
+         id="tspan1190">class Incident:
+</tspan><tspan
+         x="332.59766"
+         y="142.34835"
+         id="tspan1192">	   @dataclass(frozen=True)
+</tspan><tspan
+         x="332.59766"
+         y="157.34835"
+         id="tspan1194">	   class Goal(IncidentParent):
+</tspan><tspan
+         x="332.59766"
+         y="172.34835"
+         id="tspan1196">		      current_score: Score
+</tspan><tspan
+         x="332.59766"
+         y="187.34835"
+         id="tspan1198">		      assistance: Player
+</tspan><tspan
+         x="332.59766"
+         y="202.34835"
+         id="tspan1200">		      goal_type: Types.Goal</tspan></text>
+  </g>
+</svg>
