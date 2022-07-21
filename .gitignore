@@ -12,6 +12,7 @@
 *.cb2
 .*.lb
 
+
 ## Intermediate documents:
 *.dvi
 *.xdv
@@ -48,6 +49,11 @@ latex.out/
 # algorithms
 *.alg
 *.loa
+
+# Python's files
+.idea
+.pyc
+.venv
 
 # achemso
 acs-*.bib
@@ -299,3 +305,4 @@ TSWLatexianTemp*
 # option is specified. Footnotes are the stored in a file with suffix Notes.bib.
 # Uncomment the next line to have this generated file ignored.
 #*Notes.bib
+
