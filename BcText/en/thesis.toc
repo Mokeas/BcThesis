@@ -1,0 +1,38 @@
+\contentsline {chapter}{Introduction}{3}{chapter*.2}%
+\contentsline {chapter}{\numberline {1}B - Natural Language Generation}{4}{chapter.1}%
+\contentsline {section}{\numberline {1.1}B- What is NLG?}{4}{section.1.1}%
+\contentsline {section}{\numberline {1.2}B - Usage of NLG}{5}{section.1.2}%
+\contentsline {chapter}{\numberline {2}A- NLG Tasks}{7}{chapter.2}%
+\contentsline {section}{\numberline {2.1}B - Content determination}{7}{section.2.1}%
+\contentsline {section}{\numberline {2.2}B-Discourse planning}{8}{section.2.2}%
+\contentsline {section}{\numberline {2.3}B-Sentence Aggregation}{9}{section.2.3}%
+\contentsline {section}{\numberline {2.4}B-Lexicalization}{11}{section.2.4}%
+\contentsline {section}{\numberline {2.5}B-Referring expression generation}{11}{section.2.5}%
+\contentsline {section}{\numberline {2.6}B-Linguistic realisation}{13}{section.2.6}%
+\contentsline {chapter}{\numberline {3}B-NLG approaches}{16}{chapter.3}%
+\contentsline {section}{\numberline {3.1}B-Modular architecture}{16}{section.3.1}%
+\contentsline {section}{\numberline {3.2}B-Planning approach}{17}{section.3.2}%
+\contentsline {section}{\numberline {3.3}B-Data-driven approach}{18}{section.3.3}%
+\contentsline {chapter}{\numberline {4}A-Process of developing a NLG system}{21}{chapter.4}%
+\contentsline {section}{\numberline {4.1}B-Requirements analysis}{21}{section.4.1}%
+\contentsline {section}{\numberline {4.2}B-Corpora building}{22}{section.4.2}%
+\contentsline {section}{\numberline {4.3}B-Evaluation}{24}{section.4.3}%
+\contentsline {chapter}{\numberline {5}Implementation}{26}{chapter.5}%
+\contentsline {section}{\numberline {5.1}Requirements and initial goal}{26}{section.5.1}%
+\contentsline {section}{\numberline {5.2}Input data}{26}{section.5.2}%
+\contentsline {section}{\numberline {5.3}Approach}{27}{section.5.3}%
+\contentsline {section}{\numberline {5.4}Match example}{27}{section.5.4}%
+\contentsline {section}{\numberline {5.5}Structure overview}{29}{section.5.5}%
+\contentsline {section}{\numberline {5.6}Modules implementation}{29}{section.5.6}%
+\contentsline {subsection}{\numberline {5.6.1}Auxiliary modules}{29}{subsection.5.6.1}%
+\contentsline {subsection}{\numberline {5.6.2}Data initializer}{31}{subsection.5.6.2}%
+\contentsline {subsection}{\numberline {5.6.3}Document planner}{32}{subsection.5.6.3}%
+\contentsline {subsection}{\numberline {5.6.4}Sentence planner}{33}{subsection.5.6.4}%
+\contentsline {subsection}{\numberline {5.6.5}Linguistic realiser}{33}{subsection.5.6.5}%
+\contentsline {subsection}{\numberline {5.6.6}Articles generator}{33}{subsection.5.6.6}%
+\contentsline {section}{\numberline {5.7}diskuze řešení - alternativy, rozšíření, další podněty}{33}{section.5.7}%
+\contentsline {chapter}{Conclusion}{34}{chapter*.3}%
+\contentsline {chapter}{Bibliography}{35}{chapter*.4}%
+\contentsline {chapter}{List of Figures}{37}{chapter*.5}%
+\contentsline {chapter}{\numberline {6}Attachments}{38}{chapter.6}%
+\contentsline {section}{\numberline {6.1}First Attachment}{38}{section.6.1}%
