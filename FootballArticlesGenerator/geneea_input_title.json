@@ -1,0 +1,1 @@
+{"templates": [{"id": "tmpl-2", "name": "body template", "body": "{{'Jablonec'|morph('Case=Nom', ref=1)}} {{'porazit'|morph('Tense=Past', agr=1)}} {{'Bohemians 1905'|morph('Case=Acc')}} 3:1."}], "data": {}}
