@@ -37,7 +37,7 @@ A match example is provided and the summary can be seen in \figref{overview}.
 Football match between \emph{Jablonec} and \emph{Bohemians 1905}, which resulted in a 3 to 1 victory for the home team \emph{Jablonec}. First half can be summarised in words to further describe the figure: First goal was a penalty scored by \emph{Trávník} in 10th minute and then second incident was a goal by \emph{Bohemians'} player \emph{Hašek} that tied the game in 44th minute after a pass from \emph{Vaníček}. Events that happened in second half are hopefully easy to interpret as well. Numbers next to a incident group them by their type- (1) penalty goal, (2) goal with an assist, (3) substitution and (4) yellow card. 
 
 \begin{figure}[p]
-	\centering{\includegraphics[width=0.9\textwidth]{../img/match_overview.pdf}}
+	\centering{\includegraphics[width=0.9\textwidth]{./img/match_overview.pdf}}
 	\caption{Table summary of the example match.}
 	\label{fig:overview}
 \end{figure}
@@ -60,7 +60,7 @@ Moreover, there are three auxiliary modules to keep the structure of the impleme
 These are further described later in (TODO-ref).
 
 \begin{figure}[p]
-	\centering{\includegraphics[width=1\textwidth]{../img/program_structure.pdf}}
+	\centering{\includegraphics[width=1\textwidth]{./img/program_structure.pdf}}
 	\caption{Overview of solution structure.}
 	\label{fig:structure}
 \end{figure}
@@ -83,7 +83,7 @@ The implementation is straightforward - we use built-in package \emph{json} to e
 Two examples of specific records contained in JSON file and their Python representation are shown in \figref{player} and \figref{incident}. 
 
 \begin{figure}[h]
-	\centering{\includegraphics[width=0.9\textwidth]{../img/data_player.pdf}}
+	\centering{\includegraphics[width=0.9\textwidth]{./img/data_player.pdf}}
 	\caption{Transformation of entity \emph{Player} from JSON to a Python class.}
 	\label{fig:player}
 \end{figure}
@@ -91,7 +91,7 @@ Two examples of specific records contained in JSON file and their Python represe
 Entity {Player} is transformed from its initial JSON representation (\figref{player} - 1) to a easy-to-work-with Python's immutable class \emph{Player} with corresponding attributes. Note that a country has also a proper class \emph{Data.Country}.
 
 \begin{figure}[h]
-	\centering{\includegraphics[width=1\textwidth]{../img/data_incident.pdf}}
+	\centering{\includegraphics[width=1\textwidth]{./img/data_incident.pdf}}
 	\caption{Transformation of entity \emph{Incident} from JSON to a Python class.}
 	\label{fig:incident}
 \end{figure} 
@@ -113,7 +113,7 @@ Unlike message class \textit{Substitution}, which is self-explanatory, classes \
 Content of the \textit{MissedPenalty} is rather obvious, but the reasoning behind the existence of this separate class may not be visible at first glance and relies heavily on domain knowledge. Penalty is a crucial, rare and thrilling event during a football match.\footnote{Remember the famous penalty by Antonín Panenka in European Championship finals in 1976 that led to triumph of Czechoslovakia. The kick was groundbreaking and nowadays term 'Panenka' refers to a style of kick, where you only chip the ball in the middle of the net.} Consequently, every penalty is worth mentioning regardless of the outcome. However, if the penalty is successful the outcome is a goal and we would like to treat the message the same as any other goal. I believe every goal in a football match should be reported since scoring in football is rarer than in other sports in general (compared e.g. to basketball where reporting every basket would be too specific and unnecessary). Contrastingly, the message that reports a missed penalty is not required to be present in the article as this event did not affect the result directly and creates rather a shocking element of the article as players are expected to score from this position. This paragraph further illustrates the hand-crafted principles based on the domain knowledge that are incorporated in the solution.
 
 \begin{figure}[h]
-	\centering{\includegraphics[width=1\textwidth]{../img/message_implementation.pdf}}
+	\centering{\includegraphics[width=1\textwidth]{./img/message_implementation.pdf}}
 	\caption{Implementation of preverbal messages.}
 	\label{fig:message}
 \end{figure} 
