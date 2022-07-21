@@ -35,7 +35,7 @@ Human brain orders information to be conveyed in a speech intuitively, but the p
 
 Form of the output of discourse planning can differ. One possible option as described by \cite{reiter1997building} is a tree structure. Leaves of the trees are messages and inner nodes describe specifics of their function in a sentence. This may seem like an unnecessary complicated solution when clustering messages to be said in one sentence can be just an array of messages. The benefit of the tree structure is the amount of information we can store along the messages including constraints under which the message can be said, relations between them and their overall structure.
 
-\section{Sentence Aggregation}
+\section{Sentence Aggregation}\label{section:sa}
 The cardinality of the relation message and sentence is rarely one-to-one. Usually multiple messages are formed into one sentence. This process is called sentence aggregation and it is fundamental for generating text that is readable and flows well. To clarify we provide set of verbal messages:
 \begin{enumerate}
 	\item \emph{Peter bought an apple.}\label{sa-one}

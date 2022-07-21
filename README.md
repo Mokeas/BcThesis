@@ -7,7 +7,7 @@ This thesis is concerned with analysing implementation of such a linguistic soft
 ## Content of the project
 In the project, there are two directories:
 
-* **_BcText_**: the textual version of the thesis written in TeX </li>
+* **_BcText_**: the textual version of the thesis written in TeX and the .pdf file</li>
 * **_FootballArticlesGenerator_**: Python software that produces football articles</li>
 
 
@@ -23,7 +23,7 @@ Project is written purely in Python. Project contains separate modules, which ar
 
 ## How to run the program
 * The program has no dependencies, plain Python (version 3.7+) is enough.
-* Install the package FootballArticleGenerator using pip:
+* Install the package FootballArticleGenerator using pip (or simply use this directory):
 
 Unix:
 ```
