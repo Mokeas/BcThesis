@@ -15,7 +15,7 @@ import sentence_planner as sp
 import linguistic_realiser as lr
 
 
-def generate_articles(file_name: str, short_output: bool, text_count: int):
+def generate_articles(file_name: str, short_output: bool, text_count: int, key: str):
     """
     Core function for generating articles.
     :param file_name: Name of the file.
@@ -52,7 +52,7 @@ def generate_articles(file_name: str, short_output: bool, text_count: int):
 
         # calling Geneea API on article
         try:
-            article: (str, str) = lr.LinguisticRealiser.realise_article(plain_article)
+            article: (str, str) = lr.LinguisticRealiser.realise_article(plain_article, key)
 
             # printing article
             p.Printer.print_article(i, text_count, article)

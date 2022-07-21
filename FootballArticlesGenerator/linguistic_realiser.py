@@ -1,5 +1,5 @@
-"""Module that performs linguistic transformation on lexicalized text using Geneea.
-Input is tuple of title and list of sentences with needed transformation for Geneea.
+"""Module that performs linguistic transformation on lexicalized text using Genja.
+Input is tuple of title and list of sentences with needed transformation for Genja.
 Output is a tuple of title (str) and complete article as string."""
 
 # -----------------------------------------------------
@@ -51,7 +51,7 @@ class LinguisticRealiser:
         return file_name_header + file_type + file_file_format
 
     @staticmethod
-    def __realise_str(title: bool, plain_str: str) -> str:
+    def __realise_str(title: bool, plain_str: str, key: str) -> str:
         """
         Realizes plain string (title or body) to string after performing lexical realisation.
         :param title: title (True), body (False)
@@ -61,33 +61,33 @@ class LinguisticRealiser:
         file = LinguisticRealiser.__get_aux_file_name(title=title)
         LinguisticRealiser.__create_json_file_for_genja(plain_str, file)
         with open(file) as json_file:
-            output_genja: dict = LinguisticRealiser.__call_genja(json.load(json_file))
+            output_genja: dict = LinguisticRealiser.__call_genja(json.load(json_file), key)
         os.remove(file)     # deleting file
         return output_genja['article']
 
     @staticmethod
-    def realise_article(plain_str: (str, List[str])) -> (str, str):
+    def realise_article(plain_str: (str, List[str]), key: str) -> (str, str):
         """
         Core function for realisation of the article.
         :param plain_str:
         :return: Tuple of strings - title and body of the article.
         """
 
-        title: str = LinguisticRealiser.__realise_str(title=True, plain_str=plain_str[0])
-        body: str = LinguisticRealiser.__realise_str(title=False, plain_str=' '.join(plain_str[1]))
+        title: str = LinguisticRealiser.__realise_str(title=True, plain_str=plain_str[0], key=key)
+        body: str = LinguisticRealiser.__realise_str(title=False, plain_str=' '.join(plain_str[1]), key=key)
         return title, body
 
     @staticmethod
-    def __call_genja(json_file: dict):
+    def __call_genja(json_file: dict, key: str):
         """
         Calls Genja API with correct parameters and performs lexical realisation.
-        :param json_file: json file as an input for Geneea request
+        :param json_file: json file as an input for Genja request
         """
         url = 'https://generator.geneea.com/generate'
         headers = {
             'content-type': 'application/json',
             # authorization key is stored internally to enable code to be public
-            'Authorization': os.getenv('GENJA_API_KEY')
+            'Authorization': key
         }
         response = requests.post(url, json=json_file, headers=headers)
         if response.status_code == 401:
