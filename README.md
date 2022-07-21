@@ -17,6 +17,39 @@ Text of the thesis describes the project _FootballArticlesGenerator_ in depth as
 
 Note: University's bachelor thesis template (version 2020-04-17) was used when setting in TeX. 
 
-## Football Articles Generator
+## FootballArticlesGenerator
 
 Project is written purely in Python. Project contains separate modules, which are described briefly in the code as comments or in detail in the thesis. The project contains one example JSON file of input data: _example_match.json_.
+
+## How to run the program
+* The program has no dependencies, plain Python (version 3.7+) is enough.
+* Install the package FootballArticleGenerator using pip:
+
+Unix:
+```
+python3 -m pip install FootballArticlesGenerator
+```
+
+Windows:
+```
+py -m pip install FootballArticlesGenerator
+```
+
+* If you want results to be complete, you need to acquire authorization key for Genja API (Contact Geneea at [geneea.com](https://geneea.com/)). Without the key, the program will still run, but the linguistic realisation will not be performed and therefore the outputted text will be the intended input for Genja.
+
+* To run the program just change directory to the FootballArticlesGenerator:
+```
+cd FootballArticlesGenerator
+```
+* and run _run.py_ with _-k_ argument inserting key for Genja:
+```
+python run.py -k insert_key_here
+```
+
+## Arguments
+Every argument is optional:
+* ```-h, --help```: Show help message and exit.
+* ```-m MATCH_DATA, --match_data MATCH_DATA```: Defines JSON file with match data (default=example_match).
+* ```-c TEXT_COUNT, --text_count TEXT_COUNT```: Changes number of generated texts (default=3).
+* ```-o, --short_output```: Prints detailed output. If missing, prints only result articles.
+* ```-k KEY, --key KEY```: Sets authorization key for Genja API.

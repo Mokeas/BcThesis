@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.24 (MiKTeX 22.3) (preloaded format=pdflatex 2022.6.10)  21 JUL 2022 12:54
+This is pdfTeX, Version 3.141592653-2.6-1.40.24 (MiKTeX 22.3) (preloaded format=pdflatex 2022.6.10)  21 JUL 2022 16:16
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -840,10 +840,20 @@ LaTeX Font Info:    Trying to load font information for OT1+lmtt on input line
 (C:\Users\Dan\AppData\Local\Programs\MiKTeX\tex/latex/lm\ot1lmtt.fd
 File: ot1lmtt.fd 2009/10/30 v1.6 Font defs for Latin Modern
 ) [34]
-[35] [36] [37]) [38]
+[35] [36]
+
+LaTeX Warning: Reference `fig:example' on page 37 undefined on input line 238.
+
+
+Overfull \hbox (0.46521pt too wide) in paragraph at lines 243--244
+[]\OT1/lmr/m/n/12 Type: RE-SULT, team[]home: Jablonec, team[]away: --Team-- Id:
+ 804, Name:|
+ []
+
+[37] [38] [39]) [40]
 \openout2 = `epilog.aux'.
 
- (epilog.tex) [39
+ (epilog.tex) [41
 
 
 
@@ -851,54 +861,68 @@ File: ot1lmtt.fd 2009/10/30 v1.6 Font defs for Latin Modern
 ]
 \openout2 = `bibliography.aux'.
 
- (bibliography.tex (thesis.bbl [40
+ (bibliography.tex (thesis.bbl [42
 
 
 
 
 ]))
-[41] (thesis.lof)
+[43] (thesis.lof)
 \tf@lof=\write7
 \openout7 = `thesis.lof'.
 
- [42
+ [44
 
 
 
-]
-Chapter 6.
-[43
+] (thesis.aux (title.aux) (preface.aux) (chap01.aux)
+(chap02.aux) (chap03.aux) (chap04.aux) (chap05.aux) (epilog.aux)
+(bibliography.aux))
 
-] (thesis.aux (title.aux) (preface.aux) (chap01.aux) (chap02.aux)
-(chap03.aux) (chap04.aux) (chap05.aux) (epilog.aux) (bibliography.aux))
-Package rerunfilecheck Info: File `thesis.out' has not changed.
-(rerunfilecheck)             Checksum: 68BD805468B010C3A2533EAF4C415905;5502.
+LaTeX Warning: There were undefined references.
+
+
+Package rerunfilecheck Warning: File `thesis.out' has changed.
+(rerunfilecheck)                Rerun to get outlines right
+(rerunfilecheck)                or use package `bookmark'.
+
+Package rerunfilecheck Info: Checksums for `thesis.out':
+(rerunfilecheck)             Before: A9E4CD230CC3F1DB44A5A3BD4F47EF70;5422
+(rerunfilecheck)             After:  3BC1CED57738190E0ED92735BB781B34;5185.
  ) 
 Here is how much of TeX's memory you used:
- 16221 strings out of 478582
- 254678 string characters out of 2845288
- 530530 words of memory out of 3000000
- 33880 multiletter control sequences out of 15000+600000
+ 16236 strings out of 478582
+ 254920 string characters out of 2845288
+ 532572 words of memory out of 3000000
+ 33888 multiletter control sequences out of 15000+600000
  548980 words of font info for 92 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  77i,8n,79p,2022b,2377s stack positions out of 10000i,1000n,20000p,200000b,80000s
-{C:/Users/Dan/AppData/Local/Programs/MiKTeX/fonts/enc/dvips/lm/lm-rmtt.enc}{C
-:/Users/Dan/AppData/Local/Programs/MiKTeX/fonts/enc/dvips/lm/lm-ts1.enc}{C:/Use
-rs/Dan/AppData/Local/Programs/MiKTeX/fonts/enc/dvips/lm/lm-rm.enc}{C:/Users/Dan
-/AppData/Local/Programs/MiKTeX/fonts/enc/dvips/lm/lm-mathsy.enc}<C:/Users/Dan/A
-ppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmbx12.pfb><C:/Users/Dan/App
-Data/Local/Programs/MiKTeX/fonts/type1/public/lm/lmbxi10.pfb><C:/Users/Dan/AppD
-ata/Local/Programs/MiKTeX/fonts/type1/public/lm/lmr10.pfb><C:/Users/Dan/AppData
-/Local/Programs/MiKTeX/fonts/type1/public/lm/lmr12.pfb><C:/Users/Dan/AppData/Lo
-cal/Programs/MiKTeX/fonts/type1/public/lm/lmr17.pfb><C:/Users/Dan/AppData/Local
-/Programs/MiKTeX/fonts/type1/public/lm/lmr7.pfb><C:/Users/Dan/AppData/Local/Pro
-grams/MiKTeX/fonts/type1/public/lm/lmr8.pfb><C:/Users/Dan/AppData/Local/Program
-s/MiKTeX/fonts/type1/public/lm/lmri12.pfb><C:/Users/Dan/AppData/Local/Programs/
-MiKTeX/fonts/type1/public/lm/lmsy10.pfb><C:/Users/Dan/AppData/Local/Programs/Mi
-KTeX/fonts/type1/public/lm/lmtt12.pfb>
-Output written on thesis.pdf (47 pages, 930017 bytes).
+
+pdfTeX warning (dest): name{section.6.1} has been referenced but does not exist
+, replaced by a fixed one
+
+
+pdfTeX warning (dest): name{chapter.6} has been referenced but does not exist, 
+replaced by a fixed one
+
+{C:/Users/Dan/AppData/Local/Programs/MiKTeX/fonts/enc/dvips/lm/lm-rmtt.enc}{C:/
+Users/Dan/AppData/Local/Programs/MiKTeX/fonts/enc/dvips/lm/lm-ts1.enc}{C:/Users
+/Dan/AppData/Local/Programs/MiKTeX/fonts/enc/dvips/lm/lm-rm.enc}{C:/Users/Dan/A
+ppData/Local/Programs/MiKTeX/fonts/enc/dvips/lm/lm-mathsy.enc}<C:/Users/Dan/App
+Data/Local/Programs/MiKTeX/fonts/type1/public/lm/lmbx12.pfb><C:/Users/Dan/AppDa
+ta/Local/Programs/MiKTeX/fonts/type1/public/lm/lmbxi10.pfb><C:/Users/Dan/AppDat
+a/Local/Programs/MiKTeX/fonts/type1/public/lm/lmr10.pfb><C:/Users/Dan/AppData/L
+ocal/Programs/MiKTeX/fonts/type1/public/lm/lmr12.pfb><C:/Users/Dan/AppData/Loca
+l/Programs/MiKTeX/fonts/type1/public/lm/lmr17.pfb><C:/Users/Dan/AppData/Local/P
+rograms/MiKTeX/fonts/type1/public/lm/lmr7.pfb><C:/Users/Dan/AppData/Local/Progr
+ams/MiKTeX/fonts/type1/public/lm/lmr8.pfb><C:/Users/Dan/AppData/Local/Programs/
+MiKTeX/fonts/type1/public/lm/lmri12.pfb><C:/Users/Dan/AppData/Local/Programs/Mi
+KTeX/fonts/type1/public/lm/lmsy10.pfb><C:/Users/Dan/AppData/Local/Programs/MiKT
+eX/fonts/type1/public/lm/lmtt12.pfb>
+Output written on thesis.pdf (48 pages, 938717 bytes).
 PDF statistics:
- 889 PDF objects out of 1000 (max. 8388607)
- 155 named destinations out of 1000 (max. 500000)
+ 905 PDF objects out of 1000 (max. 8388607)
+ 162 named destinations out of 1000 (max. 500000)
  360 words of extra memory for PDF output out of 10000 (max. 10000000)
 

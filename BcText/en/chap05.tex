@@ -217,26 +217,63 @@ To finalize, articles generator connects modules together creating a notional on
 Since the lexical items are picked randomly, the output can contain sentences that are suboptimal and hard-to-read. For example when describing substitution message, realisation of two player entities can result in unappealing text, where it is not clearly visible who is the first and second player:
 \begin{center}
 	\textit{V 74. minutě střídal Vodháněl Kratochvíla Miloše.(CZ)}
-	\textit{In 74th minute subbed Vodháněl Kratochvíla Miloše.(EN)}
+\end{center}
+\begin{center}
+	\textit{In 74th minute subbed Vodháněl Kratochvíl Miloš.(EN)}
 \end{center}
 Moreover, due to the international nature of football domain, often finding grammatically correct form of foreign name is not easy and Genja can not resolve this issue. 
 
 To compensate these minor problems we output multiple texts instead of just one. As said, randomness can highly effect the overall impression from the text. When generating multiple texts the probability that one output will feel better than others is then increased. The idea of generating more than one text and then picking the best result of all generated can be useful, when the quality of the outputted text can not be ensured. However, the process of picking "the best" result can be again approached differently. For instance, using a human evaluation. Another option is to exploit the data-driven methods and pick the version that is statistically the most similar to the texts in acquired set of e.g. football articles from websites. The problem of selecting "the best" option is not solved in this project. 
 
-Here is an example of lexicalization and realisation of one preverbal message:
+Here are multiple examples of lexicalization and realisation of one preverbal message:
+\begin{itemize}
+	\item Message: (Type: CARD, time: 90 + 1, participant: Povazanec Jakub, team: Jablonec, card\_type: YELLOW)
+	\item \textit{(EN) In the first minute of the second half overtime Jakub Povazanec got a yellow card.}
+	\item \textit{(CZ) V první minutě nastavení druhého poločasu obdržel hráč s číslem 7 žlutou.}
+	\item \textit{(CZ) Jakub Povazanec vyfasoval jednu minutu po začátku nastaveného času druhého poločasu žlutou.}
+	\item \textit{(CZ) Povazanec dostal jednu minutu po začátku nastaveného času druhého poločasu žlutou kartu.}
+\end{itemize}
+Note that both word order and lexical expressions for the constituents differ: player (Jakub Povazanec/Povazanec/hráč s číslem 7), yellow card (žlutou/žlutou kartu) or the verb for "got"(obdržel/vyfasoval/dostal). As you can see the template system used created a variety of sentences.
 
+Here we show two examples of generated articles for the \textit{example\_match}. Messages to generate are visible from \figref{example}, but we will state couple of first along with the title message:
 
-As you can see the template system used created a variety of sentences.
+\noindent\makebox[\linewidth]{\rule{\textwidth}{0.4pt}}
+\textbf{Messages:}
+\begin{enumerate}
+	\item Type: RESULT, team\_home: Jablonec, team\_away: --Team-- Id: 804, Name: Bohemians 1905, type: AWAY, score: 3:1
+	\item Type: GOAL, time: 10, participant: Trávník Michal, team: Jablonec, score: 0-0, goal\_type: Goal.PENALTY
+	\item Type: GOAL, time: 44, participant: Hašek Martin, team: Bohemians 1905, score: 1-1, goal\_type: Goal.ASSISTANCE
+	\item Type: SUBSTITUTION, time: 55, participant\_out: Vaníček Antonín, participant\_in: Nečas Jakub, team: Bohemians 1905
+\end{enumerate}
 
+\noindent\makebox[\linewidth]{\rule{\textwidth}{0.4pt}}
+\textbf{Article examle No. 1/2:}
+\begin{center}
+\textit{Jablonec deklasoval Bohemians 1905 3:1.  }
+\end{center}
 
-Celé zápasy:
+V desáté minutě proměnil Trávník pokutový kop. Hráč s číslem 21 vstřelil po nahrávce Vaníčka Antonína 44 minut po začátku gól. V 55. minutě Jakub Nečas střídal za hráče s číslem 22. 62 Minut po začátku dal po nádherné kombinaci Doležal po pase Trávník Michal branku. V 69. minutě vystřídal Hašek za Michala Ševce. Hráč s číslem 17 střídal za Jana Závišku 74 minut po začátku. V 75. minutě Kratochvíl Miloš vystřídal hráče s číslem 21. Doležal Martin vsítil po asistenci Trávník gól 79 minut po začátku druhého poločasu. 87 Minut po začátku střídal Vojtěch Kubišta hráče s číslem 25. Kubišta dostal v 90. minutě žlutou kartu. Jednu minutu po začátku nastaveného času druhého poločasu vystřídal hráč s číslem 19 Doležala Martina. V první minutě nastavení druhého poločasu obdržel Povazanec žlutou. Kratochvíl Miloš vyfasoval tři minuty po začátku nastaveného času druhého poločasu žlutou kartu.
+
+\noindent\makebox[\linewidth]{\rule{\textwidth}{0.4pt}}
+\textbf{Article example No. 2/2:}
+\begin{center}
+\textit{	Jablonec porazil Bohemians 1905 3:1.}
+\end{center}                                      
+
+V desáté minutě proměnil Michal Trávník penaltu. Hašek dal po přihrávce Vaníčka Antonína 44 minut po začátku branku. 55 Minut po začátku druhého poločasu vystřídal hráč s číslem 10 Vaníčka. Po nádherné souhře v 62. minutě vstřelil Martin Doležal po asistenci Trávník Michal gól. 69 Minut po začátku druhého poločasu Hašek střídal za hráče s číslem 2. V 74. minutě vystřídal Jan Vodháněl za hráče s číslem 8. Miloš Kratochvíl střídal za Sobola Eduarda 75 minut po začátku. 79 Minut po začátku druhého poločasu vsítil Martin Doležal po pase Trávník branku. 87 Minut po začátku Kubišta Vojtěch vystřídal Vladimír Jovovič. Devadesát minut po začátku druhého poločasu obdržel Kubišta Vojtěch žlutou. V první minutě nastavení druhého poločasu střídal Chramosta za Martina Doležala. Povazanec dostal jednu minutu po začátku nastaveného času druhého poločasu žlutou kartu. V třetí minutě nastavení druhého poločasu vyfasoval Kratochvíl Miloš žlutou.
+
+\noindent\makebox[\linewidth]{\rule{\textwidth}{0.4pt}}
 
 \section{Discussion}
 In this section we discuss numerous perspectives and aspects of the solution.
 
-First to discuss is the choice of the approach. The implementation strictly follows the division described in modular approach exploiting the power of splitting the extremely complex NLG problem into smaller easier-to-manage segments. As discussed earlier, the raw power of data can contribute to the quality of the result and therefore the first improvement of the project would be to change approach completely supposed you acquire the corpus data. However, stochastic approach rely on big amount of quality data, which are not available for me or rather their requirement would be insanely time-consuming. Moreover, this was my personally first NLG project. Due to my inexperience and lack of large number of easily accessible data the modular approach was chosen.
+Several papers on the topic of football summary or article were published. First example is \cite{et1997generation} where system of templates is incorporated in order to generate football report. Syntactic trees are used to implement templates. Another difference is the ordering of the messages. First we choose the topic we have not spoken about yet e.g goals scored during the match. Then we convey every message from this topic. However, the ordering of topics can change. Consequently, we need a tool that controls state of the generation so that the we know what was or was not already mentioned (e.g. number of spectators will be mentioned in a game summary only if it was not mentioned in other topic). Context supervision is present throughout the entire generation.
 
-Naturally, quality of football articles created by sport journalists can hardly be matched with quality of outputs from the FootballArticlesGenerator software. The aim of the outputs were to be readable and form a proper Czech sentence filled with information about a football match, which was achieved. What is more, an increased variability was achieved to make text more fluid.
+Second example of implemented NLG system about football is much newer \cite{chen2008learning}. This system generate commentaries to events on the pitch in the simulated football match. Their approach is completely non-linguistic and rely on machine learning methods. Training data consists of pairs of textual human commentary and state of the game. These two examples show two completely different approaches.
+
+Next to discuss is the choice of the approach used in this implementation. The architecture strictly follows the division described in modular approach exploiting the power of splitting the extremely complex NLG problem into smaller easier-to-manage segments. As discussed earlier, the raw power of data can contribute to the quality of the result and therefore the first improvement of the project would be to change approach completely supposed you acquire the corpus data. However, stochastic approach rely on big amount of quality data, which are not available for me or rather their requirement would be insanely time-consuming. Moreover, this was my personally first NLG project. Due to my inexperience and lack of large number of easily accessible data the modular approach was chosen.
+
+Naturally, quality of football articles created by sport journalists can hardly be matched with quality of outputs from the \textit{FootballArticlesGenerator} software. The aim of the outputs were to be readable and form a proper Czech sentence filled with information about a football match, which was achieved. What is more, an increased variability was achieved to make text more fluid.
 
 The complexity of the implementation was hard to deal with and not seeing the error propagation consequences the attempts of creating fully functioning system often failed. Retrospectively, the incorporated system of "two-layered" templates (implemented as \textit{Sentence} and \textit{Template}, which both fit to the template idea) is not-optimal. As seen in initializing \textit{Templates} for \textit{Time}. Firstly, the templates are picked randomly without context, meaning we can use expressions like "Two minutes after that" and so on. Secondly, to express time more variably we would like to use another template layer connected to a set of morphological parameters to be passed to Genja, but that is not possible. The best improvement for this project would be to re-implement sentence planner and using tree structure of templates to enable having template in a template. 
 
@@ -246,7 +283,10 @@ Consequence of the well-implemented tree structure would be a better quality art
 
 In addition, the database used for this project does not contain enough information to create somewhat complex article. Primary insufficiency is in the lack of details of incidents contained in the data. Expressing a goal is usually accompanied by a slight description of how the goal was scored: cross from the left side and top corner header, chaos in front of the net resulted in a rebound and a goal, beautiful solo play, 30 meter absolute screamer, etc. Similarly, the minor incidents like corners, shots, fouls, offsides are not present and could help when conveying more detailed text describing the true course of the game and not only major incidents. Lastly, there are no statistics and knowledge base present. When lexicalizing Cristiano Ronaldo we have only options to use number or name, while journalist would use more complicated expressions like "deadly portuguese striker", "famous CR7", "the most productive player of the Premiere League or "the newest member of Manchester United squad". History of the player, current leaderboards and statistics of the season, all time best leaderboards, nicknames for entities and more are the information lacking to truly have potential to create human-like article that would be both thrilling and informative. Not to mention incidents, which are not based on statistics, but rather on the actions that happened on the pitch. For instance, controversial calls, conflicts between players, vibes on the stadium, how well the team actually plays are all aspects that are very hard to store, classify and express, but are arguably the most interesting for a football fan besides a result of the match itself. This paragraph further proves the strength of the data-driven approach that can overcome the difficulties of lack of data by simply imitating the already existing text. For example, if corpus contains nickname "Blues" for "FC Chelsea" numerous times, it becomes a viable lexical expression for Chelsea entity.
 
-Several papers on the topic of football summary or article were published...
+Even though the generated text are well-built and correct, their usage afterwards is questionable. The popularity of sports articles lie in the tabloid style nature of the text. If they are interested in just a simply overview of the match, they use non-textual representation like \figref{overview}, which is provided online (e.g. Livesport). Moreover, the input for the program is very specific and requires authorization key for Genja.
+
+
+
 
 
 

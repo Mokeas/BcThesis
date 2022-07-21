@@ -1,4 +1,4 @@
-\chapter{A-Process of developing a NLG system}\label{chap:process}
+\chapter{Process of developing a NLG system}\label{chap:process}
 
 The process of developing a text-producing software is complex and requires organised preparation in order to deliver a quality result. This paper so far covered separate segments of the NLG accompanied by numerous examples to illustrate concrete problems. Now we suggest how to order key parts of the development:
 \begin{enumerate}
@@ -11,7 +11,7 @@ The process of developing a text-producing software is complex and requires orga
 
 Steps (\ref{p-1}), (\ref{p-2}) and (\ref{p-5}) are further discussed in separate sections below. Steps (\ref{p-3}) and (\ref{p-4}) were already described in detail in \autoref{chap:tasks} and \autoref{chap:approaches}. Both step (\ref{p-2}) and (\ref{p-5}) are skippable and not required, but their implementation can further enrich the final solution.
 
-\section{B-Requirements analysis}
+\section{Requirements analysis}
 
 First step of developing the NLG system is to carefully analyse fundamental aspects that will establish the approach and overall functioning of the program. We state six such aspects:
 \begin{itemize}
@@ -37,7 +37,7 @@ Examples in the article were created to demonstrate the various effects these as
 
 Lastly, a great number of \textbf{already existing tools} has been developed and it is a possibility to incorporate these tools into newly constructed solution. Examples can be domain specific corpora or specific language realisers. Utilising these already established resources can upgrade the solution. However, the negative impact of such usage can be making ponderous transformations to create input in correct form that is required by the incorporated system as well as accommodating the approach to the tool.
  
-\section{B-Corpora building}
+\section{Corpora building}
 As we mentioned above, requirement factors can greatly influence methods and our overall approach to the problem. Communicating these specifics can be tricky when only one side has an insight into computational linguistics. The most suggested method is to create a corpus, which is a collection of inputs and corresponding text outputs. This process ensures a clear definition of expectations of what the output will look like and prevents misunderstanding. This method is useful even when developing software independently without any specific party, that would require any specifics. Corpus is then built to our own expectations creating a solid base for the process of approach analysis and implementation of the NLG system in general. 
 
 Additionally, corpus is necessary when applying statistical methods since they rely completely on the content of the corpus and the correlation in-between. Lastly, corpus does not have to be composed of end-to-end NLG pairs, but rather contain inputs and corresponding outputs for a smaller part of the NLG (one or more tasks) in order to create a foundation for stochastic methods to resolve the problem. Inputs and outputs can then vary greatly in the inner representation as for instance inputs for content determination and REG will surely differ. What is more, since data structures  alter even for the same NLG task solution the corpus should be built (or transformed) so that the input and output fit the specific solution's representations.
@@ -50,7 +50,7 @@ Described process of hand-building corpus is highly labour-expensive and therefo
 
 To summarise, building a corpus is not obligatory, but highly recommended practice to ease the process of developing the NLG system, especially finding requirements. Precise target corpus primarily precedes the problem that the quality of the developed system is insufficient as the user knows exactly what the output will look like and match his expectations perfectly. When applying statistical methods, a well-defined and comprehensive corpus becomes a necessity since the stochastic approach relies crucially on the power of data. Lastly, the corpus is a fine tool even for the developer himself: analysis of each record of the corpus results in an outline of the challenges to overcome and gives a basic idea how the particular NLG problem should be approached.
 
-\section{B-Evaluation}
+\section{Evaluation}
 After NLG yields the textual result an intuitive action would be to rate it and then reflect the approach and implementation based on the rating. From a practical point of view this step can be processed by a user or client who expects a certain quality and decides whether the quality is matched or not. From an academic point of view, this task is about deciding how to measure what is the "optimal" output as described in footnote \ref{footnote-opt}. Computer science problems usually contain a metric, which easily decides what solution is better. For instance, graph problems usually have an optimal solution to the problem and algorithms are compared based on time complexity of finding this optimal solution.\footnote{Exceptions are probabilistic and approximation algorithms that find acceptable (compared to the optimal) solution in a faster time} However, in linguistics the comparison metric is not obvious, but rather complicated.
 
 This can be demonstrated in a school-leaving essay. Deciding about the grade will likely be uniform since the base is some general criteria that have to be matched. However, how to decide what work was the best (if the goal was to pick the best essay). Surely, we can restrict ourselves to only the theses that were graded with the best grade, but how to choose among them? To summarise, in linguistics it is trivial for a human to decide if the result is "good" or "bad", but it is difficult to pick the best among the "good" ones. "Bad" results can be grammatically incorrect, factually wrong or the communicative goal was not achieved. This process is even harder for computers and therefore a human element is often required to rate the results. 
