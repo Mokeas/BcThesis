@@ -1,5 +1,5 @@
 # Natural Language Generation system writing football articles
-_**Bachelor thesis at Faculty of Mathematics and Physics, Charles University, Czech Republic, 2022**_
+_**Bachelor thesis at Faculty of Mathematics and Physics, Charles University, Czech Republic, 2023**_
 
 **Abstract of the thesis**: Journalism could become a tedious job as its main concern is to create as many
 articles as possible, usually prioritising quantity over quality. Some articles are quite
@@ -13,11 +13,11 @@ NLG as well as describing NLG tasks and its challenges you need to overcome in o
 to produce a similar human language (not only Czech) producing program. 
 
 ## Content of the project
-In the project, there are two directories:
+In the project, there are three directories:
 
-* **_BcText_**: the textual version of the thesis written in TeX and the .pdf file</li>
+* **_BcText_**: the textual version of the thesis along with CZ/EN abstract</li>
 * **_FootballArticlesGenerator_**: Python software that produces football articles</li>
-
+* **_MatchData_**: directory to store JSON data about matches to then serve as inputs, only one example match is in this directory: _example_match.json_.</li>
 
 ## Text of the thesis
 
@@ -27,7 +27,7 @@ Note: University's bachelor thesis template (version 2020-04-17) was used when s
 
 ## FootballArticlesGenerator
 
-Project is written purely in Python. Project contains separate modules, which are described briefly in the code as comments or in detail in the thesis. The project contains one example JSON file of input data: _example_match.json_.
+Project is written purely in Python. Project contains separate modules, which are described briefly in the code as comments or in detail in the thesis. 
 
 ## How to run the program
 * The program has no dependencies, plain Python (version 3.7+) is enough.
@@ -57,7 +57,7 @@ python run.py -k insert_key_here
 ## Arguments
 Every argument is optional:
 * ```-h, --help```: Show help message and exit.
-* ```-m MATCH_DATA, --match_data MATCH_DATA```: Defines JSON file with match data (default=example_match).
+* ```-m MATCH_DATA, --match_data MATCH_DATA```: Defines JSON file with match data (default=..\MatchData\example_match.json).
 * ```-c TEXT_COUNT, --text_count TEXT_COUNT```: Changes number of generated texts (default=3).
 * ```-o, --short_output```: Prints detailed output. If missing, prints only result articles.
 * ```-k KEY, --key KEY```: Sets authorization key for Genja API.

@@ -35,7 +35,7 @@ def existing_file(file):
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser()
-    parser.add_argument("-m", "--match_data", default="example_match.json", type=existing_file, help="Defines JSON file with match data (default=example_match).")
+    parser.add_argument("-m", "--match_data", default="..\MatchData\example_match.json", type=existing_file, help="Defines JSON file with match data (default=example_match).")
     parser.add_argument("-c", "--text_count", default=3, type=positive_integer, help="Changes number of generated texts (default=3).")
     parser.add_argument("-o", "--short_output", action='store_true', help="Prints detailed output. If missing, prints only result articles.")
     parser.add_argument("-k", "--key", default=os.getenv('GENJA_API_KEY'), type=str, help="Sets authorization key for Genja API.")

@@ -306,3 +306,14 @@ TSWLatexianTemp*
 # Uncomment the next line to have this generated file ignored.
 #*Notes.bib
 
+# .idea directory
+.idea
+
+# FootballArticlesGenerator auxilliary directories
+FootballArticlesGenerator\.idea
+FootballArticlesGenerator\__pycache__
+
+# Tex directory
+\BcText\Tex
+
+

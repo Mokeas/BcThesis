@@ -54,6 +54,7 @@
 \usepackage{refstyle}		% easy image referrencing
 \usepackage{hyperref}
 \usepackage{float}
+\usepackage{forest}
 
 %%% Basic information on the thesis
 
@@ -99,7 +100,7 @@ This thesis is concerned with analysing implementation of such a linguistic soft
 
 % 3 to 5 keywords (recommended), each enclosed in curly braces
 \def\Keywords{%
-	{NLG}, {Czech}, {sport}, {football}
+	{NLG} {Czech} {sport} {football}
 }
 
 %% The hyperref package for clickable links in PDF and also for storing
@@ -135,5 +136,55 @@ This thesis is concerned with analysing implementation of such a linguistic soft
 %%% Figures used in the thesis (consider if this is needed)
 \listoffigures
 
+\appendix
+\chapter{Attachments}
+This attachment describes structure of the .zip archive, which this thesis is part of.
+\newline
+
+\begin{forest}
+	for tree={
+		font=\sffamily,
+		grow'=0,
+		child anchor=west,
+		parent anchor=south,
+		anchor=west,
+		calign=first,
+		edge path={
+			\noexpand\path [draw, \forestoption{edge}]
+			(!u.south west) +(7.5pt,0) |- node[fill,inner sep=1.25pt] {} (.child anchor)\forestoption{edge label};
+		},
+		before typesetting nodes={
+			if n=1
+			{insert before={[,phantom]}}
+			{}
+		},
+		fit=band,
+		before computing xy={l=15pt},
+	}
+	[root
+	[BcText - text of the thesis with abstract (CZ/EN)
+	[abstract\_cz.pdf]
+	[abstract\_en.pdf]
+	[thesis.pdf]
+	]
+	[FootballArticlesGenerator - Python project
+	[articles\_generator.py]
+	[Data.py]
+	[data\_initializer.py]
+	[document\_planner.py]
+	[linguistic\_realiser.py]
+	[printer.py]
+	[run.py]
+	[sentence\_planner.py]
+	[setup.py]
+	[Types.py]
+	]
+	[MatchData - directory to store input matches data 
+	[example\_match.json]
+	]
+	[README.md - general information about thesis 
+	] 
+	]
+\end{forest}
 \openright
 \end{document}
