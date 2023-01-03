@@ -307,11 +307,13 @@ TSWLatexianTemp*
 #*Notes.bib
 
 # .idea directory 
-/.idea/
+.idea/
 
 # FootballArticlesGenerator auxilliary directories
-/FootballArticlesGenerator/.idea/
-/FootballArticlesGenerator/__pycache__/
+FootballArticlesGenerator/.idea/
+FootballArticlesGenerator/__pycache__/
 
 # Tex directory
-/BcText/Tex/
+BcText/Tex/
+
+
