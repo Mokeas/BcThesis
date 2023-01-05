@@ -31,10 +31,10 @@ Project is written purely in Python. Project contains separate modules, which ar
 
 ## How to run the program
 * The program has no dependencies, plain Python (version 3.7+) is enough.
-* Clone the Python project:
+* Clone the repository:
 
 ```
-git clone https://github.com/Mokeas/BcThesis/tree/main/FootballArticlesGenerator
+git clone https://github.com/Mokeas/BcThesis
 ```
 
 * Install the package FootballArticleGenerator using pip (or simply use this directory):
