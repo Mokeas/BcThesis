@@ -30,23 +30,17 @@ Note: University's bachelor thesis template (version 2020-04-17) was used when s
 Project is written purely in Python. Project contains separate modules, which are described briefly in the code as comments or in detail in the thesis. 
 
 ## How to run the program
-* The program has no dependencies, plain Python (version 3.7+) is enough.
+* Install Python (version 3.7+)
+* Install Python requests module
+
+```
+python -m pip install requests
+```
+
 * Clone the repository:
 
 ```
 git clone https://github.com/Mokeas/BcThesis
-```
-
-* Install the package FootballArticleGenerator using pip (or simply use this directory):
-
-Unix:
-```
-python3 -m pip install FootballArticlesGenerator
-```
-
-Windows:
-```
-py -m pip install FootballArticlesGenerator
 ```
 
 * If you want results to be complete, you need to acquire authorization key for Genja API (Contact Geneea at [geneea.com](https://geneea.com/)). Without the key, the program will still run, but the linguistic realisation will not be performed and therefore the outputted text will be the intended input for Genja.
