@@ -372,7 +372,7 @@ class TemplateHandler:
 
                 if time.base > 45:
                     templates.append(Template.create(type_, entity_type,
-                                                 f"{get_words_for_minutes(time.base, False) if data is not None else ''} "
+                                                 f"{get_words_for_minutes(time.base-45, False) if data is not None else ''} "
                                                  f"po začátku druhého poločasu"))
 
         def __init_player_templates():
@@ -715,7 +715,7 @@ class TemplateHandler:
         Chooses template from all possible templates using this algorithm:
         1) if we haven't used every template - pick one randomly
         2) if we already used every template once - pick randomly from every template possible
-        (except the last used so that ensure some differentiation.
+        (except the last used so that ensure some differentiation.)
         :param possibilities: List of possible templates.
         :return: Template
         """
